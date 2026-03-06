@@ -1,4 +1,4 @@
-import { MdPassword, MdGridOn, MdPublic, MdPhotoCamera, MdImage, MdPhoneIphone } from "react-icons/md";
+import { MdPassword, MdGridOn, MdPublic, MdPhotoCamera, MdImage, MdPhoneIphone, MdCrop } from "react-icons/md";
 import { BiBook } from "react-icons/bi";
 
 export const tools = [
@@ -65,5 +65,13 @@ export const tools = [
     url: "/tools/app-icon-generator",
     icon: MdPhoneIphone,
     gradient: "from-indigo-400 to-purple-500",
+  },
+  {
+    title: "Image Cropper",
+    description:
+      "Easily crop and resize your images with custom aspect ratios, perfect for social media or specific project requirements.",
+    url: "/tools/image-cropper",
+    icon: MdCrop,
+    gradient: "from-cyan-400 to-blue-500",
   },
 ];
