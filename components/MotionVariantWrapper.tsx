@@ -57,6 +57,7 @@ const MotionVariantWrapper = ({
       variants={variants[variant]}
       transition={{ duration: 0.6, delay: delay, ease: "easeOut" }}
       className={className}
+      style={{ willChange: "transform, opacity" }}
     >
       {children}
     </motion.div>

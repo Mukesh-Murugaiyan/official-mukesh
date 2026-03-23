@@ -106,7 +106,6 @@ export default function ProfileCard({
               bg-gray-800/60
               inline-block px-3 py-1
               rounded-full border border-gray-700
-              backdrop-blur-sm
             "
           >
             Software Developer

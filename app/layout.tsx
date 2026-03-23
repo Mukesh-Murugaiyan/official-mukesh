@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     template: "%s | Mukesh Murugaiyan",
   },
   description:
-    "Portfolio of Mukesh Murugaiyan | Web, Android, iOS, and Desktop apps developer.",
+    "Web, Android, iOS, and Desktop Applications Developer with experience in third-party integrations and webhook-based systems.",
   keywords: SEO_KEYWORDS,
   metadataBase: new URL("https://themukesh.com"),
   appleWebApp: {
