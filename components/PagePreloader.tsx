@@ -28,7 +28,7 @@ export default function PagePreloader({ children }: { children?: ReactNode }) {
             initial={{ opacity: 1 }}
             exit={{ opacity: 0, filter: "blur(10px)", scale: 1.1 }}
             transition={{ duration: 0.8, ease: "easeInOut" }}
-            className="fixed inset-0 z-[9999] bg-[#111111] flex items-center justify-center"
+            className="fixed inset-0 z-[9999] bg-[#111111] flex items-center justify-center -translate-z-0"
           >
             <div className="preloader-container">
               <motion.svg
@@ -42,7 +42,8 @@ export default function PagePreloader({ children }: { children?: ReactNode }) {
                   points="50,5 90,27 90,72 50,95 10,72 10,27"
                   stroke="#00FFF0"
                   strokeWidth="3"
-                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeLinecap="butt"
                   initial={{ pathLength: 0 }}
                   animate={{ pathLength: 1 }}
                   transition={{ duration: 1.6, ease: "easeInOut" }}

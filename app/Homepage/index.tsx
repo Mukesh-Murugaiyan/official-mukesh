@@ -90,7 +90,7 @@ END:VCARD`;
             width={500}
             height={500}
             className="object-cover w-full h-full rounded-xl 
-           shadow-[0_0_10px_1px_rgba(255,255,255,0.5)] 
+           shadow-lg shadow-white/20 
            transition-all duration-300"
             loading="lazy"
             priority={false}
@@ -142,7 +142,7 @@ END:VCARD`;
             </div>
 
             {/* Right Scrollable Content */}
-            <div className="flex-1 rounded-3xl border border-white/10 backdrop-blur-sm relative bg-[#111111]">
+            <div className="flex-1 rounded-3xl border border-white/10 relative bg-[#111111]">
               <div ref={navTabRef}>
                 <NavigationTab activeSection={activeSection} />
               </div>
@@ -191,7 +191,7 @@ END:VCARD`;
           {/* Mobile | Single Column */}
           <div className="lg:hidden space-y-7">
             <ProfileCard isMobile={true} setIsOpen={setIsOpen} />
-            <div className="relative bg-[#111111] rounded-3xl border border-white/10 backdrop-blur-sm">
+            <div className="relative bg-[#111111] rounded-3xl border border-white/10">
                {/* Mobile Content - Rendered Directy */}
                 <div ref={aboutRef}>
                   <MotionVariantWrapper variant="fadeUp">
