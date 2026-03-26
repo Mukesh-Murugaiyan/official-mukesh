@@ -1,5 +1,6 @@
 "use client";
-import { MdWork, MdSchool } from "react-icons/md";
+import { MdWork, MdSchool, MdTimeline } from "react-icons/md";
+import { motion } from "framer-motion";
 
 const ResumeSection = ({ id }: { id?: string }) => {
   const timeline = [
@@ -58,8 +59,26 @@ const ResumeSection = ({ id }: { id?: string }) => {
       id={id || "resume"}
       className="p-6"
     >
-      <h2 className="text-3xl font-bold text-white mb-2">Career Snapshot</h2>
-      <div className="w-20 sm:w-24 h-[3px] bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full" />
+    
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        className="flex items-center gap-3 mb-2"
+      >
+        <div className="p-2 rounded-lg bg-white/5 border border-white/10 backdrop-blur-sm">
+          <MdTimeline className="text-xl text-cyan-400" />
+        </div>
+        <h2 className="text-3xl font-bold text-white">Career Snapshot</h2>
+      </motion.div>
+
+      <motion.div
+        initial={{ scaleX: 0 }}
+        whileInView={{ scaleX: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: "circOut" }}
+        className="w-24 h-[3px] bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full origin-left"
+      />
 
       <div className="flex flex-col">
         {timeline.map((item, idx) => {

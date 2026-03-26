@@ -1,11 +1,14 @@
 "use client";
 
+import { motion } from "framer-motion";
 import {
   MdDesktopWindows,
   MdPhoneIphone,
   MdStorage,
   MdWeb,
+  MdWorkspacePremium,
 } from "react-icons/md";
+
 
 const SkillSection = ({ id }: { id?: string }) => {
   const skillsData = [
@@ -187,8 +190,25 @@ const SkillSection = ({ id }: { id?: string }) => {
 
   return (
     <section id={id || "skills"} className="relative p-4 sm:p-8 max-w-7xl mx-auto">
-      <h2 className="text-3xl font-bold text-white mb-2">Expertise</h2>
-      <div className="w-20 sm:w-24 h-[3px] bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full mb-12" />
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        className="flex items-center gap-3 mb-2"
+      >
+        <div className="p-2 rounded-lg bg-white/5 border border-white/10 backdrop-blur-sm">
+          <MdWorkspacePremium className="text-xl text-cyan-400" />
+        </div>
+        <h2 className="text-3xl font-bold text-white">Expertise</h2>
+      </motion.div>
+
+      <motion.div
+        initial={{ scaleX: 0 }}
+        whileInView={{ scaleX: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: "circOut" }}
+        className="w-24 h-[3px] bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full  origin-left"
+      />
 
       <div className="flex flex-col">
         {timeline.map((item, idx) => {
