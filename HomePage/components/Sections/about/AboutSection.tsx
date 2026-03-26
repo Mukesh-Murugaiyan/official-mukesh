@@ -1,5 +1,6 @@
 import { ColourfulText } from "@/components/animation/ColourfulText";
 import { motion } from "framer-motion";
+import { MdPerson } from "react-icons/md";
 
 export default function AboutSection({ id }: { id?: string }) {
   const containerVariants = {
@@ -32,10 +33,27 @@ export default function AboutSection({ id }: { id?: string }) {
         style={{ willChange: "transform, opacity" }}
       >
         {/* Heading */}
-        <motion.div variants={itemVariants}>
-          <h2 className="text-3xl font-bold mb-2">About Me</h2>
-          <div className="w-24 h-[3px] bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full mb-6" />
-        </motion.div>
+
+        <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="flex items-center gap-3 mb-2"
+              >
+                <div className="p-2 rounded-lg bg-white/5 border border-white/10 backdrop-blur-sm">
+                  <MdPerson className="text-xl text-cyan-400" />
+                </div>
+                <h2 className="text-3xl font-bold text-white">About Me</h2>
+              </motion.div>
+        
+              <motion.div
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, ease: "circOut" }}
+                className="w-24 h-[3px] bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full mb-5 origin-left"
+              />
+        
 
         {/* Intro */}
         <motion.p variants={itemVariants} className="text-gray-300 leading-relaxed">

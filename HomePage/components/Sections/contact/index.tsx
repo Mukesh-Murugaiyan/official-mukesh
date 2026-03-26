@@ -3,7 +3,7 @@
 import logo from "@/assets/images/logo.svg";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { MdCall, MdEmail } from "react-icons/md";
+import { MdCable, MdCall, MdEmail } from "react-icons/md";
 import QRCode from "react-qr-code";
 import FormSubmit from "./components/FormSubmit";
 type propsTypes = {
@@ -39,8 +39,25 @@ END:VCARD`;
       id={id || "contact"}
       className="p-5"
     >
-      <h2 className="text-3xl font-bold text-white mb-2">Let’s Connect</h2>
-       <div className="w-20 sm:w-24 h-[3px] bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full mb-8" />
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        className="flex items-center gap-3 mb-2"
+      >
+        <div className="p-2 rounded-lg bg-white/5 border border-white/10 backdrop-blur-sm">
+          <MdCable className="text-xl text-cyan-400" />
+        </div>
+        <h2 className="text-3xl font-bold text-white">Let’s Connect</h2>
+      </motion.div>
+
+      <motion.div
+        initial={{ scaleX: 0 }}
+        whileInView={{ scaleX: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: "circOut" }}
+        className="w-24 h-[3px] bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full mb-8 origin-left"
+      />
 
       {/* MAP */}
       <div className="w-full overflow-hidden rounded-xl border border-gray-700">
