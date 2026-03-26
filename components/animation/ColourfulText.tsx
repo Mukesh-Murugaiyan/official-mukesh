@@ -73,6 +73,7 @@ export function ColourfulText({
                   0 0 ${glowStrength * 1.5}px ${glowColor || color}
                 `
                 : "none",
+              willChange: "transform, opacity, color",
             }}
             className="inline-block whitespace-pre font-sans tracking-tight"
           >
