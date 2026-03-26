@@ -137,7 +137,7 @@ END:VCARD`;
           {/* Desktop | Two Column */}
           <div className="hidden lg:flex gap-[2.3%]">
             {/* Left Sticky ProfileCard */}
-            <div className="flex-shrink-0 sticky top-8 self-start rounded-3xl border border-white/10  backdrop-blur-sm h-fit">
+            <div className="flex-shrink-0 sticky top-8 self-start h-fit">
               <ProfileCard setIsOpen={setIsOpen} />
             </div>
 
@@ -150,9 +150,7 @@ END:VCARD`;
               
               <div className="flex flex-col">
                 <div ref={aboutRef}>
-                   <MotionVariantWrapper variant="fadeUp" id="about-wrapper">
-                    <AboutSection />
-                  </MotionVariantWrapper>
+                  <AboutSection />
                   <MotionVariantWrapper variant="zoomIn" delay={0.2}>
                     <HighlightsSection />
                   </MotionVariantWrapper>
@@ -168,13 +166,13 @@ END:VCARD`;
                 </div>
 
                 <div ref={skillsRef}>
-                  <MotionVariantWrapper variant="slideLeft" delay={0.1}>
+                  <MotionVariantWrapper variant="fadeUp" delay={0.1}>
                     <SkillSection />
                   </MotionVariantWrapper>
                 </div>
 
                 <div ref={contactRef}>
-                  <MotionVariantWrapper variant="rotateIn" delay={0.1}>
+                  <MotionVariantWrapper variant="fadeUp" delay={0.1}>
                     <ContactSection setIsQrOpen={setIsQrOpen} />
                   </MotionVariantWrapper>
                 </div>
@@ -194,9 +192,7 @@ END:VCARD`;
             <div className="relative bg-[#111111] rounded-3xl border border-white/10">
                {/* Mobile Content - Rendered Directy */}
                 <div ref={aboutRef}>
-                  <MotionVariantWrapper variant="fadeUp">
-                    <AboutSection id="about-mobile" />
-                  </MotionVariantWrapper>
+                  <AboutSection id="about-mobile" />
                   <MotionVariantWrapper variant="zoomIn" delay={0.1}>
                     <HighlightsSection id="highlights-mobile" />
                   </MotionVariantWrapper>

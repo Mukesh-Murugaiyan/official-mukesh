@@ -55,7 +55,7 @@ const MotionVariantWrapper = ({
       whileInView="visible"
       viewport={{ once: true, margin: "-100px" }}
       variants={variants[variant]}
-      transition={{ duration: 0.6, delay: delay, ease: "easeOut" }}
+      transition={{ duration: 0.5, delay: delay, ease: "easeOut" }}
       className={className}
       style={{ willChange: "transform, opacity" }}
     >

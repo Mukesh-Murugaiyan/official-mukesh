@@ -44,28 +44,24 @@ export default function ProfileCard({
 
   return (
     <motion.div 
+      layout
       initial={{ opacity: 0, scale: 0.9, y: 20 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="relative w-full"
+      className="relative w-full bg-[#111111] border border-white/10 rounded-2xl lg:rounded-3xl overflow-hidden shadow-2xl"
     >
-      {/* MAIN CARD */}
-      <div
-        className={`
-        bg-[#111111] text-white
+      {/* MAIN CARD SECTION */}
+      <motion.div
+        layout
+        className="
+        text-white
         p-6 lg:p-8
-        ${
-          isMobile && !showContacts
-            ? "rounded-2xl lg:rounded-3xl border-b"
-            : "rounded-t-2xl lg:rounded-t-3xl"
-        }
-        border-t border-l border-r border-white/10
         flex gap-5 lg:gap-8
         flex-row lg:flex-col
         items-center
-        transition-all duration-700
+        transition-all duration-300
         w-full lg:w-[236px]
-      `}
+      "
       >
         {/* Toggle button → Mobile Only */}
         <button
@@ -85,7 +81,7 @@ export default function ProfileCard({
           duration-300
           lg:hidden
           cursor-pointer
-          z-10
+          z-20
   "
         >
           <span className="hidden sm:inline">
@@ -130,9 +126,9 @@ export default function ProfileCard({
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
 
-      {/* CONTACT PANEL */}
+      {/* CONTACT PANEL SECTION */}
       <AnimatePresence>
         {(showContacts || !isMobile) && (
           <motion.div
@@ -141,16 +137,9 @@ export default function ProfileCard({
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className={`
-              bg-[#111111]
-              border-b border-l border-r border-white/10
-              shadow-2xl
-              overflow-hidden
-              lg:block lg:w-[236px]
-              rounded-b-2xl lg:rounded-b-3xl
-            `}
+            className="overflow-hidden lg:block lg:w-[236px]"
           >
-            <div className="p-6 flex flex-col gap-5">
+            <div className="p-6 pt-0 flex flex-col gap-5">
               <div className="w-full h-[1px] bg-gray-700 rounded-full p-0"></div>
 
               {/* EMAIL */}
