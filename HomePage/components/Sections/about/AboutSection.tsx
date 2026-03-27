@@ -1,6 +1,9 @@
 import { ColourfulText } from "@/components/animation/ColourfulText";
 import { motion } from "framer-motion";
 import { MdPerson } from "react-icons/md";
+import { FaReact, FaNodeJs } from "react-icons/fa";
+import { SiNextdotjs, SiElectron, SiFirebase, SiMongodb, SiSocketdotio } from "react-icons/si";
+import { TbBrandReactNative } from "react-icons/tb";
 
 export default function AboutSection({ id }: { id?: string }) {
   const containerVariants = {
@@ -8,7 +11,7 @@ export default function AboutSection({ id }: { id?: string }) {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1, // Snappier stagger
+        staggerChildren: 0.1, 
         delayChildren: 0.1,
       },
     },
@@ -23,6 +26,17 @@ export default function AboutSection({ id }: { id?: string }) {
     },
   };
 
+  const skills = [
+    { name: "React", icon: <FaReact className="text-[#61DAFB]" />, color: "#61DAFB" },
+    { name: "Next", icon: <SiNextdotjs className="text-white" />, color: "#FFFFFF" },
+    { name: "Node", icon: <FaNodeJs className="text-[#339933]" />, color: "#339933" },
+    { name: "RN", icon: <TbBrandReactNative className="text-[#61DAFB]" />, color: "#61DAFB" },
+    { name: "Electron", icon: <SiElectron className="text-[#47848F]" />, color: "#47848F" },
+    { name: "Firebase", icon: <SiFirebase className="text-[#FFCA28]" />, color: "#FFCA28" },
+    { name: "MongoDB", icon: <SiMongodb className="text-[#47A248]" />, color: "#47A248" },
+    { name: "WS", icon: <SiSocketdotio className="text-white" />, color: "#FFFFFF" },
+  ];
+
   return (
     <section id={id || "about"} className="p-6">
       <motion.div
@@ -32,148 +46,82 @@ export default function AboutSection({ id }: { id?: string }) {
         viewport={{ once: true, margin: "-100px" }}
         style={{ willChange: "transform, opacity" }}
       >
-        {/* Heading */}
 
         <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="flex items-center gap-3 mb-2"
-              >
-                <div className="p-2 rounded-lg bg-white/5 border border-white/10 backdrop-blur-sm">
-                  <MdPerson className="text-xl text-cyan-400" />
-                </div>
-                <h2 className="text-3xl font-bold text-white">About Me</h2>
-              </motion.div>
-        
-              <motion.div
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, ease: "circOut" }}
-                className="w-24 h-[3px] bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full mb-5 origin-left"
-              />
-        
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          className="flex items-center gap-3 mb-2"
+        >
+          <div className="p-2 rounded-lg bg-white/5 border border-white/10 backdrop-blur-sm">
+            <MdPerson className="text-xl text-cyan-400" />
+          </div>
+          <h2 className="text-3xl font-bold text-white">About Me</h2>
+        </motion.div>
 
-        {/* Intro */}
+        <motion.div
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: "circOut" }}
+          className="w-24 h-[3px] bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full mb-5 origin-left"
+        />
+
         <motion.p variants={itemVariants} className="text-gray-300 leading-relaxed">
-          I&apos;m <ColourfulText text="Mukesh" fontSize={28} glowStrength={24} />
-          , a passionate Software Engineer based in Bangalore, India. I specialize
-          in building scalable, secure, and performance-driven Web and Mobile
-          applications for real-world use cases.
+          I’m <ColourfulText text="Mukesh" fontSize={28} glowStrength={24} />, a Software Engineer based in Bangalore, India with 4 years of experience building and scaling high-performance web, mobile, and desktop applications.
         </motion.p>
-
-        <motion.p variants={itemVariants} className="text-gray-300 mt-4 leading-relaxed">
-          I hold a postgraduate degree from Dharmapuram Adhinam Arts and Science
-          College, Mayiladuthurai, and I have been working professionally as a
-          Software Development Engineer since 2022.
-        </motion.p>
-
-        {/* Website Purpose */}
-        <motion.div variants={itemVariants}>
-          <h3 className="text-xl font-semibold mt-8 mb-2">
-            Purpose of This Website
-          </h3>
-
-          <p className="text-gray-300 leading-relaxed">
-            This website is my personal portfolio and technical platform where I
-            share my professional experience, projects, and practical tools. The
-            goal of this site is to provide meaningful, original, and useful content
-            for developers, recruiters, and technology enthusiasts.
-          </p>
-        </motion.div>
-
-        {/* What Users Get */}
-        <motion.div variants={itemVariants}>
-          <h3 className="text-xl font-semibold mt-8 mb-2">
-            What You&apos;ll Find Here
-          </h3>
-
-          <p className="text-gray-300 leading-relaxed">
-            Visitors can explore my skillset, review my real-world projects, and use
-            various web-based tools designed to simplify everyday development tasks.
-            All content published here is carefully built with a focus on clarity,
-            usability, and long-term value.
-          </p>
-        </motion.div>
-
-        {/* Skills */}
-        <motion.div variants={itemVariants}>
-          <h3 className="text-xl font-semibold mt-8 mb-2">
-            Technical Expertise
-          </h3>
-
-          <p className="text-gray-300 leading-relaxed">
-            My primary expertise includes React, Next.js, Node.js, React Native,
-            Firebase, REST APIs, and modern backend architectures. I focus on clean
-            code, optimized performance, and secure implementations across both web
-            and mobile platforms.
-          </p>
-        </motion.div>
-
-        {/* Trust / Quality */}
-        <motion.div variants={itemVariants}>
-          <h3 className="text-xl font-semibold mt-8 mb-2">
-            Commitment to Quality
-          </h3>
-
-          <p className="text-gray-300 leading-relaxed">
-            I strongly believe in best development practices, continuous learning,
-            and ethical software engineering. Every feature, tool, or project shared
-            on this site is built from scratch, tested thoroughly, and maintained to
-            ensure accuracy and reliability.
-          </p>
-        </motion.div>
-
-        {/* Future Vision */}
-        <motion.div variants={itemVariants}>
-          <h3 className="text-xl font-semibold mt-8 mb-2">Future Vision</h3>
-
-          <p className="text-gray-300 leading-relaxed">
-            This platform will continue to grow with more advanced tools, technical
-            articles, and open-source contributions aimed at helping developers
-            learn faster and build better software solutions.
-          </p>
-        </motion.div>
-
-        {/* Core Skills */}
-        <motion.div variants={itemVariants}>
-          <h3 className="text-xl font-semibold mt-8 mb-2">
-            Core Skills & Technologies
-          </h3>
-
-          <p className="text-gray-300 leading-relaxed">
-            Over the years, I have worked extensively with a wide range of
-            technologies across frontend, backend, and mobile development. My skill
-            set is focused on building production-ready applications with
-            scalability, security, and performance in mind.
-          </p>
-        </motion.div>
 
         <motion.ul
           variants={itemVariants}
-          className="list-disc list-inside mt-4 space-y-2 text-gray-300"
+          className="hidden lg:flex flex-wrap gap-2 mt-6 text-sm text-gray-300"
         >
-          <li>
-            <strong>Frontend:</strong> React.js · Next.js · TypeScript · Tailwind
-            CSS · HTML5 · CSS3
-          </li>
-          <li>
-            <strong>Backend & APIs:</strong> Node.js · NestJS · Next.js · Java ·
-            Python · JWT · REST · WebSockets · AWS
-          </li>
-          <li>
-            <strong>Mobile:</strong> Expo · React Native (Android & iOS) ·
-            Cross-Platform · Kotlin · Swift · Firebase
-          </li>
-          <li>
-            <strong>Desktop:</strong> Electron · React · Node.js · Python ·
-            WebSockets · Vite
-          </li>
-          <li>
-            <strong>Databases:</strong> Firebase Firestore · MongoDB · SQL · PSQL
-          </li>
+          {skills.map((skill) => (
+            <motion.li
+              key={skill.name}
+              whileHover={{
+                scale: 1.05,
+                backgroundColor: "rgba(255, 255, 255, 0.08)",
+                boxShadow: `0 0 20px ${skill.color}33`,
+                borderColor: `${skill.color}66`
+              }}
+              className="flex items-center gap-2 px-3 py-2 bg-white/5 rounded-full border border-white/10 transition-colors cursor-default"
+            >
+              {skill.icon}
+              {skill.name}
+            </motion.li>
+          ))}
         </motion.ul>
+
+        <div className="lg:hidden mt-6 overflow-hidden relative w-full">
+          <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-[#0a0a0a] to-transparent z-10" />
+          <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-[#0a0a0a] to-transparent z-10" />
+
+          <motion.div
+            className="flex gap-2 w-max px-2"
+            animate={{
+              x: [0, "-50%"],
+            }}
+            transition={{
+              x: {
+                repeat: Infinity,
+                repeatType: "loop",
+                duration: 25,
+                ease: "linear",
+              },
+            }}
+          >
+            {[...skills, ...skills].map((skill, index) => (
+              <div
+                key={`${skill.name}-${index}`}
+                className="flex items-center gap-2 px-3 py-2 bg-white/5 rounded-full border border-white/10 text-xs text-gray-300 whitespace-nowrap"
+              >
+                {skill.icon}
+                {skill.name}
+              </div>
+            ))}
+          </motion.div>
+        </div>
+
       </motion.div>
     </section>
   );
