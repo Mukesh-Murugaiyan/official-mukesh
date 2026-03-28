@@ -1,7 +1,7 @@
-"use client";
-
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
+  MdChevronRight,
   MdDesktopWindows,
   MdPhoneIphone,
   MdStorage,
@@ -11,6 +11,15 @@ import {
 
 
 const SkillSection = ({ id }: { id?: string }) => {
+  const [expandedItems, setExpandedItems] = useState<Record<number, boolean>>({});
+
+  const toggleItem = (idx: number) => {
+    setExpandedItems((prev) => ({
+      ...prev,
+      [idx]: !prev[idx],
+    }));
+  };
+
   const skillsData = [
     {
       title: "Mobile Applications",
@@ -199,7 +208,7 @@ const SkillSection = ({ id }: { id?: string }) => {
         <div className="p-2 rounded-lg bg-white/5 border border-white/10 backdrop-blur-sm">
           <MdWorkspacePremium className="text-xl text-cyan-400" />
         </div>
-        <h2 className="text-3xl font-bold text-white">Expertise</h2>
+        <h2 className="text-2xl font-bold text-white tracking-tight uppercase tracking-wider">Expertise</h2>
       </motion.div>
 
       <motion.div
@@ -249,13 +258,46 @@ const SkillSection = ({ id }: { id?: string }) => {
 
               {/* Details */}
               <div className="flex-1">
-                <h4 className="text-white font-semibold">{item.title}</h4>
+                <div 
+                  className="flex items-center justify-between cursor-pointer group/title"
+                  onClick={() => toggleItem(idx)}
+                >
+                  <h4 className="text-white font-semibold group-hover/title:text-cyan-400 transition-colors">
+                    {item.title}
+                  </h4>
+                  <button className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all group/btn">
+                    <span className="text-[10px] uppercase tracking-wider text-gray-400 group-hover/btn:text-cyan-400 transition-colors">
+                      {expandedItems[idx] ? "Hide" : "Inspect"}
+                    </span>
+                    <MdChevronRight 
+                      className={`text-sm text-gray-400 group-hover/btn:text-cyan-400 transition-transform duration-300 ${
+                        expandedItems[idx] ? "rotate-90" : ""
+                      }`}
+                    />
+                  </button>
+                </div>
+                
                 <p className="text-[#52b3c7] text-sm mt-1">{item.tech}</p>
-                <ul className="list-disc list-inside text-gray-400 mt-3 space-y-1 text-sm leading-relaxed">
-                  {item.features?.map((feature, fIdx) => (
-                    <li key={fIdx}>{feature}</li>
-                  ))}
-                </ul>
+                
+                <AnimatePresence>
+                  {expandedItems[idx] && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      <ul className="list-disc list-inside text-gray-400 mt-4 space-y-1.5 text-sm leading-relaxed border-l border-white/5 pl-4 ml-1">
+                        {item.features?.map((feature, fIdx) => (
+                          <li key={fIdx} className="hover:text-gray-300 transition-colors">
+                            {feature}
+                          </li>
+                        ))}
+                      </ul>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             </div>
           );

@@ -2,7 +2,7 @@ import { ColourfulText } from "@/components/animation/ColourfulText";
 import { motion } from "framer-motion";
 import { MdPerson } from "react-icons/md";
 import { FaReact, FaNodeJs } from "react-icons/fa";
-import { SiNextdotjs, SiElectron, SiFirebase, SiMongodb, SiSocketdotio } from "react-icons/si";
+import { SiNextdotjs, SiElectron, SiFirebase, SiMongodb, SiSocketdotio, SiKotlin } from "react-icons/si";
 import { TbBrandReactNative } from "react-icons/tb";
 
 export default function AboutSection({ id }: { id?: string }) {
@@ -27,18 +27,19 @@ export default function AboutSection({ id }: { id?: string }) {
   };
 
   const skills = [
-    { name: "React", icon: <FaReact className="text-[#61DAFB]" />, color: "#61DAFB" },
-    { name: "Next", icon: <SiNextdotjs className="text-white" />, color: "#FFFFFF" },
-    { name: "Node", icon: <FaNodeJs className="text-[#339933]" />, color: "#339933" },
-    { name: "RN", icon: <TbBrandReactNative className="text-[#61DAFB]" />, color: "#61DAFB" },
-    { name: "Electron", icon: <SiElectron className="text-[#47848F]" />, color: "#47848F" },
-    { name: "Firebase", icon: <SiFirebase className="text-[#FFCA28]" />, color: "#FFCA28" },
-    { name: "MongoDB", icon: <SiMongodb className="text-[#47A248]" />, color: "#47A248" },
-    { name: "WS", icon: <SiSocketdotio className="text-white" />, color: "#FFFFFF" },
+    { name: "React", icon: <FaReact className="text-[#61DAFB]" aria-label="React" />, color: "#61DAFB" },
+    { name: "Next", icon: <SiNextdotjs className="text-white" aria-label="Next.js" />, color: "#FFFFFF" },
+    { name: "Node", icon: <FaNodeJs className="text-[#339933]" aria-label="Node.js" />, color: "#339933" },
+    { name: "RN", icon: <TbBrandReactNative className="text-[#61DAFB]" aria-label="React Native" />, color: "#61DAFB" },
+    { name: "Electron", icon: <SiElectron className="text-[#47848F]" aria-label="Electron" />, color: "#47848F" },
+    { name: "Kotlin", icon: <SiKotlin className="text-[#7F52FF]" aria-label="Kotlin" />, color: "#7F52FF" },
+    { name: "Firebase", icon: <SiFirebase className="text-[#FFCA28]" aria-label="Firebase" />, color: "#FFCA28" },
+    { name: "MongoDB", icon: <SiMongodb className="text-[#47A248]" aria-label="MongoDB" />, color: "#47A248" },
+    { name: "WS", icon: <SiSocketdotio className="text-white" aria-label="Socket.io" />, color: "#FFFFFF" },
   ];
 
   return (
-    <section id={id || "about"} className="p-6">
+    <section id={id || "about"} className="p-6" aria-labelledby="about-heading">
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -56,7 +57,7 @@ export default function AboutSection({ id }: { id?: string }) {
           <div className="p-2 rounded-lg bg-white/5 border border-white/10 backdrop-blur-sm">
             <MdPerson className="text-xl text-cyan-400" />
           </div>
-          <h2 className="text-3xl font-bold text-white">About Me</h2>
+          <h2 id="about-heading" className="text-2xl font-bold text-white tracking-tight uppercase tracking-wider">About Me</h2>
         </motion.div>
 
         <motion.div

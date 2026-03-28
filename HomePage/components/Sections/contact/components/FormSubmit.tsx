@@ -89,7 +89,7 @@ const FormSubmit = () => {
       />
       {/* ✴---Mobile View---✴ */}
       <div className="mt-10 bg-[#111111] md:hidden">
-        <h3 className="text-xl font-semibold text-white mb-4">Contact Form</h3>
+        <h3 className="text-xl font-semibold text-white mb-4 tracking-tight uppercase tracking-wider">Contact Form</h3>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <input
@@ -165,7 +165,7 @@ const FormSubmit = () => {
 
       {/* ✴---WebView---✴ */}
       <div className="mt-10 bg-[#111111] border border-gray-700 rounded-xl p-6 hidden md:block">
-        <h3 className="text-xl font-semibold text-white mb-4">Contact Form</h3>
+        <h3 className="text-xl font-semibold text-white mb-4 tracking-tight uppercase tracking-wider">Contact Form</h3>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <input

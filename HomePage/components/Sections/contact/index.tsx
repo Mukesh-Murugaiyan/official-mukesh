@@ -48,7 +48,7 @@ END:VCARD`;
         <div className="p-2 rounded-lg bg-white/5 border border-white/10 backdrop-blur-sm">
           <MdCable className="text-xl text-cyan-400" />
         </div>
-        <h2 className="text-3xl font-bold text-white">Let’s Connect</h2>
+        <h2 className="text-2xl font-bold text-white tracking-tight uppercase tracking-wider">Let’s Connect</h2>
       </motion.div>
 
       <motion.div
@@ -74,7 +74,7 @@ END:VCARD`;
         <div className="flex flex-row md:flex-row justify-between items-center w-full  border border-gray-700 rounded-xl p-5 gap-4">
           {/* LEFT: Contact Details */}
           <div className="flex flex-col gap-5 flex-1 min-w-0">
-            <h3 className="text-lg sm:text-xl font-semibold text-white mb-2 sm:mb-6">
+            <h3 className="text-lg sm:text-xl font-semibold text-white mb-2 sm:mb-6 tracking-tight uppercase tracking-wider">
               Contact Details
             </h3>
 
