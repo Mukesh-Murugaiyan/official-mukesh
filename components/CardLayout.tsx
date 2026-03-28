@@ -3,22 +3,22 @@
 export const portfolioCards = [
   {
     id: 1,
-    title: "Torchlite",
+    title: "Nexreon",
     description:
-      "Explore the breathtaking heights of natural wonders. These majestic mountains offer spectacular views.",
+      "The ultimate all-in-one management ecosystem designed to streamline your business operations. Seamlessly manage accounts, attendance, billing, and payments while tracking real-time stock entries, product replenishment, and salary disbursements. Whether on mobile, web, or desktop, Nexreon provides a unified platform for total control over your inventory, transfers, and cash flow.",
     image:
-      "/torchlite.png",
+      "/nexreon.png",
     type: "main",
     className: "card rounded-2xl h-[300px] w-full top-0 left-0",
     status: "Running",
   },
   {
     id: 2,
-    title: "Nexreon",
+    title: "Torchlite",
     description:
-      "Experience the serene beauty of this peaceful lake destination.",
+      "Explore the breathtaking heights of natural wonders. These majestic mountains offer spectacular views.",
     image:
-      "/nexreon.png",
+      "/torchlite.png",
     type: "left",
     className:
       "card rounded-2xl h-[197px] w-[430px] top-[305px] left-0 bottom-0",

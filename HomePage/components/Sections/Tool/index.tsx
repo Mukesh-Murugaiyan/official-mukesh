@@ -38,7 +38,7 @@ const ToolSection = ({ id }: { id?: string }) => {
         <div className="p-2 rounded-lg bg-white/5 border border-white/10 backdrop-blur-sm">
           <MdBuild className="text-xl text-cyan-400" />
         </div>
-        <h2 className="text-3xl font-bold text-white">Tools</h2>
+        <h2 className="text-2xl font-bold text-white tracking-tight uppercase tracking-wider">Tools</h2>
       </motion.div>
 
       <motion.div 

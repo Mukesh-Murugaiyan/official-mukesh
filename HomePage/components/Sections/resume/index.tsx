@@ -69,7 +69,9 @@ const ResumeSection = ({ id }: { id?: string }) => {
         <div className="p-2 rounded-lg bg-white/5 border border-white/10 backdrop-blur-sm">
           <MdTimeline className="text-xl text-cyan-400" />
         </div>
-        <h2 className="text-3xl font-bold text-white">Career Snapshot</h2>
+        {/* <h2 className="text-3xl font-bold text-white">Career Snapshot</h2> */}
+          <h3 className="text-2xl font-bold text-white tracking-tight uppercase tracking-wider">Career Snapshot</h3>
+        
       </motion.div>
 
       <motion.div
