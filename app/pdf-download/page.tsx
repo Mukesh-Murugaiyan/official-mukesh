@@ -13,7 +13,7 @@ const PdfDownloadPage = () => {
   };
 
   const socialLinks = [
-    { icon: <FaGithub />, label: "GitHub", url: "https://github.com/rtrmukesh", color: "text-gray-800" },
+    { icon: <FaGithub />, label: "GitHub", url: "https://github.com/Mukesh-Murugaiyan", color: "text-gray-800" },
     { icon: <FaInstagram />, label: "Instagram", url: "https://www.instagram.com/rtr_mukesh_/", color: "text-pink-600" },
     { icon: <FaLinkedin />, label: "LinkedIn", url: "https://www.linkedin.com/in/mukesh-murugaiyan", color: "text-blue-700" },
     { icon: <FaTwitter />, label: "Twitter", url: "https://twitter.com/username", color: "text-blue-400" },

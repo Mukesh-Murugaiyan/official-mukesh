@@ -32,7 +32,7 @@ export default function ProfileCard({
     linkedin: "www.linkedin.com/in/mukesh-murugaiyan",
     instagram: "https://www.instagram.com/rtr_mukesh_/",
     facebook: "https://www.facebook.com/share/17Z3SPtSSt/?mibextid=wwXIfr",
-    github: "https://github.com/rtrmukesh",
+    github: "https://github.com/Mukesh-Murugaiyan",
   };
 
   const onSocialClick = (clickedSocial: keyof typeof profileData) => {
