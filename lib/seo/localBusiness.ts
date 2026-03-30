@@ -20,7 +20,7 @@ export const localBusinesses: LocalBusinessJsonLdProps[] = [
       longitude: 79.7072551,
     },
     sameAs: [
-      "https://github.com/rtrmukesh",
+      "https://github.com/Mukesh-Murugaiyan",
       "www.linkedin.com/in/mukesh-murugaiyan",
       "https://www.instagram.com/rtr_mukesh_/",
       "https://maps.app.goo.gl/Z9h6cxKiEvwEApyt7",

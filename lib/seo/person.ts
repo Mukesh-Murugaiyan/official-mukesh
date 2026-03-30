@@ -13,7 +13,7 @@ export const person: Person = {
             identifier: "https://themukesh.com",
             sameAs: [
               "https://themukesh.com",
-              "https://github.com/rtrmukesh",
+              "https://github.com/Mukesh-Murugaiyan",
               "www.linkedin.com/in/mukesh-murugaiyan",
               "https://www.instagram.com/rtr_mukesh_/",
             ],
