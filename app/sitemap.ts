@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { games } from "@/data/games";
+import { tools } from "@/data/tools";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://themukesh.com";
@@ -23,36 +24,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.9,
     },
-     {
-      url: `${baseUrl}/tools/grid-generator`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-     {
-      url: `${baseUrl}/tools/password-generator`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/tools/image-bg-remover`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/tools/instagram-downloader`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/tools/pinterest-downloader`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
     {
       url: `${baseUrl}/about`,
       lastModified: new Date(),
@@ -71,24 +42,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.9,
     },
-    {
-      url: `${baseUrl}/tools/app-icon-generator`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/tools/image-cropper`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/tools/api-tester`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
   ];
 
   const gameRoutes: MetadataRoute.Sitemap = games.map((game) => ({
@@ -98,5 +51,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...staticRoutes, ...gameRoutes];
+  const toolRoutes: MetadataRoute.Sitemap = tools
+    .filter((tool) => !tool.url.startsWith("http"))
+    .map((tool) => ({
+      url: `${baseUrl}${tool.url}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    }));
+
+  return [...staticRoutes, ...toolRoutes, ...gameRoutes];
 }
