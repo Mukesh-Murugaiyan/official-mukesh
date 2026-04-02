@@ -63,30 +63,32 @@ const FormSubmit = () => {
 
   return (
     <Fragment>
-      <OverlayModal
-        isOpen={loading || onFinishLoading}
-        body={
-          <>
-            {loading && (
-              <Lottie
-                animationData={successAnim}
-                loop={true}
-                className="w-48"
-              />
-            )}
-            {onFinishLoading && (
-              <Lottie
-                animationData={onFinishAnim}
-                loop={false}
-                className="w-48"
-                onComplete={() => {
-                  setOnFinishLoading(false);
-                }}
-              />
-            )}
-          </>
-        }
-      />
+      {(loading || onFinishLoading) && (
+        <OverlayModal
+          isOpen={loading || onFinishLoading}
+          body={
+            <>
+              {loading && (
+                <Lottie
+                  animationData={successAnim}
+                  loop={true}
+                  className="w-48"
+                />
+              )}
+              {onFinishLoading && (
+                <Lottie
+                  animationData={onFinishAnim}
+                  loop={false}
+                  className="w-48"
+                  onComplete={() => {
+                    setOnFinishLoading(false);
+                  }}
+                />
+              )}
+            </>
+          }
+        />
+      )}
       {/* ✴---Mobile View---✴ */}
       <div className="mt-10 bg-[#111111] md:hidden">
         <h3 className="text-xl font-semibold text-white mb-4 tracking-tight uppercase tracking-wider">Contact Form</h3>
