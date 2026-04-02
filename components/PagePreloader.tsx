@@ -1,18 +1,30 @@
 "use client";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { usePathname } from "next/navigation";
-import { useEffect, useState, ReactNode } from "react";
+import { useEffect, useState, ReactNode, useMemo } from "react";
 
 export default function PagePreloader({ children }: { children?: ReactNode }) {
   const pathname = usePathname();
   const isHome = pathname === "/";
   const [loading, setLoading] = useState(true);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     if (!isHome) return;
     const timer = setTimeout(() => setLoading(false), 4200);
     return () => clearTimeout(timer);
   }, [isHome]);
+
+  const bubbleStyles = useMemo(() => {
+    if (!mounted) return [];
+    return [...Array(6)].map(() => ({
+      width: Math.random() * 200 + 100,
+      height: Math.random() * 200 + 100,
+      top: `${Math.random() * 100}%`,
+      left: `${Math.random() * 100}%`,
+    }));
+  }, [mounted]);
 
   if (!isHome) {
     return <>{children}</>;
@@ -51,24 +63,24 @@ export default function PagePreloader({ children }: { children?: ReactNode }) {
           <motion.div
             key="preloader-bubbly"
             className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#0a0a0a] overflow-hidden"
-            exit={{
+            exit={{ 
               opacity: 0,
               scale: 1.1,
               filter: "blur(20px)",
               transition: { duration: 0.8, ease: "circOut" }
             }}
           >
-            {[...Array(6)].map((_, i) => (
+            {mounted && bubbleStyles.map((style, i) => (
               <motion.div
                 key={i}
                 variants={bubbleVariants}
                 animate="animate"
                 className="absolute rounded-full bg-[#00FFF0]/5 blur-xl"
                 style={{
-                  width: Math.random() * 200 + 100,
-                  height: Math.random() * 200 + 100,
-                  top: `${Math.random() * 100}%`,
-                  left: `${Math.random() * 100}%`,
+                  width: style.width,
+                  height: style.height,
+                  top: style.top,
+                  left: style.left,
                 }}
               />
             ))}
@@ -81,28 +93,28 @@ export default function PagePreloader({ children }: { children?: ReactNode }) {
                 fill="none"
                 style={{ filter: "drop-shadow(0 0 15px rgba(0,255,240,0.4))" }}
               >
-                <motion.path
+                  <motion.path
                   d="M40 90V30C40 30 45 20 55 20C65 20 75 40 75 40C75 40 85 20 95 20C105 20 110 30 110 30V90"
                   stroke="#00FFF0"
                   strokeWidth="12"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   variants={pathVariants}
                   initial="initial"
                   animate="animate"
-                />
+                  />
 
-                <motion.path
+                  <motion.path
                   d="M130 90C130 90 170 100 170 75C170 50 130 60 130 35C130 10 170 20 170 20"
-                  stroke="#ffffff"
+                    stroke="#ffffff"
                   strokeWidth="12"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   variants={pathVariants}
                   initial="initial"
                   animate="animate"
                   transition={{ delay: 1 }}
-                />
+                  />
               </svg>
 
               <motion.div

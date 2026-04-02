@@ -103,18 +103,17 @@ export default function RootLayout({
     suppressHydrationWarning
     >
       <head>
-        {/* AdSense global script */}
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7493262026277368"
-          crossOrigin="anonymous"
-        />
         {/* AdSense verification meta tag */}
         <meta name="google-adsense-account" content="ca-pub-7493262026277368" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7493262026277368"
+          crossOrigin="anonymous"
+        />
         {/* Profile */}
         <ProfilePageJsonLd
           mainEntity={person}

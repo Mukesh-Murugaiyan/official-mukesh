@@ -24,13 +24,18 @@ const HomePageClient = () => {
   const [activeSection, setActiveSection] = useState("about");
   const [isOpen, setIsOpen] = useState(false);
   const [isQrOpen, setIsQrOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const scrollSpyOptions = { 
     threshold: 0.2, 
     rootMargin: "-20% 0px -20% 0px" 
   };
   
-  const { ref: aboutRef, inView: aboutInView } = useInView({ ...scrollSpyOptions, threshold: 0.1 }); // About is at top, easier to trigger
+  const { ref: aboutRef, inView: aboutInView } = useInView({ ...scrollSpyOptions, threshold: 0.1 });
   const { ref: resumeRef, inView: resumeInView } = useInView(scrollSpyOptions);
   const { ref: skillsRef, inView: skillsInView } = useInView({ ...scrollSpyOptions, threshold: 0.1 });
   const { ref: contactRef, inView: contactInView } = useInView(scrollSpyOptions);
@@ -79,59 +84,57 @@ END:VCARD`;
         <PopupHeader activeSection={activeSection} visible={!navTabInView} />
       </div>
 
-      {/* ✴---Temp---✴ */}
-      <OverlayModal
-        isOpen={isOpen}
-        setIsOpen={setIsOpen}
-        body={
-          <Image
-            src={mukesh}
-            alt="Mukesh M"
-            width={500}
-            height={500}
-            className="object-cover w-full h-full rounded-xl 
-           shadow-lg shadow-white/20 
-           transition-all duration-300"
-            loading="lazy"
-            priority={false}
-          />
-        }
-      />
-      <OverlayModal
-        isOpen={isQrOpen}
-        setIsOpen={setIsQrOpen}
-        body={
-          <>
-            <div className="absolute inset-0 flex items-center justify-center">
-              <motion.div
-                className="md:bg-[#111111] rounded-lg"
-                initial={{ scale: 1 }}
-              >
-                <div
-                  className="
-                      relative 
-                      w-18 h-18
-                      rounded-md overflow-hidden
-                    "
-                >
-                  <Image
-                    src={logo}
-                    alt="Company Logo"
-                    fill
-                    className="object-contain"
-                    priority
-                  />
-                </div>
-              </motion.div>
-            </div>
-            <QRCode
-              value={vcardData}
-              size={450}
-              className="rounded-3xl border border-white/10 p-2 bg-white p-6 w-full h-auto"
+      {/* ✴---Render Modals only if active and mounted to save initial bandwidth---✴ */}
+      {mounted && isOpen && (
+        <OverlayModal
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          body={
+            <Image
+              src={mukesh}
+              alt="Mukesh M"
+              width={500}
+              height={500}
+              className="object-cover w-full h-full rounded-xl shadow-lg shadow-white/20 transition-all duration-300"
+              loading="lazy"
+              priority={false}
             />
-          </>
-        }
-      />
+          }
+        />
+      )}
+
+      {mounted && isQrOpen && (
+        <OverlayModal
+          isOpen={isQrOpen}
+          setIsOpen={setIsQrOpen}
+          body={
+            <>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <motion.div
+                  className="md:bg-[#111111] rounded-lg"
+                  initial={{ scale: 1 }}
+                >
+                  <div className="relative w-18 h-18 rounded-md overflow-hidden">
+                    <Image
+                      src={logo}
+                      alt="Company Logo"
+                      fill
+                      className="object-contain"
+                      priority
+                    />
+                  </div>
+                </motion.div>
+              </div>
+              <QRCode
+                value={vcardData}
+                size={450}
+                className="rounded-3xl border border-white/10 p-2 bg-white p-6 w-full h-auto"
+              />
+            </>
+          }
+        />
+      )}
+      
       <main className="text-white">
         <div className="w-full max-w-7xl mx-auto px-4 lg:px-10 pt-12">
           {/* Desktop | Two Column */}
