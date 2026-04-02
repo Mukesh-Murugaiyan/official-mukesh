@@ -1,4 +1,6 @@
 "use client";
+import Image from "next/image";
+
 
 export const portfolioCards = [
   {
@@ -45,11 +47,16 @@ export default function CardLayout() {
           return (
             <div
               key={data?.type}
-              className={data?.className}
-              style={{
-                backgroundImage: `url(${data?.image})`,
-              }}
+              className={`${data?.className} relative overflow-hidden`}
             >
+              <Image
+                src={data?.image}
+                alt={data?.title}
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-110"
+                priority={data?.id === 1}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              />
               <div className="card-overlay"></div>
               <div className="card-content">
                 {/* Title */}
