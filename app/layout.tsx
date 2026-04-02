@@ -20,6 +20,7 @@ import {
 } from "next-seo";
 import Providers from "./providers";
 import PagePreloader from "@/components/PagePreloader";
+import Script from "next/script";
 // import UsefulLinksModal from "@/components/UsefulLinksModal";
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -84,7 +85,6 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/icon0.svg", type: "image/svg+xml" },
       { url: "/icon1.png", type: "image/png" },
     ],
     apple: "/apple-icon.png",
@@ -109,10 +109,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <script
+        <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7493262026277368"
           crossOrigin="anonymous"
+          strategy="afterInteractive"
         />
         {/* Profile */}
         <ProfilePageJsonLd

@@ -7,12 +7,16 @@ import ProfileCard from "@/HomePage/components/ProfileCard/ProfileCard";
 import AboutSection from "@/HomePage/components/Sections/about/AboutSection";
 import HighlightsSection from "@/HomePage/components/Sections/about/HighlightsSection";
 import PortfolioSection from "@/HomePage/components/Sections/about/PortfolioSection";
-import ContactSection from "@/HomePage/components/Sections/contact";
-import IOS26TabMenu from "@/HomePage/components/Sections/IOS26TabMenu";
-import NavigationTab from "@/HomePage/components/Sections/NavigationTab";
-import ResumeSection from "@/HomePage/components/Sections/resume";
-import SkillSection from "@/HomePage/components/Sections/skills";
-import ToolSection from "@/HomePage/components/Sections/Tool";
+import dynamic from "next/dynamic";
+
+// Lazy load below-the-fold sections
+const ContactSection = dynamic(() => import("@/HomePage/components/Sections/contact"), { ssr: false });
+const ResumeSection = dynamic(() => import("@/HomePage/components/Sections/resume"), { ssr: false });
+const SkillSection = dynamic(() => import("@/HomePage/components/Sections/skills"), { ssr: false });
+const ToolSection = dynamic(() => import("@/HomePage/components/Sections/Tool"), { ssr: false });
+const IOS26TabMenu = dynamic(() => import("@/HomePage/components/Sections/IOS26TabMenu"), { ssr: false });
+const NavigationTab = dynamic(() => import("@/HomePage/components/Sections/NavigationTab"), { ssr: false });
+
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";

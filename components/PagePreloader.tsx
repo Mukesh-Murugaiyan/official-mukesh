@@ -12,7 +12,7 @@ export default function PagePreloader({ children }: { children?: ReactNode }) {
   useEffect(() => {
     setMounted(true);
     if (!isHome) return;
-    const timer = setTimeout(() => setLoading(false), 4200);
+    const timer = setTimeout(() => setLoading(false), 2100);
     return () => clearTimeout(timer);
   }, [isHome]);
 
@@ -36,9 +36,9 @@ export default function PagePreloader({ children }: { children?: ReactNode }) {
       pathLength: 1,
       opacity: 1,
       transition: {
-        duration: 2,
+        duration: 0.8,
         ease: "easeInOut",
-        delay: 0.5,
+        delay: 0,
       }
     }
   };
@@ -113,14 +113,14 @@ export default function PagePreloader({ children }: { children?: ReactNode }) {
                   variants={pathVariants}
                   initial="initial"
                   animate="animate"
-                  transition={{ delay: 1 }}
+                  transition={{ delay: 0.6 }}
                   />
               </svg>
 
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 2.5, duration: 1 }}
+                transition={{ delay: 1, duration: 0.8 }}
                 className="mt-8 text-[#00FFF0] font-medium tracking-[0.5em] text-sm uppercase"
               >
                 Welcome Devs
@@ -131,7 +131,7 @@ export default function PagePreloader({ children }: { children?: ReactNode }) {
               className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-transparent via-[#00FFF0] to-transparent"
               initial={{ width: 0 }}
               animate={{ width: "100%" }}
-              transition={{ duration: 3.5, ease: "linear" }}
+              transition={{ duration: 2, ease: "linear" }}
             />
           </motion.div>
         ) : (
