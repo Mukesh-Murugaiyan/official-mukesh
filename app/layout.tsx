@@ -1,5 +1,5 @@
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
@@ -73,7 +73,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
   },
-  themeColor: "#00FFF0",
+  // themeColor: "#00FFF0", // Moved to viewport export
   twitter: {
     card: "summary_large_image",
     title: "Mukesh Murugaiyan | Full Stack Developer",
@@ -99,6 +99,12 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: "#00FFF0",
+  width: "device-width",
+  initialScale: 1,
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -111,6 +117,22 @@ export default function RootLayout({
     suppressHydrationWarning
     >
       <head>
+        {/* Preconnect to critical origins */}
+        <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
+        <link rel="preconnect" href="https://googleads.g.doubleclick.net" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.google-analytics.com" />
+        <link rel="preconnect" href="https://acupoftee.github.io" />
+        <link rel="preconnect" href="https://maps.googleapis.com" />
+
+        {/* DNS Prefetch as fallback */}
+        <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+        <link rel="dns-prefetch" href="https://googleads.g.doubleclick.net" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://acupoftee.github.io" />
+        <link rel="dns-prefetch" href="https://maps.googleapis.com" />
+
         {/* AdSense verification meta tag */}
         <meta name="google-adsense-account" content="ca-pub-7493262026277368" />
       </head>

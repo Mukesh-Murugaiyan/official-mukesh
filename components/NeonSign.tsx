@@ -67,6 +67,7 @@ export default function NeonSign({
         @font-face {
           font-family: Clip;
           src: url("https://acupoftee.github.io/fonts/Clip.ttf");
+          font-display: swap;
         }
       `}</style>
 
