@@ -8,6 +8,11 @@ import AboutSection from "@/HomePage/components/Sections/about/AboutSection";
 import HighlightsSection from "@/HomePage/components/Sections/about/HighlightsSection";
 import PortfolioSection from "@/HomePage/components/Sections/about/PortfolioSection";
 import dynamic from "next/dynamic";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { useInView } from "react-intersection-observer";
+import PopupHeader from "@/components/PopupHeader";
 
 // Lazy load below-the-fold sections
 const ContactSection = dynamic(() => import("@/HomePage/components/Sections/contact"), { ssr: false });
@@ -16,13 +21,7 @@ const SkillSection = dynamic(() => import("@/HomePage/components/Sections/skills
 const ToolSection = dynamic(() => import("@/HomePage/components/Sections/Tool"), { ssr: false });
 const IOS26TabMenu = dynamic(() => import("@/HomePage/components/Sections/IOS26TabMenu"), { ssr: false });
 const NavigationTab = dynamic(() => import("@/HomePage/components/Sections/NavigationTab"), { ssr: false });
-
-import { motion } from "framer-motion";
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import QRCode from "react-qr-code";
-import { useInView } from "react-intersection-observer";
-import PopupHeader from "@/components/PopupHeader";
+const DynamicQRCode = dynamic(() => import("@/components/DynamicQRCode"), { ssr: false });
 
 const HomePageClient = () => {
   const [activeSection, setActiveSection] = useState("about");
@@ -34,17 +33,17 @@ const HomePageClient = () => {
     setMounted(true);
   }, []);
 
-  const scrollSpyOptions = { 
-    threshold: 0.4, 
-    rootMargin: "-10% 0px -10% 0px" 
+  const scrollSpyOptions = {
+    threshold: 0.4,
+    rootMargin: "-10% 0px -10% 0px"
   };
-  
+
   const { ref: aboutRef, inView: aboutInView } = useInView({ ...scrollSpyOptions, threshold: 0.1 });
   const { ref: resumeRef, inView: resumeInView } = useInView(scrollSpyOptions);
   const { ref: skillsRef, inView: skillsInView } = useInView({ ...scrollSpyOptions, threshold: 0.1 });
   const { ref: contactRef, inView: contactInView } = useInView(scrollSpyOptions);
   const { ref: toolsRef, inView: toolsInView } = useInView(scrollSpyOptions);
-  
+
   const { ref: navTabRef, inView: navTabInView } = useInView({
     threshold: 0,
     initialInView: true,
@@ -129,7 +128,7 @@ END:VCARD`;
                   </div>
                 </motion.div>
               </div>
-              <QRCode
+              <DynamicQRCode
                 value={vcardData}
                 size={450}
                 className="rounded-3xl border border-white/10 p-2 bg-white p-6 w-full h-auto"
@@ -138,7 +137,7 @@ END:VCARD`;
           }
         />
       )}
-      
+
       <main className="text-white">
         <div className="w-full max-w-7xl mx-auto px-4 lg:px-10 pt-12">
           {/* Desktop | Two Column */}
@@ -154,7 +153,7 @@ END:VCARD`;
                 <NavigationTab activeSection={activeSection} />
               </div>
 
-              
+
               <div className="flex flex-col">
                 <div ref={aboutRef}>
                   <AboutSection />
@@ -197,43 +196,43 @@ END:VCARD`;
           <div className="lg:hidden space-y-7">
             <ProfileCard isMobile={true} setIsOpen={setIsOpen} />
             <div className="relative bg-[#111111] rounded-3xl border border-white/10">
-               {/* Mobile Content - Rendered Directy */}
-                <div ref={aboutRef}>
-                  <AboutSection id="about-mobile" />
-                  <MotionVariantWrapper variant="zoomIn" delay={0.1}>
-                    <HighlightsSection id="highlights-mobile" />
-                  </MotionVariantWrapper>
-                  <MotionVariantWrapper variant="slideRight" delay={0.1}>
-                    <PortfolioSection id="portfolio-mobile" />
-                  </MotionVariantWrapper>
-                </div>
+              {/* Mobile Content - Rendered Directy */}
+              <div ref={aboutRef}>
+                <AboutSection id="about-mobile" />
+                <MotionVariantWrapper variant="zoomIn" delay={0.1}>
+                  <HighlightsSection id="highlights-mobile" />
+                </MotionVariantWrapper>
+                <MotionVariantWrapper variant="slideRight" delay={0.1}>
+                  <PortfolioSection id="portfolio-mobile" />
+                </MotionVariantWrapper>
+              </div>
 
-                <div ref={resumeRef}>
-                  <MotionVariantWrapper variant="fadeUp">
-                    <ResumeSection id="resume-mobile" />
-                  </MotionVariantWrapper>
-                </div>
+              <div ref={resumeRef}>
+                <MotionVariantWrapper variant="fadeUp">
+                  <ResumeSection id="resume-mobile" />
+                </MotionVariantWrapper>
+              </div>
 
-                <div ref={skillsRef}>
-                  <MotionVariantWrapper variant="slideLeft">
-                    <SkillSection id="skills-mobile" />
-                  </MotionVariantWrapper>
-                </div>
+              <div ref={skillsRef}>
+                <MotionVariantWrapper variant="slideLeft">
+                  <SkillSection id="skills-mobile" />
+                </MotionVariantWrapper>
+              </div>
 
-                 <div ref={contactRef}>
-                  <MotionVariantWrapper variant="rotateIn">
-                    <ContactSection setIsQrOpen={setIsQrOpen} id="contact-mobile" />
-                  </MotionVariantWrapper>
-                 </div>
+              <div ref={contactRef}>
+                <MotionVariantWrapper variant="rotateIn">
+                  <ContactSection setIsQrOpen={setIsQrOpen} id="contact-mobile" />
+                </MotionVariantWrapper>
+              </div>
 
-                 <div ref={toolsRef}>
-                  <MotionVariantWrapper variant="fadeUp">
-                    <ToolSection id="tools-mobile" />
-                  </MotionVariantWrapper>
-                 </div>
+              <div ref={toolsRef}>
+                <MotionVariantWrapper variant="fadeUp">
+                  <ToolSection id="tools-mobile" />
+                </MotionVariantWrapper>
+              </div>
             </div>
-            
-             <IOS26TabMenu activeSection={activeSection} />
+
+            <IOS26TabMenu activeSection={activeSection} />
           </div>
         </div>
       </main>

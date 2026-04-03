@@ -112,23 +112,21 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en"
-    className="light"
-    style={{colorScheme:"light"}}
-    suppressHydrationWarning
+      className="light"
+      style={{ colorScheme: "light" }}
+      suppressHydrationWarning
     >
       <head>
         {/* Preconnect to critical origins (Max 4 as per Lighthouse) */}
         <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
         <link rel="preconnect" href="https://googleads.g.doubleclick.net" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
-        <link rel="preconnect" href="https://maps.googleapis.com" />
 
         {/* DNS Prefetch as fallback for secondary origins */}
         <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
         <link rel="dns-prefetch" href="https://googleads.g.doubleclick.net" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-        <link rel="dns-prefetch" href="https://maps.googleapis.com" />
 
         {/* AdSense verification meta tag */}
         <meta name="google-adsense-account" content="ca-pub-7493262026277368" />
@@ -136,7 +134,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-       
+
         {/* Profile */}
         <ProfilePageJsonLd
           mainEntity={person}
@@ -172,16 +170,16 @@ export default function RootLayout({
         />
         <GoogleTagManager gtmId={GTMID} />
         {/* <PagePreloader> */}
-          <ThemeProvider>
-            {/* <PopupHeader/> */}
-            <Providers>{children}</Providers>
-            {/* <UsefulLinksModal /> */}
-            <Footer/>
-          </ThemeProvider>
+        <ThemeProvider>
+          {/* <PopupHeader/> */}
+          <Providers>{children}</Providers>
+          {/* <UsefulLinksModal /> */}
+          <Footer />
+        </ThemeProvider>
         {/* </PagePreloader> */}
         <Toaster richColors closeButton position="top-right" />
         <GoogleAnalytics gaId={GAID} />
-         <Script
+        <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7493262026277368"
           crossOrigin="anonymous"

@@ -1,9 +1,10 @@
-"use client";
-import NeonSign from "@/components/NeonSign";
 import ProfileImage from "@/components/ProfileImage";
 import { AnimatePresence, motion } from "framer-motion";
 import { Courgette } from "next/font/google";
+import dynamic from "next/dynamic";
 import { useState } from "react";
+
+const NeonSign = dynamic(() => import("@/components/NeonSign"), { ssr: false });
 import {
   FaChevronDown,
   FaFacebookF,
@@ -43,7 +44,7 @@ export default function ProfileCard({
   };
 
   return (
-    <motion.div 
+    <motion.div
       layout
       initial={{ opacity: 0, scale: 0.9, y: 20 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -96,7 +97,7 @@ export default function ProfileCard({
 
         {/* Name + Profession + Status */}
         <div className="text-center flex flex-col items-center">
-           <NeonSign text="Mukesh" color="blue" />
+          <NeonSign text="Mukesh" color="blue" />
           <p
             className="
               text-gray-300 text-[10px] sm:text-xs mt-2 mb-4
@@ -117,9 +118,9 @@ export default function ProfileCard({
               </span>
               <span className="text-[10px] font-medium text-gray-300">Open to work</span>
             </div>
-            
+
             <div className="bg-[#1a1a1a] border border-white/5 rounded-lg p-2 py-1.5 flex items-center justify-center gap-2 w-full">
-               <span className="relative flex h-2 w-2">
+              <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
               </span>
