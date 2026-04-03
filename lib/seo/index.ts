@@ -4,3 +4,4 @@ export * from "./softwareApplications";
 export * from "./localBusiness";
 export * from "./images";
 export * from "./faq";
+export * from "./games";

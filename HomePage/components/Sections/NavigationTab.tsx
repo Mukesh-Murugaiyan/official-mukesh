@@ -49,15 +49,16 @@ const NavigationTab: React.FC<NavigationTabProps> = ({ activeSection }) => {
       >
         <span className="hidden sm:flex items-center gap-3">
           {menuItems.map((item) => (
-            <span
+            <button
               key={item.id}
               className={`${
                 activeSection === item.id ? "text-white" : ""
-              } cursor-pointer hover:text-white transition-colors`}
+              } cursor-pointer hover:text-white transition-colors bg-transparent border-none p-0 outline-none flex items-center`}
               onClick={() => handleScrollTo(item.id)}
+              aria-label={`Scroll to ${item.label}`}
             >
               {item.label}
-            </span>
+            </button>
           ))}
         </span>
       </div>

@@ -66,6 +66,7 @@ export default function ProfileCard({
         {/* Toggle button → Mobile Only */}
         <button
           onClick={() => setShowContacts(!showContacts)}
+          aria-label={showContacts ? "Close contacts" : "Show contacts"}
           className="
           absolute top-0 right-0
           w-14 h-7 sm:w-24 sm:h-8 lg:w-24 lg:h-8
@@ -87,7 +88,7 @@ export default function ProfileCard({
           <span className="hidden sm:inline">
             {showContacts ? "Close" : "Contacts"}
           </span>
-          <FaChevronDown className={`text-[100%] cursor-pointer duration-300 sm:hidden ${showContacts ? "rotate-180" : ""}`} />
+          <FaChevronDown className={`text-[100%] cursor-pointer duration-300 sm:hidden ${showContacts ? "rotate-180" : ""}`} aria-hidden="true" />
         </button>
 
         {/* Profile Image */}
@@ -182,18 +183,22 @@ export default function ProfileCard({
                 <FaLinkedin
                   className="hover:text-blue-500 duration-200 cursor-pointer"
                   onClick={() => onSocialClick?.("linkedin")}
+                  aria-label="LinkedIn Profile"
                 />
                 <FaInstagram
                   className="hover:text-pink-500 duration-200 cursor-pointer"
                   onClick={() => onSocialClick?.("instagram")}
+                  aria-label="Instagram Profile"
                 />
                 <FaFacebookF
                   className="hover:text-blue-400 duration-200 cursor-pointer"
                   onClick={() => onSocialClick?.("facebook")}
+                  aria-label="Facebook Profile"
                 />
                 <FaGithub
                   className="hover:text-gray-400 duration-200 cursor-pointer"
                   onClick={() => onSocialClick?.("github")}
+                  aria-label="GitHub Profile"
                 />
               </div>
             </div>

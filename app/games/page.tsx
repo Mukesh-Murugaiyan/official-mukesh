@@ -2,49 +2,9 @@ import Link from "next/link";
 import { games } from "@/data/games";
 
 export const metadata = {
-  title: "Games | GameZone",
-  description: "Play free online browser games on GameZone.",
-  keywords: [
-    "online games",
-    "free games",
-    "browser games",
-    "puzzle games",
-    "fun games",
-    "arcade games",
-    "strategy games",
-    "kids games",
-    "multiplayer games",
-    "single player games",
-    "adventure games",
-    "action games",
-    "educational games",
-    "brain games",
-    "memory games",
-    "card games",
-    "board games",
-    "HTML5 games",
-    "casual games",
-    "skill games",
-    "challenge games",
-    "family games",
-    "mini games",
-    "top games",
-    "popular games",
-    "new games",
-    "online puzzle games",
-    "online arcade games",
-    "free puzzle games",
-    "free online games",
-    "play games online",
-    "gamezone",
-    "fun for kids",
-    "play free games",
-    "interactive games",
-    "game challenges",
-    "best online games",
-    "browser-based games",
-    "mobile-friendly games",
-  ],
+  title: "Free Online Games | GameZone",
+  description: "Play high-quality, free online browser games on GameZone. From puzzles to action-packed adventures, find your next favorite game here.",
+  keywords: ["online games", "free browser games", "puzzle games", "arcade games", "HTML5 games", "GameZone"],
 };
 
 export default function GamesPage() {
@@ -53,8 +13,8 @@ export default function GamesPage() {
       {/* ✴---Temp---✴ */}
       
       <nav className="w-full  py-4 flex justify-between items-center   backdrop-blur">
-        <Link href="/" className="text-3xl font-bold">
-          🎮 GameZone
+        <Link href="/" className="hover:text-gray-300">
+          <h1 className="text-3xl font-bold">🎮 GameZone</h1>
         </Link>
 
         <div className="flex gap-4 text-sm">
