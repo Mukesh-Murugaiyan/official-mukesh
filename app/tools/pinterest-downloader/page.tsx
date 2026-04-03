@@ -3,9 +3,8 @@ import PinterestDownloader from "./components/ClientPage";
 import { SEO_KEYWORDS } from "@/data/seo";
 
 export const metadata: Metadata = {
-  title: "Pinterest Video & Image Downloader – Fast & Free",
-  description:
-    "Instantly download Pinterest Videos and Images in high quality for free. Fast, secure, and no login required.",
+  title: "Pinterest Downloader - Download Pins, Videos & Images",
+  description: "Download Pinterest videos and images in high quality for free. Our fast and secure Pinterest downloader requires no login and works on all devices.",
   keywords: [
     ...SEO_KEYWORDS,
     "pinterest video downloader",
@@ -36,14 +35,13 @@ export const metadata: Metadata = {
     canonical: "https://themukesh.com/tools/pinterest-downloader",
   },
   openGraph: {
-    title: "Pinterest Video & Image Downloader – Free & Fast",
-    description:
-      "Instantly download Pinterest Videos and Images in high quality for free. No login needed.",
+    title: "Pinterest Downloader - Download Pins, Videos & Images",
+    description: "Download Pinterest videos and images in high quality for free. Our fast and secure Pinterest downloader requires no login and works on all devices.",
     url: "https://themukesh.com/tools/pinterest-downloader",
     siteName: "TheMukesh",
     images: [
       {
-        url: "https://themukesh.com/mukesh-mg2.png",
+        url: "https://themukesh.com/mukesh-mg2-optimized.webp",
         width: 1200,
         height: 630,
         alt: "Pinterest Downloader Tool",
@@ -54,20 +52,13 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pinterest Video & Image Downloader",
-    description: "Download Pinterest Videos and Images in HD instantly. No app required.",
-    images: ["https://themukesh.com/mukesh-mg2.png"],
+    title: "Pinterest Downloader - Download Pins, Videos & Images",
+    description: "Download Pinterest videos and images in high quality for free.",
+    images: ["https://themukesh.com/mukesh-mg2-optimized.webp"],
   },
   robots: {
     index: true,
     follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
 };
 
@@ -75,9 +66,9 @@ const Page = () => {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "Pinterest Video & Image Downloader",
+    "name": "Pinterest Downloader",
     "url": "https://themukesh.com/tools/pinterest-downloader",
-    "description": "Download any Pinterest Video or Image easily and save it directly to your device.",
+    "description": "Download Pinterest videos and images in high quality for free. Our fast and secure Pinterest downloader requires no login and works on all devices.",
     "applicationCategory": "MultimediaApplication",
     "operatingSystem": "All",
     "offers": {

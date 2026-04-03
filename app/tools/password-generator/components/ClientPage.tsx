@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import {
+  ArrowLeft,
   Copy,
   Check,
   RefreshCw,
@@ -12,8 +13,14 @@ import {
   Key,
   AlertTriangle,
 } from "lucide-react";
+import Link from 'next/link';
+
+import ToolSEOSection from "@/components/ToolSEOSection";
+import ToolHeader from "@/components/ToolHeader";
+import { toolSEOData } from "@/data/toolSEOContent";
 
 export default function PasswordGenerator() {
+  const seoData = toolSEOData["password-generator"];
   // State
   const [password, setPassword] = useState("");
   const [passwordLength, setPasswordLength] = useState(16);
@@ -155,13 +162,17 @@ export default function PasswordGenerator() {
     <div className="w-full max-w-7xl mx-auto px-4 lg:px-10 py-12 text-white min-h-screen">
       <div className="flex flex-col gap-6">
 
-        {/* Header Info */}
-        <div className={cardBaseClass}>
-          <h2 className="text-2xl font-bold flex items-center gap-2">🔐 SecurePass Generator</h2>
-          <p className="text-gray-400 text-sm">
-            Generate strong, secure passwords instantly with complete control over rules and complexity.
-          </p>
+        {/* 🚀 [TOP_AD] */}
+        <div className="w-full h-20 sm:h-24 bg-white/5 border border-white/10 flex items-center justify-center text-gray-500 rounded-2xl overflow-hidden shadow-inner font-mono text-xs uppercase tracking-widest">
+            [TOP_AD]
         </div>
+
+        {/* Header Info */}
+        <ToolHeader 
+          title="SecurePass Generator"
+          description="Generate strong, secure passwords instantly with complete control over rules and complexity."
+          icon="🔐"
+        />
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           
@@ -358,56 +369,9 @@ export default function PasswordGenerator() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Recently Generated */}
-          {generatedPasswords.length > 0 && (
-            <div className={cardBaseClass}>
-              <h3 className="text-xl font-bold mb-2">🕒 History</h3>
-              <div className="flex flex-col gap-3">
-                {generatedPasswords.map((pwd, index) => (
-                  <div
-                    key={index}
-                    className="flex justify-between items-center p-4 rounded-2xl bg-[#1a1a1a] border border-white/5 group hover:border-white/20 transition-all font-mono"
-                  >
-                    <div className="truncate text-sm pr-4 select-all cursor-text text-gray-300">{pwd}</div>
-                    <button
-                      onClick={() => copyToClipboard(pwd)}
-                      className="p-2 rounded-xl transition-all hover:bg-white/10 text-gray-400 hover:text-white flex-shrink-0"
-                      aria-label="Copy password"
-                    >
-                      <Copy className="h-4 w-4" />
-                    </button>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Security Tips */}
-          <div className={`${cardBaseClass} ${generatedPasswords.length > 0 ? "" : "lg:col-span-2"}`}>
-            <h3 className="text-xl font-bold flex items-center gap-2 mb-2">
-              <Shield className="h-5 w-5" />
-              Security Tips
-            </h3>
-            <div className={`grid gap-4 ${generatedPasswords.length > 0 ? "grid-cols-1" : "grid-cols-1 md:grid-cols-2"}`}>
-              {tips.map((tip, index) => {
-                const Icon = tip.icon;
-                return (
-                  <div key={index} className="flex gap-4 p-4 rounded-2xl bg-[#1a1a1a] border border-white/5">
-                    <div className={`p-3 h-fit rounded-xl ${tip.bgColor}`}>
-                      <Icon className={`h-5 w-5 ${tip.color}`} />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-sm mb-1">{tip.title}</h4>
-                      <p className="text-xs text-gray-400">{tip.description}</p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
+        <div className="w-full bg-[#0a0a0a] mt-12">
+          <ToolSEOSection {...seoData} />
         </div>
-
       </div>
     </div>
   );

@@ -96,6 +96,14 @@ export const tools = [
     category: "web",
   },
   {
+    title: "YouTube Thumbnail Downloader",
+    description: "Fast and easy way to download high-quality YouTube video thumbnails in HD and 4K quality formats.",
+    url: "/tools/youtube-thumbnail-downloader",
+    icon: MdPhotoCamera,
+    gradient: "from-red-600 to-red-400",
+    category: "web"
+  },
+  {
     title: "Pinterest Downloader",
     description:
       "Instantly download Pinterest Videos and Images in high quality for free. Fast, secure, and no login required.",

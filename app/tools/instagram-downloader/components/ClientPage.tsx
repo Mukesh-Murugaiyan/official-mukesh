@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import {
+  ArrowLeft,
   Download,
   Link as LinkIcon,
   RefreshCw,
@@ -14,8 +15,14 @@ import {
   Instagram,
   Video,
 } from "lucide-react";
+import Link from 'next/link';
+
+import ToolSEOSection from "@/components/ToolSEOSection";
+import ToolHeader from "@/components/ToolHeader";
+import { toolSEOData } from "@/data/toolSEOContent";
 
 export default function IGDownloader() {
+  const seoData = toolSEOData["instagram-downloader"];
   const [url, setUrl] = useState<string>("");
   const [mediaData, setMediaData] = useState<{ type: 'video' | 'image', url: string, thumbnail?: string } | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -112,13 +119,17 @@ export default function IGDownloader() {
     <div className="w-full max-w-7xl mx-auto px-4 lg:px-10 py-12 text-white min-h-screen">
       <div className="flex flex-col gap-6">
 
-        {/* Header Block */}
-        <div className={cardBaseClass}>
-          <h1 className="text-2xl font-bold flex items-center gap-2">📸 Instagram Downloader</h1>
-          <p className="text-gray-400 text-sm">
-            Fast and easy way to download Instagram Reels, Stories, and Posts in high quality. No login required.
-          </p>
+        {/* 🚀 [TOP_AD] */}
+        <div className="w-full h-20 sm:h-24 bg-white/5 border border-white/10 flex items-center justify-center text-gray-500 rounded-2xl overflow-hidden shadow-inner font-mono text-xs uppercase tracking-widest">
+            [TOP_AD]
         </div>
+
+        {/* Header Block */}
+        <ToolHeader 
+          title="Instagram Downloader"
+          description="Fast and easy way to download Instagram Reels, Stories, and Posts in high quality. No login required."
+          icon="📸"
+        />
 
         {errorError && (
           <div className="p-4 rounded-2xl bg-red-500/10 border border-red-500/20 text-red-500 text-sm font-semibold flex items-center gap-2">
@@ -129,7 +140,7 @@ export default function IGDownloader() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           
           {/* Main Workspace */}
-          <div className={`lg:col-span-2 ${cardBaseClass} min-h-[400px] flex flex-col`}>
+          <div className={`lg:col-span-3 ${cardBaseClass} min-h-[400px] flex flex-col`}>
             
             {!mediaData && !isProcessing ? (
               // URL Input State
@@ -218,55 +229,9 @@ export default function IGDownloader() {
             
           </div>
 
-          {/* Right Col: Features Info */}
-          <div className="flex flex-col gap-6">
-            <div className={cardBaseClass}>
-              <h3 className="text-xl font-bold mb-2">✨ How to use</h3>
-              <div className="space-y-4">
-                
-                <div className="flex gap-4 p-4 rounded-2xl bg-white/5 border border-white/5">
-                  <div className="p-3 h-fit rounded-xl bg-pink-500/20 flex items-center justify-center">
-                    <span className="font-bold text-pink-400">1</span>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-sm mb-1 text-white">Copy the Link</h4>
-                    <p className="text-xs text-gray-400">Open Instagram, find the reel or post, tap 'Share', and select 'Copy Link'.</p>
-                  </div>
-                </div>
-
-                <div className="flex gap-4 p-4 rounded-2xl bg-white/5 border border-white/5">
-                  <div className="p-3 h-fit rounded-xl bg-indigo-500/20 flex items-center justify-center">
-                    <span className="font-bold text-indigo-400">2</span>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-sm mb-1 text-white">Paste the URL</h4>
-                    <p className="text-xs text-gray-400">Paste the copied link into the input box provided above.</p>
-                  </div>
-                </div>
-
-                <div className="flex gap-4 p-4 rounded-2xl bg-white/5 border border-white/5">
-                  <div className="p-3 h-fit rounded-xl bg-green-500/20 flex items-center justify-center">
-                    <span className="font-bold text-green-400">3</span>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-sm mb-1 text-white">Download</h4>
-                    <p className="text-xs text-gray-400">Click fetch, wait for extraction, and save your media in HD directly to your device.</p>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-            {/* Quality Note */}
-            <div className={`${cardBaseClass} flex-1 justify-center items-center text-center p-8 bg-gradient-to-br from-white/5 to-transparent`}>
-              <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center mb-4">
-                <Video className="w-8 h-8 text-pink-500" />
-              </div>
-              <h4 className="font-bold text-gray-300">Highest Quality</h4>
-              <p className="text-xs text-gray-500 mt-2 max-w-[200px]">Downloads original high-quality video or image untouched.</p>
-            </div>
-          </div>
-
+        </div>
+        <div className="w-full bg-[#0a0a0a] mt-12">
+          <ToolSEOSection {...seoData} />
         </div>
       </div>
     </div>
