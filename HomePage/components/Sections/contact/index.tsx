@@ -4,13 +4,16 @@ import logo from "@/assets/images/logo.svg";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { MdCable, MdCall, MdEmail } from "react-icons/md";
-import QRCode from "react-qr-code";
+import { useInView } from "react-intersection-observer";
+import dynamic from "next/dynamic";
 import FormSubmit from "./components/FormSubmit";
-type propsTypes = {
-  setIsQrOpen?: (value: boolean) => void;
-  id?: string;
-};
+
+const DynamicQRCode = dynamic(() => import("@/components/DynamicQRCode"), { ssr: false });
 const ContactSection = ({ setIsQrOpen, id }: { setIsQrOpen?: any; id?: string }) => {
+  const { ref: mapRef, inView: mapInView } = useInView({
+    triggerOnce: true,
+    rootMargin: "200px 0px",
+  });
   // VCARD DATA
   const vcardData = `BEGIN:VCARD
 VERSION:3.0
@@ -60,13 +63,23 @@ END:VCARD`;
       />
 
       {/* MAP */}
-      <div className="w-full overflow-hidden rounded-xl border border-gray-700">
-        <iframe
-          className="w-full h-[300px] md:h-[380px]  grayscale invert"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.4830322446987!2d77.64396701222563!3d12.876631787377708!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae14bab90b6b8b%3A0xfdb3a392b6148613!2sThiDiff%20Technologies!5e0!3m2!1sen!2sin!4v1765430359242!5m2!1sen!2sin"
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-        ></iframe>
+      <div
+        ref={mapRef}
+        className="w-full overflow-hidden rounded-xl border border-gray-700 min-h-[300px] md:min-h-[380px] bg-gray-900/20 flex items-center justify-center transition-all duration-500"
+      >
+        {mapInView ? (
+          <iframe
+            className="w-full h-[300px] md:h-[380px] grayscale invert animate-in fade-in duration-700"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.4830322446987!2d77.64396701222563!3d12.876631787377708!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae14bab90b6b8b%3A0xfdb3a392b6148613!2sThiDiff%20Technologies!5e0!3m2!1sen!2sin!4v1765430359242!5m2!1sen!2sin"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe>
+        ) : (
+          <div className="flex flex-col items-center gap-2 text-gray-500">
+            <div className="w-12 h-12 rounded-full border-2 border-gray-700 border-t-cyan-400 animate-spin" />
+            <p className="text-xs font-medium animate-pulse">Initializing Map...</p>
+          </div>
+        )}
       </div>
 
       {/* CONTACT DETAILS + QR */}
@@ -144,7 +157,7 @@ END:VCARD`;
                     transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] },
                   }}
                 >
-                  <QRCode
+                  <DynamicQRCode
                     value={vcardData}
                     size={180}
                     className="
