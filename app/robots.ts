@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        // disallow: ["/login"],
+        disallow: ["/login", "/admin"],
       },
     ],
     sitemap: "https://themukesh.com/sitemap.xml",

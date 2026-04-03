@@ -35,8 +35,8 @@ const HomePageClient = () => {
   }, []);
 
   const scrollSpyOptions = { 
-    threshold: 0.2, 
-    rootMargin: "-20% 0px -20% 0px" 
+    threshold: 0.4, 
+    rootMargin: "-10% 0px -10% 0px" 
   };
   
   const { ref: aboutRef, inView: aboutInView } = useInView({ ...scrollSpyOptions, threshold: 0.1 });

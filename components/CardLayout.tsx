@@ -54,14 +54,14 @@ export default function CardLayout() {
                 alt={data?.title}
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
-                priority={data?.id === 1}
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                priority={false}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 70vw, 50vw"
               />
               <div className="card-overlay"></div>
               <div className="card-content">
                 {/* Title */}
                 <div className="card-title flex items-center justify-between">
-                  <span>{data?.title}</span>
+                  <h4 className="text-xl font-bold">{data?.title}</h4>
 
                   {/* Running Status */}
                   <span
@@ -77,6 +77,7 @@ export default function CardLayout() {
                           ? "bg-green-500"
                           : "bg-gray-400"
                       }`}
+                      aria-hidden="true"
                     ></span>
                     {data?.status}
                   </span>
@@ -86,7 +87,10 @@ export default function CardLayout() {
                 <div className="card-description mt-1">{data?.description}</div>
 
                 {/* View Features button */}
-                <button className="cursor-pointer card-description mt-3 px-3 py-1 bg-white text-black rounded-full text-sm font-medium hover:bg-gray-200 transition">
+                <button 
+                  className="cursor-pointer card-description mt-3 px-3 py-1 bg-white text-black rounded-full text-sm font-medium hover:bg-gray-200 transition"
+                  aria-label={`View features of ${data?.title}`}
+                >
                   View Features
                 </button>
               </div>

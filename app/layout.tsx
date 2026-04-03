@@ -6,7 +6,13 @@ import "./globals.css";
 // import PagePreloader from "@/components/PagePreloader";
 import Footer from "@/components/Footer";
 import { SEO_KEYWORDS } from "@/data/seo";
-import { faqs, images, localBusinesses, softwareApplications } from "@/lib/seo";
+import {
+  faqs,
+  gameSchema,
+  images,
+  localBusinesses,
+  softwareApplications,
+} from "@/lib/seo";
 import { person } from "@/lib/seo/person";
 import { profilePage } from "@/lib/seo/profilePage";
 import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
@@ -19,7 +25,7 @@ import {
   SoftwareApplicationJsonLd,
 } from "next-seo";
 import Providers from "./providers";
-import PagePreloader from "@/components/PagePreloader";
+// import PagePreloader from "@/components/PagePreloader";
 import Script from "next/script";
 // import UsefulLinksModal from "@/components/UsefulLinksModal";
 const geistSans = Geist({
@@ -52,20 +58,22 @@ export const metadata: Metadata = {
     canonical: "https://themukesh.com",
   },
   openGraph: {
-    title: "Mukesh Murugaiyan | Full Stack Developer Portfolio",
-    description: "Web, Android, iOS, and Desktop apps developer portfolio.",
+    title: "Mukesh Murugaiyan | Full Stack Software Engineer",
+    description: "Expert Web, Android, iOS, and Desktop Applications Developer. Building scalable, high-performance solutions with React, Next.js, and Node.js.",
     url: "https://themukesh.com",
-    siteName: "Mukesh Murugaiyan",
+    siteName: "Mukesh Murugaiyan Portfolio",
     images: [
       {
         url: "/mukesh-mg2.png",
         width: 1200,
         height: 630,
+        alt: "Mukesh Murugaiyan - Full Stack Developer",
       },
     ],
     locale: "en_US",
     type: "website",
   },
+  themeColor: "#00FFF0",
   twitter: {
     card: "summary_large_image",
     title: "Mukesh Murugaiyan | Full Stack Developer",
@@ -109,12 +117,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7493262026277368"
-          crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
+       
         {/* Profile */}
         <ProfilePageJsonLd
           mainEntity={person}
@@ -124,6 +127,10 @@ export default function RootLayout({
         {/* Software Applications */}
         {softwareApplications.map((app, i) => (
           <SoftwareApplicationJsonLd key={i} {...app} />
+        ))}
+        {/* Games */}
+        {gameSchema.map((game, i) => (
+          <SoftwareApplicationJsonLd key={i} {...(game as any)} />
         ))}
         {/* Local Business */}
         {localBusinesses.map((biz, i) => (
@@ -145,16 +152,22 @@ export default function RootLayout({
           ]}
         />
         <GoogleTagManager gtmId={GTMID} />
-        <PagePreloader>
+        {/* <PagePreloader> */}
           <ThemeProvider>
             {/* <PopupHeader/> */}
             <Providers>{children}</Providers>
             {/* <UsefulLinksModal /> */}
             <Footer/>
           </ThemeProvider>
-        </PagePreloader>
+        {/* </PagePreloader> */}
         <Toaster richColors closeButton position="top-right" />
         <GoogleAnalytics gaId={GAID} />
+         <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7493262026277368"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
