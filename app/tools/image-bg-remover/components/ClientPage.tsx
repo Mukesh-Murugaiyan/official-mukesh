@@ -3,6 +3,7 @@
 import { useState, useRef, useCallback } from "react";
 import Image from "next/image";
 import {
+  ArrowLeft,
   Upload,
   Download,
   Image as ImageIcon,
@@ -13,9 +14,15 @@ import {
   Zap,
   Lock,
 } from "lucide-react";
+import Link from 'next/link';
 import { removeBackground } from "@imgly/background-removal";
 
+import ToolSEOSection from "@/components/ToolSEOSection";
+import ToolHeader from "@/components/ToolHeader";
+import { toolSEOData } from "@/data/toolSEOContent";
+
 export default function ImageBGRemover() {
+  const seoData = toolSEOData["image-bg-remover"];
   const [originalImage, setOriginalImage] = useState<string | null>(null);
   const [processedImage, setProcessedImage] = useState<string | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -119,13 +126,17 @@ export default function ImageBGRemover() {
     <div className="w-full max-w-7xl mx-auto px-4 lg:px-10 py-12 text-white min-h-screen">
       <div className="flex flex-col gap-6">
 
-        {/* Header Block */}
-        <div className={cardBaseClass}>
-          <h1 className="text-2xl font-bold flex items-center gap-2">🪄 AI Background Remover</h1>
-          <p className="text-gray-400 text-sm">
-            Instantly remove backgrounds from any image 100% locally in your browser. Fast, private, and free.
-          </p>
+        {/* 🚀 [TOP_AD] */}
+        <div className="w-full h-20 sm:h-24 bg-white/5 border border-white/10 flex items-center justify-center text-gray-500 rounded-2xl overflow-hidden shadow-inner font-mono text-xs uppercase tracking-widest">
+            [TOP_AD]
         </div>
+
+        {/* Header Block */}
+        <ToolHeader 
+          title="AI Background Remover"
+          description="Instantly remove backgrounds from any image 100% locally in your browser. Fast, private, and free."
+          icon="🪄"
+        />
 
         {errorError && (
           <div className="p-4 rounded-2xl bg-red-500/10 border border-red-500/20 text-red-500 text-sm font-semibold flex items-center gap-2">
@@ -136,7 +147,7 @@ export default function ImageBGRemover() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           
           {/* Main Workspace */}
-          <div className={`lg:col-span-2 ${cardBaseClass} min-h-[500px] flex flex-col`}>
+          <div className={`lg:col-span-3 ${cardBaseClass} min-h-[500px] flex flex-col`}>
             
             {!originalImage ? (
               // Empty Upload State
@@ -241,55 +252,9 @@ export default function ImageBGRemover() {
             
           </div>
 
-          {/* Right Col: Features Info */}
-          <div className="flex flex-col gap-6">
-            <div className={cardBaseClass}>
-              <h3 className="text-xl font-bold mb-2">✨ Features</h3>
-              <div className="space-y-4">
-                
-                <div className="flex gap-4 p-4 rounded-2xl bg-white/5 border border-white/5">
-                  <div className="p-3 h-fit rounded-xl bg-indigo-500/20">
-                    <Zap className="h-5 w-5 text-indigo-400" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-sm mb-1 text-white">100% Local AI</h4>
-                    <p className="text-xs text-gray-400">Uses device power via WebAssembly. Zero server uploads.</p>
-                  </div>
-                </div>
-
-                <div className="flex gap-4 p-4 rounded-2xl bg-white/5 border border-white/5">
-                  <div className="p-3 h-fit rounded-xl bg-green-500/20">
-                    <Shield className="h-5 w-5 text-green-400" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-sm mb-1 text-white">Privacy First</h4>
-                    <p className="text-xs text-gray-400">Your images never leave your browser. Fully secure.</p>
-                  </div>
-                </div>
-
-                <div className="flex gap-4 p-4 rounded-2xl bg-white/5 border border-white/5">
-                  <div className="p-3 h-fit rounded-xl bg-orange-500/20">
-                    <ImageIcon className="h-5 w-5 text-orange-400" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-sm mb-1 text-white">Perfect Cutouts</h4>
-                    <p className="text-xs text-gray-400">Advanced edge detection maps around hair & complex objects.</p>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-            {/* Empty space filler for layout balance */}
-            <div className={`${cardBaseClass} flex-1 justify-center items-center text-center p-8 bg-gradient-to-br from-white/5 to-transparent`}>
-              <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center mb-4">
-                <ImageIcon className="w-8 h-8 text-gray-500" />
-              </div>
-              <h4 className="font-bold text-gray-300">Pro Quality</h4>
-              <p className="text-xs text-gray-500 mt-2 max-w-[200px]">Exported transparent PNGs preserve full original resolution.</p>
-            </div>
-          </div>
-
+        </div>
+        <div className="w-full bg-[#0a0a0a] mt-12">
+          <ToolSEOSection {...seoData} />
         </div>
       </div>
     </div>

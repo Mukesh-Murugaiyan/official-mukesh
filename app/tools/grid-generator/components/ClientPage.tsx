@@ -4,10 +4,17 @@ import { useState, useEffect } from "react";
 import GridLayout, { LayoutItem, WidthProvider } from "react-grid-layout/legacy";
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
+import { ArrowLeft } from 'lucide-react';
+import Link from 'next/link';
 
 const ResponsiveGridLayout = WidthProvider(GridLayout);
 
+import ToolSEOSection from "@/components/ToolSEOSection";
+import ToolHeader from "@/components/ToolHeader";
+import { toolSEOData } from "@/data/toolSEOContent";
+
 export default function CSSGridGenerator() {
+  const seoData = toolSEOData["grid-generator"];
   const [cols, setCols] = useState(5);
   const [gap, setGap] = useState(8);
   const [cardType, setCardType] = useState<"square" | "rectangle" | "custom">("square");
@@ -112,23 +119,27 @@ ${layout.map((item) => `  <div class="item-${item.i}">Item ${item.i}</div>`).joi
 
   return (
     <div className="w-full max-w-7xl mx-auto px-4 lg:px-10 py-12 text-white min-h-screen">
-      <div className="flex flex-col lg:flex-row gap-6">
+      <div className="flex flex-col gap-6">
         
+        {/* 🚀 [TOP_AD] */}
+        <div className="w-full h-20 sm:h-24 bg-white/5 border border-white/10 flex items-center justify-center text-gray-500 rounded-2xl overflow-hidden shadow-inner font-mono text-xs uppercase tracking-widest">
+            [TOP_AD]
+        </div>
+
         {/* Main Content */}
         <div className="flex-1 flex flex-col gap-6">
 
           {/* Header Info */}
-          <div className={cardBaseClass}>
-            <h2 className="text-2xl font-bold flex items-center gap-2">🎨 CSS Grid Generator</h2>
-            <p className="text-gray-400 text-sm">
-              Create responsive grid layouts visually. Drag, resize, and merge items to generate perfect CSS Grid code.
-            </p>
-          </div>
+          <ToolHeader 
+            title="CSS Grid Generator"
+            description="Create responsive grid layouts visually. Drag, resize, and merge items to generate perfect CSS Grid code."
+            icon="🎨"
+          />
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             
             {/* Left Col: Settings */}
-            <div className={`lg:col-span-1 ${cardBaseClass}`}>
+            <div className={`lg:col-span-3 ${cardBaseClass}`}>
               <h3 className="text-xl font-bold mb-2">⚙️ Settings</h3>
               
               <div className="space-y-6">
@@ -202,7 +213,7 @@ ${layout.map((item) => `  <div class="item-${item.i}">Item ${item.i}</div>`).joi
             </div>
 
             {/* Right Col: Canvas */}
-            <div className={`lg:col-span-2 ${cardBaseClass} min-h-[500px]`}>
+            <div className={`lg:col-span-3 ${cardBaseClass} min-h-[500px]`}>
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
                 <h3 className="text-xl font-bold flex items-center gap-2">🧩 Grid Canvas</h3>
                 <button onClick={() => handleMerge(layout)} className={btnSecondaryClass + " !w-auto !py-2 !px-4 text-sm"}>
@@ -286,6 +297,9 @@ ${layout.map((item) => `  <div class="item-${item.i}">Item ${item.i}</div>`).joi
           </div>
 
         </div>
+      </div>
+      <div className="w-full bg-[#0a0a0a] mt-12">
+        <ToolSEOSection {...seoData} />
       </div>
     </div>
   );

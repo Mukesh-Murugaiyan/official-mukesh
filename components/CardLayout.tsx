@@ -9,10 +9,11 @@ export const portfolioCards = [
     description:
       "The ultimate all-in-one management ecosystem designed to streamline your business operations. Seamlessly manage accounts, attendance, billing, and payments while tracking real-time stock entries, product replenishment, and salary disbursements. Whether on mobile, web, or desktop, Nexreon provides a unified platform for total control over your inventory, transfers, and cash flow.",
     image:
-      "/nexreon.png",
+      "/nexreon-optimized.webp",
     type: "main",
     className: "card rounded-2xl h-[300px] w-full top-0 left-0",
     status: "Running",
+    priority: true
   },
   {
     id: 2,
@@ -20,7 +21,7 @@ export const portfolioCards = [
     description:
       "Explore the breathtaking heights of natural wonders. These majestic mountains offer spectacular views.",
     image:
-      "/torchlite.png",
+      "/torchlite-optimized.webp",
     type: "left",
     className:
       "card rounded-2xl h-[197px] w-[430px] top-[305px] left-0 bottom-0",
@@ -31,7 +32,7 @@ export const portfolioCards = [
     title: "Motion Sports",
     description: "Discover the mysteries hidden within ancient forests.",
     image:
-      "/motionsports.png",
+      "/motionsports-optimized.webp",
     type: "right",
     className:
       "card-d3 rounded-2xl border-4 border-white h-[310px] w-[450px] right-0 bottom-0",
@@ -54,7 +55,7 @@ export default function CardLayout() {
                 alt={data?.title}
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
-                priority={false}
+                priority={!!data?.priority}
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 70vw, 50vw"
               />
               <div className="card-overlay"></div>

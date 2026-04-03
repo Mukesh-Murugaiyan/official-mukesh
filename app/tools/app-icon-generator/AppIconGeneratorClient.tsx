@@ -2,9 +2,15 @@
 
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import Cropper from 'react-easy-crop';
-import { Upload, Download, Loader2, CheckCircle2, Image as ImageIcon, Archive, RefreshCw, Settings2, ShieldCheck, MonitorSmartphone, Globe, Box, Layers, PlaySquare } from 'lucide-react';
+import { ArrowLeft, Upload, Download, Loader2, CheckCircle2, Image as ImageIcon, Archive, RefreshCw, Settings2, ShieldCheck, MonitorSmartphone, Globe, Box, Layers, PlaySquare } from 'lucide-react';
+import Link from 'next/link';
+
+import ToolSEOSection from "@/components/ToolSEOSection";
+import ToolHeader from "@/components/ToolHeader";
+import { toolSEOData } from "@/data/toolSEOContent";
 
 export default function AppIconGeneratorClient() {
+  const seoData = toolSEOData["app-icon-generator"];
   const [file, setFile] = useState<File | null>(null);
   const [imgSrc, setImgSrc] = useState<string | null>(null);
   
@@ -226,13 +232,17 @@ export default function AppIconGeneratorClient() {
     <div className="w-full max-w-7xl mx-auto px-4 lg:px-10 py-12 text-white min-h-screen">
       <div className="flex flex-col gap-6">
 
-        {/* Header Block */}
-        <div className={cardBaseClass}>
-          <h1 className="text-2xl font-bold flex items-center gap-2">📱 App Icon Generator</h1>
-          <p className="text-gray-400 text-sm">
-            Crop, adjust paddings, and instantly generate exact developer-ready folder structures. Includes Apple's AppIcon.appiconset and Android's adaptive ic_launcher.xml.
-          </p>
+        {/* 🚀 [TOP_AD] */}
+        <div className="w-full h-20 sm:h-24 bg-white/5 border border-white/10 flex items-center justify-center text-gray-500 rounded-2xl overflow-hidden shadow-inner font-mono text-xs uppercase tracking-widest">
+            [TOP_AD]
         </div>
+
+        {/* Header Block */}
+        <ToolHeader 
+          title="App Icon Generator"
+          description="Crop, adjust paddings, and instantly generate exact developer-ready folder structures. Includes Apple's AppIcon.appiconset and Android's adaptive ic_launcher.xml."
+          icon="📱"
+        />
 
         {error && (
           <div className="p-4 rounded-2xl bg-red-500/10 border border-red-500/20 text-red-500 text-sm font-semibold flex items-center gap-2">
@@ -430,60 +440,9 @@ export default function AppIconGeneratorClient() {
           </div>
 
         </div>
-
-        {/* FAQs */}
-        <div className="mt-12 flex flex-col gap-6">
-          <div className="text-center mb-6">
-            <h2 className="text-3xl font-extrabold text-white mb-2">Frequently Asked Questions</h2>
-            <p className="text-gray-400">Everything you need to know about preparing app assets.</p>
-          </div>
-          
-          <div className="grid gap-6 md:grid-cols-2">
-            
-            <div className={cardBaseClass}>
-               <div className="w-10 h-10 bg-indigo-500/20 rounded-xl flex items-center justify-center text-indigo-400 font-bold text-lg">
-                 01
-               </div>
-              <h3 className="text-lg font-bold text-white">How to generate an iOS app icon set?</h3>
-              <p className="text-sm text-gray-400 leading-relaxed">
-                Upload a high-quality 1024x1024 image. Our tool slices it into 20x20 up to 1024x1024 scales (@1x, @2x, @3x). 
-                Once downloaded, simply drag the <code className="bg-white/10 px-1 py-0.5 rounded text-gray-300">AppIcon.appiconset</code> folder directly into Xcode's Asset Catalog, and your icons will instantly map perfectly.
-              </p>
-            </div>
-
-            <div className={cardBaseClass}>
-               <div className="w-10 h-10 bg-indigo-500/20 rounded-xl flex items-center justify-center text-indigo-400 font-bold text-lg">
-                 02
-               </div>
-              <h3 className="text-lg font-bold text-white">What is Contents.json in Xcode?</h3>
-              <p className="text-sm text-gray-400 leading-relaxed">
-                <code className="bg-white/10 px-1 py-0.5 rounded text-gray-300">Contents.json</code> is a metadata file required by Xcode to understand which specific image resolutions apply to which device idioms (iPhone, iPad) and display scales. Our tool auto-generates this so you don't have to assign them manually.
-              </p>
-            </div>
-
-            <div className={cardBaseClass}>
-               <div className="w-10 h-10 bg-indigo-500/20 rounded-xl flex items-center justify-center text-indigo-400 font-bold text-lg">
-                 03
-               </div>
-              <h3 className="text-lg font-bold text-white">How to create Android adaptive icons?</h3>
-              <p className="text-sm text-gray-400 leading-relaxed">
-                Check the "Android" generation option. The generator will create both the legacy mipmap resolution sizes, as well as the <code className="bg-white/10 px-1 py-0.5 rounded text-gray-300">mipmap-anydpi-v26/ic_launcher.xml</code> vector template wrapping your foreground element—providing the exact structure Android Studio expects.
-              </p>
-            </div>
-            
-            <div className={cardBaseClass}>
-               <div className="w-10 h-10 bg-indigo-500/20 rounded-xl flex items-center justify-center text-indigo-400 font-bold text-lg">
-                 04
-               </div>
-              <h3 className="text-lg font-bold text-white">What size is required for the App Stores?</h3>
-              <p className="text-sm text-gray-400 leading-relaxed">
-                The iOS App Store mandates a <code className="bg-white/10 px-1 py-0.5 rounded text-gray-300">1024x1024</code> PNG icon without an alpha channel (no transparency). The Google Play Store requires a <code className="bg-white/10 px-1 py-0.5 rounded text-gray-300">512x512</code> high-res PNG. Our tool automatically provisions and outputs both.
-              </p>
-            </div>
-
-          </div>
+        <div className="w-full bg-[#0a0a0a] mt-12">
+          <ToolSEOSection {...seoData} />
         </div>
-
       </div>
     </div>
   );

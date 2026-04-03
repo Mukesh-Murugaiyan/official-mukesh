@@ -3,9 +3,8 @@ import ImageBGRemover from "./components/ClientPage";
 import { SEO_KEYWORDS } from "@/data/seo";
 
 export const metadata: Metadata = {
-  title: "AI Image Background Remover – Free, Fast & Private",
-  description:
-    "Instantly remove backgrounds from your images for free using our client-side AI tool. Perfect for product photos, portraits, and social media. Processing happens locally in your browser ensuring 100% privacy.",
+  title: "AI Background Remover - Remove Image BG Instantly",
+  description: "Instantly remove backgrounds from any image 100% locally in your browser. Our free AI background remover tool is fast, private, and requires no registration.",
   keywords: [
     ...SEO_KEYWORDS,
     "image background remover",
@@ -14,7 +13,8 @@ export const metadata: Metadata = {
     "ai photo editor",
     "free background removal",
     "local AI background removal",
-    "private image editor"
+    "private image editor",
+    "png cutout maker"
   ],
   authors: [{ name: "Mukesh" }],
   creator: "Mukesh",
@@ -28,14 +28,13 @@ export const metadata: Metadata = {
     canonical: "https://themukesh.com/tools/image-bg-remover",
   },
   openGraph: {
-    title: "AI Image Background Remover – Free & Private",
-    description:
-      "Instantly remove backgrounds from your images for free using our client-side AI tool. 100% local processing.",
+    title: "AI Background Remover - Remove Image BG Instantly",
+    description: "Instantly remove backgrounds from any image 100% locally in your browser. Our free AI background remover tool is fast, private, and requires no registration.",
     url: "https://themukesh.com/tools/image-bg-remover",
     siteName: "TheMukesh",
     images: [
       {
-        url: "https://themukesh.com/mukesh-mg2.png",
+        url: "https://themukesh.com/mukesh-mg2-optimized.webp",
         width: 1200,
         height: 630,
         alt: "AI Image Background Remover Tool",
@@ -46,20 +45,13 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI Image Background Remover – Free & Private",
-    description: "Instantly remove backgrounds from your images for free without uploads.",
-    images: ["https://themukesh.com/mukesh-mg2.png"],
+    title: "AI Background Remover - Remove Image BG Instantly",
+    description: "Instantly remove backgrounds from any image 100% locally in your browser.",
+    images: ["https://themukesh.com/mukesh-mg2-optimized.webp"],
   },
   robots: {
     index: true,
     follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
 };
 
@@ -67,9 +59,9 @@ const Page = () => {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "AI Image Background Remover",
+    "name": "AI Background Remover",
     "url": "https://themukesh.com/tools/image-bg-remover",
-    "description": "Instantly remove backgrounds from any image 100% locally in your browser. Fast, private, and free.",
+    "description": "Instantly remove backgrounds from any image 100% locally in your browser. Our free AI background remover tool is fast, private, and requires no registration.",
     "applicationCategory": "MultimediaApplication",
     "operatingSystem": "All",
     "offers": {

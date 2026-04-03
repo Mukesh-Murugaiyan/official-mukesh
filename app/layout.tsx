@@ -64,7 +64,7 @@ export const metadata: Metadata = {
     siteName: "Mukesh Murugaiyan Portfolio",
     images: [
       {
-        url: "/mukesh-mg2.png",
+        url: "/mukesh-mg2-optimized.webp",
         width: 1200,
         height: 630,
         alt: "Mukesh Murugaiyan - Full Stack Developer",
@@ -83,7 +83,7 @@ export const metadata: Metadata = {
     creator: "@mukeshmurugaiyan",
     images: [
       {
-        url: "https://themukesh.com/mukesh-mg2.png",
+        url: "https://themukesh.com/mukesh-mg2-optimized.webp",
         alt: "Mukesh Murugaiyan | Full Stack Developer Portfolio",
       },
     ],

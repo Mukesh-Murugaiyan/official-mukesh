@@ -3,9 +3,8 @@ import IGDownloader from "./components/ClientPage";
 import { SEO_KEYWORDS } from "@/data/seo";
 
 export const metadata: Metadata = {
-  title: "Instagram Reels & Story Downloader – Fast & Free",
-  description:
-    "Instantly download Instagram Reels, Stories, and Posts in HD quality for free. Fast, secure, and no login required.",
+  title: "Instagram Downloader - Reels, Stories & Posts",
+  description: "Download Instagram Reels, Stories, and Posts in high quality for free. Our fast and secure Instagram downloader requires no login and works on all devices.",
   keywords: [
     ...SEO_KEYWORDS,
     "instagram downloader",
@@ -29,14 +28,13 @@ export const metadata: Metadata = {
     canonical: "https://themukesh.com/tools/instagram-downloader",
   },
   openGraph: {
-    title: "Instagram Reels & Story Downloader – Free & Fast",
-    description:
-      "Instantly download Instagram Reels, Stories, and Posts in HD quality for free. No login needed.",
+    title: "Instagram Downloader - Reels, Stories & Posts",
+    description: "Download Instagram Reels, Stories, and Posts in high quality for free. Our fast and secure Instagram downloader requires no login and works on all devices.",
     url: "https://themukesh.com/tools/instagram-downloader",
     siteName: "TheMukesh",
     images: [
       {
-        url: "https://themukesh.com/mukesh-mg2.png",
+        url: "https://themukesh.com/mukesh-mg2-optimized.webp",
         width: 1200,
         height: 630,
         alt: "Instagram Video Downloader Tool",
@@ -47,20 +45,13 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Instagram Reels & Story Downloader",
+    title: "Instagram Downloader - Reels, Stories & Posts",
     description: "Download Instagram Reels, Stories, and Posts in HD instantly. No app required.",
-    images: ["https://themukesh.com/mukesh-mg2.png"],
+    images: ["https://themukesh.com/mukesh-mg2-optimized.webp"],
   },
   robots: {
     index: true,
     follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
 };
 
@@ -68,9 +59,9 @@ const Page = () => {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "Instagram Reels & Story Downloader",
+    "name": "Instagram Downloader",
     "url": "https://themukesh.com/tools/instagram-downloader",
-    "description": "Download any Instagram Reel, Story, or Post easily and save it directly to your device.",
+    "description": "Download Instagram Reels, Stories, and Posts in high quality for free. Our fast and secure Instagram downloader requires no login and works on all devices.",
     "applicationCategory": "MultimediaApplication",
     "operatingSystem": "All",
     "offers": {

@@ -2,9 +2,15 @@
 
 import React, { useState, useCallback, useRef } from 'react';
 import Cropper from 'react-easy-crop';
-import { Upload, Download, RefreshCw, Settings2, ShieldCheck, Crop as CropIcon, Image as ImageIcon } from 'lucide-react';
+import { ArrowLeft, Upload, Download, RefreshCw, Settings2, ShieldCheck, Crop as CropIcon, Image as ImageIcon } from 'lucide-react';
+import Link from 'next/link';
+
+import ToolSEOSection from "@/components/ToolSEOSection";
+import ToolHeader from "@/components/ToolHeader";
+import { toolSEOData } from "@/data/toolSEOContent";
 
 export default function ImageCropperClient() {
+  const seoData = toolSEOData["image-cropper"];
   const [file, setFile] = useState<File | null>(null);
   const [imgSrc, setImgSrc] = useState<string | null>(null);
   const [zoom, setZoom] = useState(1);
@@ -171,15 +177,18 @@ export default function ImageCropperClient() {
     <div className="w-full max-w-6xl mx-auto px-4 lg:px-10 py-12 text-white min-h-[calc(100vh-80px)]">
       <div className="flex flex-col gap-6">
 
-        {/* Header Block */}
-        <div className={cardBaseClass}>
-          <h1 className="text-3xl font-extrabold flex items-center gap-3 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
-            <CropIcon className="text-cyan-400" size={32} /> Image Cropper
-          </h1>
-          <p className="text-gray-400 text-sm max-w-2xl leading-relaxed">
-            Fast, secure, client-side image cropping tool. Frame your photos exactly how you need them with predefined formats without uploading your data to any server.
-          </p>
+        {/* 🚀 [TOP_AD] */}
+        <div className="w-full h-20 sm:h-24 bg-white/5 border border-white/10 flex items-center justify-center text-gray-500 rounded-2xl overflow-hidden shadow-inner font-mono text-xs uppercase tracking-widest">
+            [TOP_AD]
         </div>
+
+        {/* Header Block */}
+        <ToolHeader 
+          title="Image Cropper"
+          description="Fast, secure, client-side image cropping tool. Frame your photos exactly how you need them with predefined formats without uploading your data to any server."
+          icon={<CropIcon className="text-cyan-400" size={32} />}
+          gradient={{ from: "cyan-400", to: "blue-500" }}
+        />
 
         {error && (
           <div className="p-4 rounded-2xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm font-semibold flex items-center gap-2 animate-in fade-in">
@@ -352,6 +361,9 @@ export default function ImageCropperClient() {
 
           </div>
 
+        </div>
+        <div className="w-full bg-[#0a0a0a] mt-12">
+          <ToolSEOSection {...seoData} />
         </div>
       </div>
     </div>

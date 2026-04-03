@@ -4,18 +4,19 @@ import ImageCropperClient from './ImageCropperClient';
 import Script from 'next/script';
 
 export const metadata: Metadata = {
-  title: 'Free Online Image Cropper – Simple, Fast & Secure',
-  description: 'Easily crop, zoom, and resize your images entirely in your browser. Customize aspect ratios for social media perfectly without losing quality. 100% Client-side.',
-  keywords: 'image cropper, photo editor online, crop image tool, free image resize, react-easy-crop, aspect ratio resizer, photo cropper',
+  title: "Image Cropper - Free Online Image Resizer",
+  description: "Crop and resize your images online with ease. Choose from popular aspect ratios for social media and download your perfectly framed photos instantly.",
+  keywords: "image cropper, photo editor online, crop image tool, free image resize, react-easy-crop, aspect ratio resizer, photo cropper, social media image resizer",
   openGraph: {
-    title: 'Free Online Image Cropper – Simple, Fast & Secure',
-    description: 'Easily crop, zoom, and resize your images entirely in your browser without uploading to any server.',
-    type: 'website',
+    title: "Image Cropper - Free Online Image Resizer",
+    description: "Crop and resize your images online with ease. Choose from popular aspect ratios for social media and download your perfectly framed photos instantly.",
+    type: "website",
+    url: "https://themukesh.com/tools/image-cropper",
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'Free Online Image Cropper',
-    description: 'Easily crop, zoom, and resize your images securely entirely in your browser.',
+    card: "summary_large_image",
+    title: "Image Cropper - Free Online Image Resizer",
+    description: "Crop and resize your images securely entirely in your browser.",
   }
 };
 
@@ -23,10 +24,11 @@ export default function ImageCropperPage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "Free Online Image Cropper",
+    "name": "Image Cropper",
     "operatingSystem": "All",
     "applicationCategory": "UtilitiesApplication",
-    "description": "Secure, fast, client-side online image cropper. Adjust aspect ratios and download instantly without server uploads.",
+    "url": "https://themukesh.com/tools/image-cropper",
+    "description": "Crop and resize your images online with ease. Choose from popular aspect ratios for social media and download your perfectly framed photos instantly.",
     "offers": {
       "@type": "Offer",
       "price": "0.00",
