@@ -117,20 +117,17 @@ export default function RootLayout({
     suppressHydrationWarning
     >
       <head>
-        {/* Preconnect to critical origins */}
+        {/* Preconnect to critical origins (Max 4 as per Lighthouse) */}
         <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
         <link rel="preconnect" href="https://googleads.g.doubleclick.net" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
-        <link rel="preconnect" href="https://www.google-analytics.com" />
-        <link rel="preconnect" href="https://acupoftee.github.io" />
         <link rel="preconnect" href="https://maps.googleapis.com" />
 
-        {/* DNS Prefetch as fallback */}
+        {/* DNS Prefetch as fallback for secondary origins */}
         <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
         <link rel="dns-prefetch" href="https://googleads.g.doubleclick.net" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-        <link rel="dns-prefetch" href="https://acupoftee.github.io" />
         <link rel="dns-prefetch" href="https://maps.googleapis.com" />
 
         {/* AdSense verification meta tag */}
