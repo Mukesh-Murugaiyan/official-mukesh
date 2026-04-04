@@ -4,6 +4,9 @@ export const metadata: Metadata = {
   title: "About Me",
   description:
     "Learn more about Mukesh Murugaiyan, a Full Stack Developer specializing in web, mobile, and backend technologies.",
+  alternates: {
+    canonical: "/about",
+  },
 };
 
 export default function AboutPage() {

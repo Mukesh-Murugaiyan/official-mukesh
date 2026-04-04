@@ -4,6 +4,9 @@ export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
     "Privacy Policy for themukesh.com explaining data collection, cookies, and third-party services.",
+  alternates: {
+    canonical: "/privacy-policy",
+  },
 };
 
 export default function PrivacyPolicyPage() {

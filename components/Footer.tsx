@@ -26,9 +26,12 @@ const Footer = () => {
           {/* Section: Explore More */}
           <div className="md:col-span-2 space-y-4">
             <h3 className="text-orange-400 font-semibold text-sm uppercase tracking-wider">Explore More</h3>
-            <div className="flex flex-row md:flex-col gap-4 md:gap-3 text-lg md:text-base font-medium md:font-normal">
-              <Link href="/" className="hover:text-white transition-colors">Home</Link>
-              <Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
+            <div className="flex flex-col gap-3 text-lg md:text-sm font-medium md:font-normal">
+              <Link href="/" className="text-gray-400 hover:text-white transition-colors">Home</Link>
+              <Link href="/about" className="text-gray-400 hover:text-white transition-colors">About Me</Link>
+              <Link href="/privacy-policy" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</Link>
+              <Link href="/terms-and-conditions" className="text-gray-400 hover:text-white transition-colors">Terms & Conditions</Link>
+              <Link href="/disclaimer" className="text-gray-400 hover:text-white transition-colors">Disclaimer</Link>
             </div>
           </div>
 
@@ -36,19 +39,19 @@ const Footer = () => {
           <div className="md:col-span-2 space-y-4">
             <h3 className="text-green-400 font-semibold text-sm uppercase tracking-wider">Socials</h3>
             <div className="flex flex-wrap md:flex-col gap-x-6 gap-y-4">
-              <a href="#" className="flex items-center gap-2 hover:text-white text-gray-300">
+              <a href="https://www.linkedin.com/in/mukesh-murugaiyan" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-white text-gray-300">
                 <Linkedin size={18} className="text-[#0077b5]" /> <span>LinkedIn</span>
               </a>
-              <a href="#" className="flex items-center gap-2 hover:text-white text-gray-300">
+              <a href="https://medium.com/@mukeshmurugaiyan" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-white text-gray-300">
                 <BookOpen size={18} className="text-white" /> <span>Medium</span>
               </a>
-              <a href="#" className="flex items-center gap-2 hover:text-white text-gray-300">
+              <a href="https://github.com/Mukesh-Murugaiyan" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-white text-gray-300">
                 <Github size={18} /> <span>GitHub</span>
               </a>
-              <a href="#" className="flex items-center gap-2 hover:text-white text-gray-300">
+              <a href="https://leetcode.com/mukeshmurugaiyan" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-white text-gray-300">
                 <Code2 size={18} className="text-[#f59e0b]" /> <span>LeetCode</span>
               </a>
-              <a href="#" className="flex items-center gap-2 hover:text-white text-gray-300">
+              <a href="https://twitter.com/mukeshmurugaiyan" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-white text-gray-300">
                 <Twitter size={18} /> <span>Twitter</span>
               </a>
             </div>

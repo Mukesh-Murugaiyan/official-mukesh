@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { MdArrowOutward } from "react-icons/md";
 import { IconType } from "react-icons";
+import Link from "next/link";
 
 interface ToolCardProps {
   tool: {
@@ -15,6 +16,8 @@ interface ToolCardProps {
   variants: any;
 }
 
+const MotionLink = motion(Link);
+
 export default function ToolCard({ tool, variants }: ToolCardProps) {
   const getActionText = () => {
     switch (tool.category) {
@@ -26,14 +29,11 @@ export default function ToolCard({ tool, variants }: ToolCardProps) {
     }
   };
 
-  return (
-    <motion.a
-      href={tool.url}
-      target={tool.url.startsWith("http") ? "_blank" : "_self"}
-      rel={tool.url.startsWith("http") ? "noopener noreferrer" : ""}
-      variants={variants}
-      className="group relative flex flex-col bg-[#1a1a1a] border border-white/5 rounded-2xl overflow-hidden hover:border-cyan-500/30 transition-all duration-300 hover:shadow-[0_0_30px_rgba(6,182,212,0.15)] hover:-translate-y-1"
-    >
+  const isExternal = tool.url.startsWith("http");
+  const commonClasses = "group relative flex flex-col bg-[#1a1a1a] border border-white/5 rounded-2xl overflow-hidden hover:border-cyan-500/30 transition-all duration-300 hover:shadow-[0_0_30px_rgba(6,182,212,0.15)] hover:-translate-y-1";
+
+  const cardContent = (
+    <>
       {/* Top Gradient Line */}
       <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${tool.gradient} scale-x-0 group-hover:scale-x-100 transition-transform duration-500`} />
 
@@ -87,6 +87,30 @@ export default function ToolCard({ tool, variants }: ToolCardProps) {
           {getActionText()}
         </div>
       </div>
-    </motion.a>
+    </>
+  );
+
+  if (isExternal) {
+    return (
+      <motion.a
+        href={tool.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        variants={variants}
+        className={commonClasses}
+      >
+        {cardContent}
+      </motion.a>
+    );
+  }
+
+  return (
+    <MotionLink
+      href={tool.url}
+      variants={variants}
+      className={commonClasses}
+    >
+      {cardContent}
+    </MotionLink>
   );
 }

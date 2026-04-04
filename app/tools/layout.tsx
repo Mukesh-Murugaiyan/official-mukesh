@@ -11,6 +11,9 @@ export const metadata: Metadata = {
     url: "https://themukesh.com/tools",
     images: [{ url: "/torchlite.png", alt: "Developer Tools" }],
   },
+  alternates: {
+    canonical: "/tools",
+  },
 };
 
 export default function ToolsLayout({ children }: { children: React.ReactNode }) {
