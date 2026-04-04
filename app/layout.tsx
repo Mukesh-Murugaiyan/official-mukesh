@@ -24,10 +24,11 @@ import {
   ProfilePageJsonLd,
   SoftwareApplicationJsonLd,
 } from "next-seo";
+import { webSiteSchema } from "@/lib/seo/website";
 import Providers from "./providers";
-// import PagePreloader from "@/components/PagePreloader";
 import Script from "next/script";
-// import UsefulLinksModal from "@/components/UsefulLinksModal";
+import CookieConsent from "@/components/CookieConsent";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -54,14 +55,11 @@ export const metadata: Metadata = {
     capable: true,
     statusBarStyle: "black-translucent",
   },
-  alternates: {
-    canonical: "https://themukesh.com",
-  },
   openGraph: {
     title: "Mukesh Murugaiyan | Full Stack Software Engineer",
     description: "Expert Web, Android, iOS, and Desktop Applications Developer. Building scalable, high-performance solutions with React, Next.js, and Node.js.",
     url: "https://themukesh.com",
-    siteName: "Mukesh Murugaiyan Portfolio",
+    siteName: "Mukesh Murugaiyan",
     images: [
       {
         url: "/mukesh-mg2-optimized.webp",
@@ -105,6 +103,7 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
+ 
 export default function RootLayout({
   children,
 }: {
@@ -134,13 +133,15 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-
-        {/* Profile */}
-        <ProfilePageJsonLd
-          mainEntity={person}
-          dateCreated={profilePage.dateCreated}
-          dateModified={profilePage.dateModified}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteSchema) }}
         />
+        <ProfilePageJsonLd
+        mainEntity={person}
+        dateCreated={profilePage.dateCreated}
+        dateModified={profilePage.dateModified}
+      />
         {/* Software Applications */}
         {softwareApplications.map((app, i) => (
           <SoftwareApplicationJsonLd key={i} {...app} />
@@ -174,6 +175,7 @@ export default function RootLayout({
           {/* <PopupHeader/> */}
           <Providers>{children}</Providers>
           {/* <UsefulLinksModal /> */}
+          <CookieConsent />
           <Footer />
         </ThemeProvider>
         {/* </PagePreloader> */}
