@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 
 type NeonSignProps = {
   text: string;
@@ -14,6 +14,11 @@ export default function NeonSign({
   size = 25,
 }: NeonSignProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Color themes
   const colors = {
@@ -63,13 +68,17 @@ export default function NeonSign({
       </div>
 
       {/* Font */}
-      <style jsx global>{`
-        @font-face {
-          font-family: Clip;
-          src: url("https://acupoftee.github.io/fonts/Clip.ttf");
-          font-display: swap;
-        }
-      `}</style>
+      {mounted && (
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            @font-face {
+              font-family: Clip;
+              src: url("https://acupoftee.github.io/fonts/Clip.ttf");
+              font-display: swap;
+            }
+          `
+        }} />
+      )}
 
       {/* Component Styles */}
       <style jsx>{`
