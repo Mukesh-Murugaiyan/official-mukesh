@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { games } from "@/data/games";
 import { tools } from "@/data/tools";
+import { blogs } from "@/data/blogs";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://themukesh.com";
@@ -11,6 +12,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 1,
+    },
+    {
+      url: `${baseUrl}/blog`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
     },
     {
       url: `${baseUrl}/games`,
@@ -72,5 +79,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     }));
 
-  return [...staticRoutes, ...toolRoutes, ...gameRoutes];
+  const blogRoutes: MetadataRoute.Sitemap = blogs.map((blog) => ({
+    url: `${baseUrl}/blog/${blog.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly",
+    priority: 0.8,
+  }));
+
+  return [...staticRoutes, ...toolRoutes, ...gameRoutes, ...blogRoutes];
 }

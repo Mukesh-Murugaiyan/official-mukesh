@@ -120,11 +120,7 @@ ${layout.map((item) => `  <div class="item-${item.i}">Item ${item.i}</div>`).joi
   return (
     <div className="w-full max-w-7xl mx-auto px-4 lg:px-10 py-12 text-white min-h-screen">
       <div className="flex flex-col gap-6">
-        
-        {/* 🚀 [TOP_AD] */}
-        <div className="w-full h-20 sm:h-24 bg-white/5 border border-white/10 flex items-center justify-center text-gray-500 rounded-2xl overflow-hidden shadow-inner font-mono text-xs uppercase tracking-widest">
-            [TOP_AD]
-        </div>
+     
 
         {/* Main Content */}
         <div className="flex-1 flex flex-col gap-6">

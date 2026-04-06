@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 
 interface NavigationTabProps {
   activeSection: string;
@@ -11,6 +12,7 @@ const NavigationTab: React.FC<NavigationTabProps> = ({ activeSection }) => {
     { label: "Expertise", id: "skills" },
     { label: "Contact", id: "contact" },
     { label: "Tools", id: "tools" },
+    { label: "Blog", id: "/blog", isLink: true },
   ];
 
   const handleScrollTo = (id: string) => {
@@ -49,16 +51,26 @@ const NavigationTab: React.FC<NavigationTabProps> = ({ activeSection }) => {
       >
         <span className="hidden sm:flex items-center gap-3">
           {menuItems.map((item) => (
-            <button
-              key={item.id}
-              className={`${
-                activeSection === item.id ? "text-white" : ""
-              } cursor-pointer hover:text-white transition-colors bg-transparent border-none p-0 outline-none flex items-center`}
-              onClick={() => handleScrollTo(item.id)}
-              aria-label={`Scroll to ${item.label}`}
-            >
-              {item.label}
-            </button>
+            item.isLink ? (
+              <Link
+                key={item.id}
+                href={item.id}
+                className="cursor-pointer hover:text-white transition-colors flex items-center no-underline"
+              >
+                {item.label}
+              </Link>
+            ) : (
+              <button
+                key={item.id}
+                className={`${
+                  activeSection === item.id ? "text-white" : ""
+                } cursor-pointer hover:text-white transition-colors bg-transparent border-none p-0 outline-none flex items-center`}
+                onClick={() => handleScrollTo(item.id)}
+                aria-label={`Scroll to ${item.label}`}
+              >
+                {item.label}
+              </button>
+            )
           ))}
         </span>
       </div>

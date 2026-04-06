@@ -66,7 +66,7 @@ export default function HighlightsSection({ id }: { id?: string }) {
         </div>
         <div>
           <h3 className="text-xl font-bold text-white tracking-tight uppercase tracking-wider">Key Highlights</h3>
-          <p className="text-gray-500 text-[10px] uppercase tracking-[0.2em] mt-0.5">My Stats</p>
+          <p className="text-gray-400 text-[10px] uppercase tracking-[0.2em] mt-0.5">My Stats</p>
         </div>
       </motion.div>
 
@@ -105,7 +105,7 @@ export default function HighlightsSection({ id }: { id?: string }) {
                 />
               </div>
 
-              <p className="text-xs font-bold text-gray-500 mt-3 uppercase tracking-[0.2em] leading-none transition-colors duration-500 group-hover:text-gray-300">
+              <p className="text-xs font-bold text-gray-400 mt-3 uppercase tracking-[0.2em] leading-none transition-colors duration-500 group-hover:text-gray-200">
                 {item.label}
               </p>
             </div>
@@ -147,7 +147,7 @@ export default function HighlightsSection({ id }: { id?: string }) {
                   className="text-5xl font-black text-white tracking-tighter leading-none"
                 />
               </div>
-              <p className="text-[10px] font-bold text-gray-500 uppercase tracking-[0.25em] mt-2 opacity-60 group-hover:opacity-100 group-hover:text-white transition-all duration-500">
+              <p className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.25em] mt-2 opacity-70 group-hover:opacity-100 group-hover:text-white transition-all duration-500">
                 {item.label}
               </p>
             </div>

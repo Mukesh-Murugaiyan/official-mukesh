@@ -155,7 +155,7 @@ export default function ProfileCard({
                   />
                 </div>
                 <div>
-                  <p className="text-[10px] text-gray-500">EMAIL</p>
+                  <p className="text-[10px] text-gray-400">EMAIL</p>
                   <p className="text-xs font-medium break-all">
                     <a
                       href={`mailto:${profileData?.email}?subject=Hello%20Mukesh&body=I%20visited%20your%20portfolio`}
@@ -176,7 +176,7 @@ export default function ProfileCard({
                   />
                 </div>
                 <div>
-                  <p className="text-[10px] text-gray-500">LOCATION</p>
+                  <p className="text-[10px] text-gray-400">LOCATION</p>
                   <p className="text-xs font-medium">Bangalore, IN</p>
                 </div>
               </div>

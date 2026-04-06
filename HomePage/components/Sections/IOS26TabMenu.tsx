@@ -1,10 +1,9 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { Briefcase, Cpu, Info, Send, ToolCase } from "lucide-react";
+import { Briefcase, Cpu, Info, Send, ToolCase, Newspaper } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-
-
+import Link from "next/link";
 
 export default function IOS26TabMenu({
   activeSection,
@@ -19,6 +18,7 @@ export default function IOS26TabMenu({
     { id: "skills-mobile", icon: Cpu, label: "Expertise" },
     { id: "contact-mobile", icon: Send, label: "Contact" },
     { id: "tools-mobile", icon: ToolCase, label: "Tools" },
+    { id: "/blog", icon: Newspaper, label: "Blog", isLink: true },
   ];
   const handleScrollTo = (id: string) => {
     const element = document.getElementById(id);
@@ -78,18 +78,8 @@ export default function IOS26TabMenu({
              // We need to map activeSection string to this tab
             const isTabActive = activeSection === tab.id || activeSection + "-mobile" === tab.id;
 
-            return (
-              <motion.button
-                key={tab.id}
-                onClick={() => {
-                  handleScrollTo(tab.id);
-                }}
-                whileTap={{ scale: 0.92 }}
-                className="relative
-                w-14 h-12
-                md:w-14 md:h-12
-                flex flex-col items-center justify-center"
-              >
+            const content = (
+              <>
                 {isTabActive && (
                   <motion.div
                     layoutId="activeTab"
@@ -116,6 +106,33 @@ export default function IOS26TabMenu({
                     {tab.label}
                   </span>
                 </div>
+              </>
+            );
+
+            const commonClasses = "relative w-14 h-12 md:w-14 md:h-12 flex flex-col items-center justify-center";
+
+            if (tab.isLink) {
+                return (
+                    <Link
+                      key={tab.id}
+                      href={tab.id}
+                      className={commonClasses}
+                    >
+                      {content}
+                    </Link>
+                );
+            }
+
+            return (
+              <motion.button
+                key={tab.id}
+                onClick={() => {
+                  handleScrollTo(tab.id);
+                }}
+                whileTap={{ scale: 0.92 }}
+                className={commonClasses}
+              >
+                {content}
               </motion.button>
             );
           })}

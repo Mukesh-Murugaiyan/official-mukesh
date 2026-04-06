@@ -269,10 +269,7 @@ export default function ApiTesterClient() {
     <div className="min-h-screen text-white flex flex-col font-sans selection:bg-cyan-500/30">
       <div className="flex-none p-4 sm:p-6 flex flex-col gap-6 max-w-[1600px] mx-auto w-full relative min-h-0">
         
-        {/* 🚀 [TOP_AD] */}
-        <div className="w-full h-20 sm:h-24 bg-white/5 border border-white/10 flex items-center justify-center text-gray-500 rounded-2xl overflow-hidden shadow-inner font-mono text-xs uppercase tracking-widest">
-            [TOP_AD]
-        </div>
+     
 
         <ToolHeader 
           title="API Tester"
