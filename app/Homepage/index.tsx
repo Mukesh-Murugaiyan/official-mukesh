@@ -28,9 +28,15 @@ const HomePageClient = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isQrOpen, setIsQrOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
     setMounted(true);
+    const mql = window.matchMedia("(min-width: 1024px)");
+    setIsDesktop(mql.matches);
+    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+    mql.addEventListener("change", handler);
+    return () => mql.removeEventListener("change", handler);
   }, []);
 
   const scrollSpyOptions = {
@@ -80,15 +86,19 @@ EMAIL:contact@themukesh.com
 URL:https://themukesh.com
 END:VCARD`;
 
+  if (!mounted) return <div className="min-h-screen bg-black" />;
+
   return (
     <div style={{ minWidth: "40vh" }}>
       {/* ✴---Popup Header (Only visible when NavTab is hidden on Desktop)---✴ */}
-      <div className="hidden lg:block">
-        <PopupHeader activeSection={activeSection} visible={!navTabInView} />
-      </div>
+      {isDesktop && (
+        <div className="hidden lg:block">
+          <PopupHeader activeSection={activeSection} visible={!navTabInView} />
+        </div>
+      )}
 
       {/* ✴---Render Modals only if active and mounted to save initial bandwidth---✴ */}
-      {mounted && isOpen && (
+      {isOpen && (
         <OverlayModal
           isOpen={isOpen}
           setIsOpen={setIsOpen}
@@ -106,7 +116,7 @@ END:VCARD`;
         />
       )}
 
-      {mounted && isQrOpen && (
+      {isQrOpen && (
         <OverlayModal
           isOpen={isQrOpen}
           setIsOpen={setIsQrOpen}
@@ -141,99 +151,101 @@ END:VCARD`;
       <main className="text-white">
         <div className="w-full max-w-7xl mx-auto px-4 lg:px-10 pt-12">
           {/* Desktop | Two Column */}
-          <div className="hidden lg:flex gap-[2.3%]">
-            {/* Left Sticky ProfileCard */}
-            <div className="flex-shrink-0 sticky top-8 self-start h-fit">
-              <ProfileCard setIsOpen={setIsOpen} />
-            </div>
-
-            {/* Right Scrollable Content */}
-            <div className="flex-1 rounded-3xl border border-white/10 relative bg-[#111111]">
-              <div ref={navTabRef}>
-                <NavigationTab activeSection={activeSection} />
+          {isDesktop ? (
+            <div className="hidden lg:flex gap-[2.3%]">
+              {/* Left Sticky ProfileCard */}
+              <div className="flex-shrink-0 sticky top-8 self-start h-fit">
+                <ProfileCard setIsOpen={setIsOpen} />
               </div>
 
+              {/* Right Scrollable Content */}
+              <div className="flex-1 rounded-3xl border border-white/10 relative bg-[#111111]">
+                <div ref={navTabRef}>
+                  <NavigationTab activeSection={activeSection} />
+                </div>
 
-              <div className="flex flex-col">
+
+                <div className="flex flex-col">
+                  <div ref={aboutRef}>
+                    <AboutSection />
+                    <MotionVariantWrapper variant="zoomIn" delay={0.2}>
+                      <HighlightsSection />
+                    </MotionVariantWrapper>
+                    <MotionVariantWrapper variant="slideRight" delay={0.3}>
+                      <PortfolioSection />
+                    </MotionVariantWrapper>
+                  </div>
+
+                  <div ref={resumeRef}>
+                    <MotionVariantWrapper variant="fadeUp" delay={0.1}>
+                      <ResumeSection />
+                    </MotionVariantWrapper>
+                  </div>
+
+                  <div ref={skillsRef}>
+                    <MotionVariantWrapper variant="fadeUp" delay={0.1}>
+                      <SkillSection />
+                    </MotionVariantWrapper>
+                  </div>
+
+                  <div ref={contactRef}>
+                    <MotionVariantWrapper variant="fadeUp" delay={0.1}>
+                      <ContactSection setIsQrOpen={setIsQrOpen} />
+                    </MotionVariantWrapper>
+                  </div>
+
+                  <div ref={toolsRef}>
+                    <MotionVariantWrapper variant="fadeUp" delay={0.1}>
+                      <ToolSection />
+                    </MotionVariantWrapper>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ) : (
+            /* Mobile | Single Column */
+            <div className="lg:hidden space-y-7">
+              <ProfileCard isMobile={true} setIsOpen={setIsOpen} />
+              <div className="relative bg-[#111111] rounded-3xl border border-white/10">
+                {/* Mobile Content - Rendered Directy */}
                 <div ref={aboutRef}>
-                  <AboutSection />
-                  <MotionVariantWrapper variant="zoomIn" delay={0.2}>
-                    <HighlightsSection />
+                  <AboutSection id="about-mobile" />
+                  <MotionVariantWrapper variant="zoomIn" delay={0.1}>
+                    <HighlightsSection id="highlights-mobile" />
                   </MotionVariantWrapper>
-                  <MotionVariantWrapper variant="slideRight" delay={0.3}>
-                    <PortfolioSection />
+                  <MotionVariantWrapper variant="slideRight" delay={0.1}>
+                    <PortfolioSection id="portfolio-mobile" />
                   </MotionVariantWrapper>
                 </div>
 
                 <div ref={resumeRef}>
-                  <MotionVariantWrapper variant="fadeUp" delay={0.1}>
-                    <ResumeSection />
+                  <MotionVariantWrapper variant="fadeUp">
+                    <ResumeSection id="resume-mobile" />
                   </MotionVariantWrapper>
                 </div>
 
                 <div ref={skillsRef}>
-                  <MotionVariantWrapper variant="fadeUp" delay={0.1}>
-                    <SkillSection />
+                  <MotionVariantWrapper variant="slideLeft">
+                    <SkillSection id="skills-mobile" />
                   </MotionVariantWrapper>
                 </div>
 
                 <div ref={contactRef}>
-                  <MotionVariantWrapper variant="fadeUp" delay={0.1}>
-                    <ContactSection setIsQrOpen={setIsQrOpen} />
+                  <MotionVariantWrapper variant="rotateIn">
+                    <ContactSection setIsQrOpen={setIsQrOpen} id="contact-mobile" />
                   </MotionVariantWrapper>
                 </div>
 
                 <div ref={toolsRef}>
-                  <MotionVariantWrapper variant="fadeUp" delay={0.1}>
-                    <ToolSection />
+                  <MotionVariantWrapper variant="fadeUp">
+                    <ToolSection id="tools-mobile" />
                   </MotionVariantWrapper>
                 </div>
               </div>
+
+              <IOS26TabMenu activeSection={activeSection} />
             </div>
-          </div>
-
-          {/* Mobile | Single Column */}
-          <div className="lg:hidden space-y-7">
-            <ProfileCard isMobile={true} setIsOpen={setIsOpen} />
-            <div className="relative bg-[#111111] rounded-3xl border border-white/10">
-              {/* Mobile Content - Rendered Directy */}
-              <div ref={aboutRef}>
-                <AboutSection id="about-mobile" />
-                <MotionVariantWrapper variant="zoomIn" delay={0.1}>
-                  <HighlightsSection id="highlights-mobile" />
-                </MotionVariantWrapper>
-                <MotionVariantWrapper variant="slideRight" delay={0.1}>
-                  <PortfolioSection id="portfolio-mobile" />
-                </MotionVariantWrapper>
-              </div>
-
-              <div ref={resumeRef}>
-                <MotionVariantWrapper variant="fadeUp">
-                  <ResumeSection id="resume-mobile" />
-                </MotionVariantWrapper>
-              </div>
-
-              <div ref={skillsRef}>
-                <MotionVariantWrapper variant="slideLeft">
-                  <SkillSection id="skills-mobile" />
-                </MotionVariantWrapper>
-              </div>
-
-              <div ref={contactRef}>
-                <MotionVariantWrapper variant="rotateIn">
-                  <ContactSection setIsQrOpen={setIsQrOpen} id="contact-mobile" />
-                </MotionVariantWrapper>
-              </div>
-
-              <div ref={toolsRef}>
-                <MotionVariantWrapper variant="fadeUp">
-                  <ToolSection id="tools-mobile" />
-                </MotionVariantWrapper>
-              </div>
-            </div>
-
-            <IOS26TabMenu activeSection={activeSection} />
-          </div>
+          )}
         </div>
       </main>
     </div>

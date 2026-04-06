@@ -26,6 +26,7 @@ import {
   ProfilePageJsonLd,
   SoftwareApplicationJsonLd,
 } from "next-seo";
+import Script from "next/script";
 import Providers from "./providers";
 
 const geistSans = Geist({
@@ -183,10 +184,14 @@ export default function RootLayout({
         {/* </PagePreloader> */}
         <Toaster richColors closeButton position="top-right" />
         <GoogleAnalytics gaId={GAID} />
-        <script
+        
+        {/* AdSense optimized with lazyOnload */}
+        <Script
+          id="adsense-init"
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7493262026277368"
           crossOrigin="anonymous"
+          strategy="lazyOnload"
         />
       </body>
     </html>
