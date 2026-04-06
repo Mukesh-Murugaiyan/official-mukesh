@@ -25,8 +25,7 @@ const ProfileImage = ({ show, setIsOpen }: { show: boolean, setIsOpen?: (value: 
               width={200}
               height={200}
               className="object-cover w-full h-full"
-              loading="lazy"
-              priority={false}
+              priority={true}
               onClick={()=>{
                 setIsOpen?.(true)
               }}

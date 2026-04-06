@@ -1,6 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  experimental: {
+    optimizeCss: true,
+    nextScriptWorkers: true,
+  },
+  turbopack: {},
+  webpack: (config) => {
+    return config;
+  },
   images: {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
@@ -21,7 +29,17 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
-        // Apply these headers to all routes
+        // Cache static assets for 1 year
+        source: '/:all*(svg|jpg|png|webp|ico|woff|woff2|ttf|otf)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        // Apply security headers to all routes
         source: '/(.*)',
         headers: [
           {

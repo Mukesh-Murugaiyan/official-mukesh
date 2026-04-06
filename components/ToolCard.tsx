@@ -16,7 +16,7 @@ interface ToolCardProps {
   variants: any;
 }
 
-const MotionLink = motion(Link);
+const MotionLink = motion.create(Link);
 
 export default function ToolCard({ tool, variants }: ToolCardProps) {
   const getActionText = () => {
