@@ -66,7 +66,10 @@ const PopupHeader = ({ activeSection: _externalActiveSection, visible }: PopupHe
     let timeout: NodeJS.Timeout;
 
     const resetTimer = () => {
-      setIsUserActive(true);
+      setIsUserActive((prev) => {
+        if (!prev) return true;
+        return prev;
+      });
       clearTimeout(timeout);
       timeout = setTimeout(() => {
         setIsUserActive(false);
@@ -75,7 +78,10 @@ const PopupHeader = ({ activeSection: _externalActiveSection, visible }: PopupHe
 
     const events = ["scroll", "mousemove", "keydown", "click", "touchstart"];
     
-    events.forEach((event) => window.addEventListener(event, resetTimer));
+    events.forEach((event) => {
+      const options = (event === "scroll" || event === "touchstart") ? { passive: true } : undefined;
+      window.addEventListener(event, resetTimer, options);
+    });
     resetTimer(); 
 
     return () => {

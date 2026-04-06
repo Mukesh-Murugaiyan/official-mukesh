@@ -37,6 +37,7 @@ export const portfolioCards = [
     className:
       "card-d3 rounded-2xl border-4 border-white h-[310px] w-[450px] right-0 bottom-0",
     status: "Running",
+    priority: true
   },
 ];
 

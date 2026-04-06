@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.967.0",
+    "@builder.io/partytown": "0.10.3",
     "@heroicons/react": "^2.2.0",
     "@imgly/background-removal": "1.7.0",
     "@mrnima/instagram-downloader": "1.0.0",
@@ -29,6 +30,7 @@
     "axios": "1.13.5",
     "btch-downloader": "6.0.25",
     "clsx": "^2.1.1",
+    "critters": "0.0.23",
     "dotenv": "^17.2.3",
     "file-saver": "2.0.5",
     "firebase": "^12.7.0",
@@ -88,5 +90,10 @@
     "tailwindcss": "^4",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
-  }
+  },
+  "browserslist": [
+    "defaults and fully supports es6-module",
+    "last 2 versions",
+    "not dead"
+  ]
 }

@@ -14,13 +14,20 @@ export default function Header() {
   const lastScroll = useRef<number>(0);
 
   useEffect(() => {
+    let rafId: number;
     const handleScroll = () => {
-      const currentScroll = window.scrollY;
-      setHidden(currentScroll > lastScroll.current && currentScroll > 80);
-      lastScroll.current = currentScroll;
+      rafId = requestAnimationFrame(() => {
+        const currentScroll = window.scrollY;
+        const shouldHide = currentScroll > lastScroll.current && currentScroll > 80;
+        setHidden(shouldHide);
+        lastScroll.current = currentScroll;
+      });
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      cancelAnimationFrame(rafId);
+    };
   }, []);
 
   return (

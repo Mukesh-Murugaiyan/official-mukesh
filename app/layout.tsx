@@ -4,6 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
 // import PagePreloader from "@/components/PagePreloader";
+import CookieConsent from "@/components/CookieConsent";
 import Footer from "@/components/Footer";
 import { SEO_KEYWORDS } from "@/data/seo";
 import {
@@ -15,6 +16,7 @@ import {
 } from "@/lib/seo";
 import { person } from "@/lib/seo/person";
 import { profilePage } from "@/lib/seo/profilePage";
+import { webSiteSchema } from "@/lib/seo/website";
 import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import {
   BreadcrumbJsonLd,
@@ -24,10 +26,7 @@ import {
   ProfilePageJsonLd,
   SoftwareApplicationJsonLd,
 } from "next-seo";
-import { webSiteSchema } from "@/lib/seo/website";
 import Providers from "./providers";
-import Script from "next/script";
-import CookieConsent from "@/components/CookieConsent";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -117,15 +116,18 @@ export default function RootLayout({
     >
       <head>
         {/* Preconnect to critical origins (Max 4 as per Lighthouse) */}
-        <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
-        <link rel="preconnect" href="https://googleads.g.doubleclick.net" />
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://googleads.g.doubleclick.net" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://www.google-analytics.com" crossOrigin="anonymous" />
 
         {/* DNS Prefetch as fallback for secondary origins */}
         <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
         <link rel="dns-prefetch" href="https://googleads.g.doubleclick.net" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
 
         {/* AdSense verification meta tag */}
         <meta name="google-adsense-account" content="ca-pub-7493262026277368" />
@@ -181,11 +183,10 @@ export default function RootLayout({
         {/* </PagePreloader> */}
         <Toaster richColors closeButton position="top-right" />
         <GoogleAnalytics gaId={GAID} />
-        <Script
+        <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7493262026277368"
           crossOrigin="anonymous"
-          strategy="afterInteractive"
         />
       </body>
     </html>

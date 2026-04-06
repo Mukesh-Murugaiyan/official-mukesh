@@ -19,17 +19,21 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
 
   useEffect(() => {
     if (ref.current) {
-      const rect = ref.current.getBoundingClientRect();
-      setHeight(rect.height);
+      const resizeObserver = new ResizeObserver((entries) => {
+        for (const entry of entries) {
+          setHeight(entry.contentRect.height);
+        }
+      });
+      resizeObserver.observe(ref.current);
+      return () => resizeObserver.disconnect();
     }
-  }, [ref]);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start 10%", "end 50%"],
   });
 
-  const heightTransform = useTransform(scrollYProgress, [0, 1], [0, height]);
   const opacityTransform = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
 
   return (
@@ -68,10 +72,11 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
         >
           <motion.div
             style={{
-              height: heightTransform,
+              scaleY: scrollYProgress,
               opacity: opacityTransform,
+              transformOrigin: "top",
             }}
-            className="absolute inset-x-0 top-0  w-[2px] bg-gradient-to-t from-purple-500 via-blue-500 to-transparent from-[0%] via-[10%] rounded-full"
+            className="absolute inset-x-0 top-0 w-[2px] bg-gradient-to-t from-purple-500 via-blue-500 to-transparent from-[0%] via-[10%] rounded-full"
           />
         </div>
       </div>
