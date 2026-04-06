@@ -39,11 +39,7 @@ export default function ToolSEOSection({
   return (
     <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-white">
       
-      {/* 🚀 [TOP_AD] */}
-      <div className="w-full h-24 bg-white/5 border border-white/10 flex items-center justify-center text-gray-500 mb-12 rounded-2xl overflow-hidden shadow-inner">
-        [TOP_AD]
-      </div>
-
+   
       <div className="flex flex-col gap-6">
 
         {/* 1. Introduction Section */}
@@ -62,10 +58,7 @@ export default function ToolSEOSection({
            </div>
         </div>
 
-        {/* 2. Middle Ad */}
-        <div className="w-full h-32 bg-white/5 border border-white/10 flex items-center justify-center text-gray-500 mb-12 rounded-3xl overflow-hidden shadow-inner font-mono text-xs uppercase tracking-widest">
-            [MIDDLE_AD]
-        </div>
+      
 
         {/* 3. Steps & Features */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
@@ -151,9 +144,7 @@ export default function ToolSEOSection({
 
         {/* 7. Bottom Ad & CTA */}
         <div className="flex flex-col gap-8 items-center text-center py-12">
-            <div className="w-full h-24 bg-white/5 border border-white/10 flex items-center justify-center text-gray-500 rounded-2xl overflow-hidden">
-                [BOTTOM_AD]
-            </div>
+           
             
             <div className="max-w-xl">
                 <h3 className={`text-4xl font-black mb-4 italic text-white tracking-tighter uppercase`}>Try <span className={accentText}>{toolName}</span> Now!</h3>

@@ -101,10 +101,7 @@ export default function ThumbnailClient() {
   return (
     <div className="w-full max-w-7xl mx-auto px-4 lg:px-10 py-12 text-white min-h-screen">
       
-      {/* 🚀 [TOP_AD] placeholder */}
-      <div className="w-full h-20 sm:h-24 bg-white/5 border border-white/10 flex items-center justify-center text-gray-500 mb-8 rounded-2xl overflow-hidden shadow-inner font-mono text-xs uppercase tracking-widest">
-        [TOP_AD]
-      </div>
+
 
       <div className="flex flex-col gap-6">
 

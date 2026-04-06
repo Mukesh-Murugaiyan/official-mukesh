@@ -177,11 +177,7 @@ export default function ImageCropperClient() {
     <div className="w-full max-w-6xl mx-auto px-4 lg:px-10 py-12 text-white min-h-[calc(100vh-80px)]">
       <div className="flex flex-col gap-6">
 
-        {/* 🚀 [TOP_AD] */}
-        <div className="w-full h-20 sm:h-24 bg-white/5 border border-white/10 flex items-center justify-center text-gray-500 rounded-2xl overflow-hidden shadow-inner font-mono text-xs uppercase tracking-widest">
-            [TOP_AD]
-        </div>
-
+       
         {/* Header Block */}
         <ToolHeader 
           title="Image Cropper"

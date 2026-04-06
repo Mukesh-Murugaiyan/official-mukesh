@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 interface PopupHeaderProps {
   activeSection: string;
@@ -18,6 +19,7 @@ const PopupHeader = ({ activeSection: _externalActiveSection, visible }: PopupHe
     { label: "Expertise", id: "skills" },
     { label: "Contact", id: "contact" },
     { label: "Tools", id: "tools" },
+    { label: "Blog", id: "/blog", isLink: true },
   ];
 
   const scrollToSection = (
@@ -107,29 +109,8 @@ const PopupHeader = ({ activeSection: _externalActiveSection, visible }: PopupHe
               const isActive = activeSection === item.id;
               const isHovered = hoveredTab === item.id;
 
-              return (
-                <button
-                  key={item.id}
-                  className={`
-                  relative 
-                  flex items-center justify-center
-                  px-4 py-2
-                  text-sm font-medium 
-                  transition-colors duration-200
-                  outline-none
-                  rounded-2xl
-                  ${
-                    isActive
-                      ? "text-white dark:text-black"
-                      : "text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white"
-                  }
-                `}
-                  onClick={() => {
-                    scrollToSection(item.id, item.label);
-                  }}
-                  onMouseEnter={() => setHoveredTab(item.id)}
-                  onMouseLeave={() => setHoveredTab(null)}
-                >
+              const content = (
+                <>
                   {/* Active Indicator */}
                   {isActive && (
                     <motion.div
@@ -149,6 +130,49 @@ const PopupHeader = ({ activeSection: _externalActiveSection, visible }: PopupHe
                   )}
 
                   <span className="relative z-10">{item.label}</span>
+                </>
+              );
+
+              const commonClasses = `
+                relative 
+                flex items-center justify-center
+                px-4 py-2
+                text-sm font-medium 
+                transition-colors duration-200
+                outline-none
+                rounded-2xl
+                ${
+                  isActive
+                    ? "text-white dark:text-black"
+                    : "text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white"
+                }
+              `;
+
+              if (item.isLink) {
+                return (
+                  <Link
+                    key={item.id}
+                    href={item.id}
+                    className={commonClasses}
+                    onMouseEnter={() => setHoveredTab(item.id)}
+                    onMouseLeave={() => setHoveredTab(null)}
+                  >
+                    {content}
+                  </Link>
+                );
+              }
+
+              return (
+                <button
+                  key={item.id}
+                  className={commonClasses}
+                  onClick={() => {
+                    scrollToSection(item.id, item.label);
+                  }}
+                  onMouseEnter={() => setHoveredTab(item.id)}
+                  onMouseLeave={() => setHoveredTab(null)}
+                >
+                  {content}
                 </button>
               );
             })}

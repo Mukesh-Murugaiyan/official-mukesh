@@ -7,10 +7,10 @@ type ToolLayoutProps = {
 
 const ToolLayout = ({ children }: ToolLayoutProps) => {
   return (
-    <div className="min-h-screen bg-[#111111] text-white">
+    <div className="min-h-screen  text-white">
       <main className="w-full max-w-7xl mx-auto px-4 lg:px-10 py-12">
         <div className="flex flex-col lg:flex-row gap-8">
-          
+
           {/* Left Column - Profile Card */}
           <div className="flex-shrink-0 sticky top-8 self-start h-fit hidden lg:block">
             <div className="lg:w-[236px]">
