@@ -42,9 +42,9 @@ export default function ProfileCard({
   return (
     <motion.div
       layout
-      initial={{ opacity: 0, scale: 0.9, y: 20 }}
+      initial={{ opacity: 1, scale: 1, y: 0 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
+      transition={{ duration: 0 }}
       className="relative w-full bg-[#111111] border border-white/10 rounded-2xl lg:rounded-3xl overflow-hidden shadow-2xl"
     >
       {/* MAIN CARD SECTION */}

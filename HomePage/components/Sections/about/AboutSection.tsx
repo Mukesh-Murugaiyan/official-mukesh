@@ -49,10 +49,7 @@ export default function AboutSection({ id }: { id?: string }) {
       >
 
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          className="flex items-center gap-3 mb-2"
+           className="flex items-center gap-3 mb-2"
         >
           <div className="p-2 rounded-lg bg-white/5 border border-white/10 backdrop-blur-sm">
             <MdPerson className="text-xl text-cyan-400" />
@@ -68,7 +65,7 @@ export default function AboutSection({ id }: { id?: string }) {
           className="w-24 h-[3px] bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full mb-5 origin-left"
         />
 
-        <motion.p variants={itemVariants} className="text-gray-300 leading-relaxed">
+        <motion.p className="text-gray-300 leading-relaxed">
           I’m <ColourfulText text="Mukesh" fontSize={28} glowStrength={24} />, a Software Engineer based in Bangalore, India with 4 years of experience building and scaling high-performance web, mobile, and desktop applications.
         </motion.p>
 

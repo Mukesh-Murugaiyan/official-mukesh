@@ -5,8 +5,6 @@ import MotionVariantWrapper from "@/components/MotionVariantWrapper";
 import OverlayModal from "@/components/OverlayModal";
 import ProfileCard from "@/HomePage/components/ProfileCard/ProfileCard";
 import AboutSection from "@/HomePage/components/Sections/about/AboutSection";
-import HighlightsSection from "@/HomePage/components/Sections/about/HighlightsSection";
-import PortfolioSection from "@/HomePage/components/Sections/about/PortfolioSection";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
@@ -23,6 +21,8 @@ const ToolSection = dynamic(() => import("@/HomePage/components/Sections/Tool"),
 const IOS26TabMenu = dynamic(() => import("@/HomePage/components/Sections/IOS26TabMenu"), { ssr: false });
 const NavigationTab = dynamic(() => import("@/HomePage/components/Sections/NavigationTab"), { ssr: false });
 const DynamicQRCode = dynamic(() => import("@/components/DynamicQRCode"), { ssr: false });
+const HighlightsSection = dynamic(() => import("@/HomePage/components/Sections/about/HighlightsSection"), { ssr: false });
+const PortfolioSection = dynamic(() => import("@/HomePage/components/Sections/about/PortfolioSection"), { ssr: false });
 
 const HomePageClient = () => {
   const [activeSection, setActiveSection] = useState("about");
@@ -94,11 +94,9 @@ END:VCARD`;
   return (
     <div style={{ minWidth: "40vh" }}>
       {/* ✴---Popup Header (Only visible when NavTab is hidden on Desktop)---✴ */}
-      {isDesktop && (
-        <div className="hidden lg:block">
-          <PopupHeader activeSection={activeSection} visible={!navTabInView} />
-        </div>
-      )}
+      <div className="hidden lg:block">
+        <PopupHeader activeSection={activeSection} visible={!navTabInView} />
+      </div>
 
       {/* ✴---Render Modals only if active and mounted to save initial bandwidth---✴ */}
       {isOpen && (
@@ -157,12 +155,12 @@ END:VCARD`;
           {isDesktop ? (
             <div className="hidden lg:flex gap-[2.3%]">
               {/* Left Sticky ProfileCard */}
-              <div className="flex-shrink-0 sticky top-8 self-start h-fit">
+              <div className="flex-shrink-0 sticky top-8 self-start h-fit min-h-[500px]">
                 <ProfileCard setIsOpen={setIsOpen} />
               </div>
 
               {/* Right Scrollable Content */}
-              <div className="flex-1 rounded-3xl border border-white/10 relative bg-[#111111]">
+              <div className="flex-1 rounded-3xl border border-white/10 relative bg-[#111111] min-h-[800px]">
                 <div ref={navTabRef}>
                   <NavigationTab activeSection={activeSection} />
                 </div>
@@ -207,7 +205,7 @@ END:VCARD`;
             </div>
           ) : (
             /* Mobile | Single Column */
-            <div className="lg:hidden space-y-7">
+            <div className="lg:hidden space-y-7 min-h-[600px]">
               <ProfileCard isMobile={true} setIsOpen={setIsOpen} />
               <div className="relative bg-[#111111] rounded-3xl border border-white/10">
                 {/* Mobile Content - Rendered Directy */}

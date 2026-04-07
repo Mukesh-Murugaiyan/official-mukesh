@@ -1,6 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-import mukesh from "@/assets/images/mukesh-mg2.png";
 
 const ProfileImage = ({ show, setIsOpen }: { show: boolean, setIsOpen?: (value: boolean) => void }) => {
   return (
@@ -8,10 +7,9 @@ const ProfileImage = ({ show, setIsOpen }: { show: boolean, setIsOpen?: (value: 
       {show && (
         <motion.div
           className="w-20 h-20 sm:w-35 sm:h-35 lg:w-37 lg:h-38 rounded-xl border border-gray-600 overflow-hidden"
-          initial={{ opacity: 0, scale: 0.95 }}
+          initial={{ opacity: 1, scale: 1 }}
           animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.95 }}
-          transition={{ duration: 0.4, ease: "easeInOut" }}
+          transition={{ duration: 0 }}
         >
           <motion.div
             className="w-full h-full"
@@ -20,10 +18,11 @@ const ProfileImage = ({ show, setIsOpen }: { show: boolean, setIsOpen?: (value: 
             transition={{ duration: 0.3, ease: "easeInOut" }}
           >
             <Image
-              src={mukesh}
+              src="/mukesh-mg2-optimized.webp"
               alt="Mukesh M"
               width={200}
               height={200}
+              quality={75}
               className="object-cover w-full h-full"
               priority={true}
               onClick={()=>{

@@ -58,6 +58,7 @@ export default function CardLayout() {
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
                 priority={!!data?.priority}
                 fetchPriority={data?.priority ? "high" : "auto"}
+                loading={data?.priority ? "eager" : "lazy"}
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 70vw, 50vw"
               />
               <div className="card-overlay"></div>
