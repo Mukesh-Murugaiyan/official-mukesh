@@ -1,11 +1,11 @@
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { Toaster } from "sonner";
+// import { Toaster } from "sonner";
 import "./globals.css";
 // import PagePreloader from "@/components/PagePreloader";
 import CookieConsent from "@/components/CookieConsent";
-import Footer from "@/components/Footer";
+// import Footer from "@/components/Footer";
 import { SEO_KEYWORDS } from "@/data/seo";
 import {
   faqs,
@@ -179,10 +179,10 @@ export default function RootLayout({
           <Providers>{children}</Providers>
           {/* <UsefulLinksModal /> */}
           <CookieConsent />
-          <Footer excludeRoutes={['/']} />
+          {/* <Footer excludeRoutes={['/']} /> */}
         </ThemeProvider>
         {/* </PagePreloader> */}
-        <Toaster richColors closeButton position="top-right" />
+        {/* <Toaster richColors closeButton position="top-right" /> */}
         <GoogleAnalytics gaId={GAID} />
         
         {/* AdSense optimized with lazyOnload */}
