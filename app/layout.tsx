@@ -179,7 +179,7 @@ export default function RootLayout({
           <Providers>{children}</Providers>
           {/* <UsefulLinksModal /> */}
           <CookieConsent />
-          <Footer />
+          <Footer excludeRoutes={['/']} />
         </ThemeProvider>
         {/* </PagePreloader> */}
         <Toaster richColors closeButton position="top-right" />
