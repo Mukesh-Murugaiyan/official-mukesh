@@ -32,10 +32,17 @@ export function ColourfulText({
 
   colors = colors || defaultColors;
 
+  const [isReady, setIsReady] = React.useState(false);
   const [currentColors, setCurrentColors] = React.useState(colors);
   const [count, setCount] = React.useState(0);
 
   React.useEffect(() => {
+    const timer = setTimeout(() => setIsReady(true), 1500); // Delay animation to reduce initial-load TBT
+    return () => clearTimeout(timer);
+  }, []);
+
+  React.useEffect(() => {
+    if (!isReady) return;
     const interval = setInterval(() => {
       const shuffled = [...colors].sort(() => Math.random() - 0.5);
       setCurrentColors(shuffled);
@@ -43,7 +50,7 @@ export function ColourfulText({
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [colors]);
+  }, [colors, isReady]);
 
   return (
     <>
@@ -53,13 +60,12 @@ export function ColourfulText({
         return (
           <motion.span
             key={`${char}-${count}-${index}`}
-            animate={{
+            animate={isReady ? {
               color,
               y: [0, -3, 0],
               scale: [1, 1.01, 1],
-              filter: ["blur(0px)", "blur(4px)", "blur(0px)"],
               opacity: [1, 0.85, 1],
-            }}
+            } : { color }}
             transition={{
               duration: 0.5,
               delay: index * 0.05,

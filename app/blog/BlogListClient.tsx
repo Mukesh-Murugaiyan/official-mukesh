@@ -83,6 +83,7 @@ export default function BlogListClient() {
                         alt={blog.title}
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-110"
+                        priority
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-transparent to-transparent opacity-60" />
 

@@ -32,11 +32,13 @@ import Providers from "./providers";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
 });
 const GAID = process.env.GA_ID || "";
 const GTMID = process.env.GTM_ID || "";
@@ -116,11 +118,13 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        {/* Preconnect to critical origins (Max 4 as per Lighthouse) */}
+        {/* Preconnect to critical origins */}
         <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://googleads.g.doubleclick.net" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://www.google-analytics.com" crossOrigin="anonymous" />
+
+        {/* Preload critical assets */}
+        <link rel="preload" href="/mukesh-mg2-optimized.webp" as="image" />
 
         {/* DNS Prefetch as fallback for secondary origins */}
         <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
@@ -185,13 +189,12 @@ export default function RootLayout({
         {/* <Toaster richColors closeButton position="top-right" /> */}
         <GoogleAnalytics gaId={GAID} />
         
-        {/* AdSense optimized with lazyOnload */}
+        {/* AdSense optimized with afterInteractive */}
         <Script
           id="adsense-init"
-          async
+          async={true}
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7493262026277368"
-          crossOrigin="anonymous"
-          strategy="lazyOnload"
+          strategy="afterInteractive"
         />
       </body>
     </html>

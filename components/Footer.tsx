@@ -1,4 +1,5 @@
 "use client";
+import { motion } from "framer-motion";
 import { BookOpen, Code2, FileText, Github, Linkedin, Mail, Twitter } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -8,7 +9,13 @@ const Footer = ({ excludeRoutes }: { excludeRoutes?: string[] }) => {
   if (excludeRoutes?.includes(pathname)) return <></>;
 
   return (
-    <footer className="mx-4 my-8 pb-28 lg:pb-0">
+    <motion.footer 
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay: 0.5 }}
+      className="mx-4 my-8 pb-28 lg:pb-0"
+    >
       {/* Main Container */}
       <div className="bg-[#111111] text-white p-6 md:p-12 rounded-3xl border border-white/10 max-w-[1200px] mx-auto">
         
@@ -21,7 +28,7 @@ const Footer = ({ excludeRoutes }: { excludeRoutes?: string[] }) => {
               Delivering <span className="text-cyan-400">Precision</span> and <br className="hidden md:block" />
               <span className="text-purple-500"> Performance</span> in Tech
             </h2>
-            {/* Desktop-only copyright info (appears inside the box in your desktop screenshot) */}
+            {/* Desktop-only copyright info */}
             <div className="hidden md:block text-gray-400 text-sm mt-10">
               <p>Bengalore, India</p>
               <p>Mukesh Murugiayan © 2025</p>
@@ -84,12 +91,12 @@ const Footer = ({ excludeRoutes }: { excludeRoutes?: string[] }) => {
         </div>
       </div>
 
-      {/* Mobile-only Bottom Footer (outside the box as per your mobile screenshot) */}
+      {/* Mobile-only Bottom Footer */}
       <div className="md:hidden flex justify-between items-center px-4 mt-4 text-xs text-gray-400 font-medium">
         <span>Mukesh Murugaiyan © 2025</span>
         <span>Bengalore, India</span>
       </div>
-    </footer>
+    </motion.footer>
   );
 };
 
