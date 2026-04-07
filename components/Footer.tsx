@@ -1,12 +1,7 @@
-"use client";
 import { BookOpen, Code2, FileText, Github, Linkedin, Mail, Twitter } from 'lucide-react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 
-const Footer = ({ excludeRoutes }: { excludeRoutes?: string[] }) => {
-  const pathname = usePathname();
-  if (excludeRoutes?.includes(pathname)) return <></>;
-
+const Footer = () => {
   return (
     <footer className="mx-4 my-8 pb-28 lg:pb-0">
       {/* Main Container */}

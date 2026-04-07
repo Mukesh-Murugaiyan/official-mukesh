@@ -13,7 +13,6 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { useInView } from "react-intersection-observer";
 import PopupHeader from "@/components/PopupHeader";
-import Footer from "@/components/Footer";
 
 // Lazy load below-the-fold sections
 const ContactSection = dynamic(() => import("@/HomePage/components/Sections/contact"), { ssr: false });
@@ -28,9 +27,11 @@ const HomePageClient = () => {
   const [activeSection, setActiveSection] = useState("about");
   const [isOpen, setIsOpen] = useState(false);
   const [isQrOpen, setIsQrOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const mql = window.matchMedia("(min-width: 1024px)");
     setIsDesktop(mql.matches);
     const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
@@ -85,6 +86,7 @@ EMAIL:contact@themukesh.com
 URL:https://themukesh.com
 END:VCARD`;
 
+  if (!mounted) return <div className="min-h-screen bg-black" />;
 
   return (
     <div style={{ minWidth: "40vh" }}>
@@ -246,7 +248,6 @@ END:VCARD`;
           )}
         </div>
       </main>
-       <Footer />
     </div>
   );
 };
