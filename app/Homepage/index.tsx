@@ -29,6 +29,11 @@ const HomePageClient = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isQrOpen, setIsQrOpen] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   useEffect(() => {
     const mql = window.matchMedia("(min-width: 1024px)");
@@ -246,7 +251,7 @@ END:VCARD`;
           )}
         </div>
       </main>
-       <Footer />
+       {isMounted && <Footer />}
     </div>
   );
 };

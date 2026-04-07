@@ -2,11 +2,8 @@
 
 import ProfileImage from "@/components/ProfileImage";
 import { AnimatePresence, motion } from "framer-motion";
-import { Courgette } from "next/font/google";
 import dynamic from "next/dynamic";
 import { useState } from "react";
-
-const NeonSign = dynamic(() => import("@/components/NeonSign"), { ssr: false });
 import {
   FaChevronDown,
   FaFacebookF,
@@ -15,12 +12,9 @@ import {
   FaLinkedin,
 } from "react-icons/fa";
 import { MdEmail, MdLocationOn } from "react-icons/md";
-const courgette = Courgette({
-  weight: "400",        // Only "400" is available for Courgette
-  subsets: ["latin"],   // Subsets you need
-  display: "swap",      // Optional
-  variable: "--font-courgette", // Optional CSS variable
-});
+
+const NeonSign = dynamic(() => import("@/components/NeonSign"), { ssr: false });
+
 export default function ProfileCard({
   isMobile = false,
   setIsOpen,
