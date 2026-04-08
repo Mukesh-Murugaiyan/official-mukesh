@@ -12,8 +12,6 @@ export default function robots(): MetadataRoute.Robots {
           "/dashboard",
           "/instagram",
           "/api",
-          "/_next",
-          "/static",
         ],
       },
     ],
