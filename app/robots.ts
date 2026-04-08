@@ -10,7 +10,7 @@ export default function robots(): MetadataRoute.Robots {
           "/login",
           "/admin",
           "/dashboard",
-          "/instagram",
+          "/instagram/",
           "/api",
         ],
       },
