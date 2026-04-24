@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "About Me",
   description:
-    "Learn more about Mukesh Murugaiyan, a Full Stack Developer specializing in web, mobile, and backend technologies.",
+    "Learn more about Mukesh Murugaiyan, a  Full Stack Software Engineer specializing in web, mobile, and backend technologies.",
   alternates: {
     canonical: "/about",
   },
@@ -16,7 +16,7 @@ export default function AboutPage() {
         <h1 className="text-3xl font-bold mb-6">About Me</h1>
 
         <p className="mb-4">
-          Hello, I’m <strong>Mukesh Murugaiyan</strong>, a Full Stack Developer
+          Hello, I’m <strong>Mukesh Murugaiyan</strong>, a  Full Stack Software Engineer
           with experience in building modern web, mobile, and backend
           applications. I specialize in creating scalable, secure, and
           performance-optimized solutions using the latest technologies.

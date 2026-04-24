@@ -145,7 +145,7 @@ export default async function BlogDetailPage({ params }: Props) {
               </div>
               <div>
                 <p className="text-xs font-bold text-white">{blog.author}</p>
-                <p className="text-[10px] text-gray-500">Full Stack Developer</p>
+                <p className="text-[10px] text-gray-500"> Full Stack Software Engineer</p>
               </div>
             </div>
             

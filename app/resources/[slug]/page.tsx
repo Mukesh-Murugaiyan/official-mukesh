@@ -26,7 +26,7 @@ export default async function ResourceDetail({ params }: Props) {
       <div className="border rounded-lg p-4 mb-8">
         <h3 className="font-semibold text-lg">👤 About Me</h3>
         <p className="text-gray-600">
-          Mukesh Murugaiyan – Full Stack Developer
+          Mukesh Murugaiyan –  Full Stack Software Engineer
         </p>
         <a
           href="https://themukesh.com"

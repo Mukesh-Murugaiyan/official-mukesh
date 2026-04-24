@@ -45,7 +45,7 @@ const GTMID = process.env.GTM_ID || "";
 
 export const metadata: Metadata = {
   title: {
-    default: "Mukesh Murugaiyan | Full Stack Developer",
+    default: "Mukesh Murugaiyan |  Full Stack Software Engineer",
     template: "%s | Mukesh Murugaiyan",
   },
   description:
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
         url: "/mukesh-mg2-optimized.webp",
         width: 1200,
         height: 630,
-        alt: "Mukesh Murugaiyan - Full Stack Developer",
+        alt: "Mukesh Murugaiyan -  Full Stack Software Engineer",
       },
     ],
     locale: "en_US",
@@ -76,7 +76,7 @@ export const metadata: Metadata = {
   // themeColor: "#00FFF0", // Moved to viewport export
   twitter: {
     card: "summary_large_image",
-    title: "Mukesh Murugaiyan | Full Stack Developer",
+    title: "Mukesh Murugaiyan |  Full Stack Software Engineer",
     description:
       "Official portfolio of Mukesh Murugaiyan | I build Web, Android, iOS & Desktop applications with modern tech stacks.",
     site: "@mukeshmurugaiyan",
@@ -84,7 +84,7 @@ export const metadata: Metadata = {
     images: [
       {
         url: "https://themukesh.com/mukesh-mg2-optimized.webp",
-        alt: "Mukesh Murugaiyan | Full Stack Developer Portfolio",
+        alt: "Mukesh Murugaiyan |  Full Stack Software Engineer Portfolio",
       },
     ],
   },

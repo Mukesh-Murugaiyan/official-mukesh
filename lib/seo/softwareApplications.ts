@@ -5,7 +5,7 @@ export const softwareApplications: SoftwareApplicationJsonLdProps[] = [
     type: "WebApplication",
     name: "Mukesh Murugaiyan Portfolio",
     description:
-      "Official portfolio web application of Mukesh Murugaiyan (TheMukesh), a Full Stack Developer showcasing web, mobile and desktop applications.",
+      "Official portfolio web application of Mukesh Murugaiyan (TheMukesh), a  Full Stack Software Engineer showcasing web, mobile and desktop applications.",
     url: "https://themukesh.com",
     image: "https://themukesh.com/mukesh-mg2.png",
     applicationCategory: "WebApplication",
@@ -42,7 +42,7 @@ export const softwareApplications: SoftwareApplicationJsonLdProps[] = [
     type: "MobileApplication",
     name: "Mukesh Murugaiyan",
     description:
-      "High-performance Android applications built using React Native, Kotlin, and Node.js backend | by Full Stack Developer Mukesh Murugaiyan.",
+      "High-performance Android applications built using React Native, Kotlin, and Node.js backend | by  Full Stack Software Engineer Mukesh Murugaiyan.",
     url: "https://themukesh.com",
     applicationCategory: "MobileApplication",
     operatingSystem: "Android",
@@ -73,7 +73,7 @@ export const softwareApplications: SoftwareApplicationJsonLdProps[] = [
     type: "MobileApplication",
     name: "Mukesh Murugaiyan",
     description:
-      "Modern and high-quality iOS applications developed using React Native and Node.js backend | by Full Stack Developer Mukesh Murugaiyan.",
+      "Modern and high-quality iOS applications developed using React Native and Node.js backend | by  Full Stack Software Engineer Mukesh Murugaiyan.",
     url: "https://themukesh.com",
     applicationCategory: "MobileApplication",
     operatingSystem: "iOS",
@@ -104,7 +104,7 @@ export const softwareApplications: SoftwareApplicationJsonLdProps[] = [
     type: "DesktopEnhancementApplication",
     name: "Mukesh Murugaiyan",
     description:
-      "High-quality desktop applications built using Electron.js and Node.js backend | by Full Stack Developer Mukesh Murugaiyan.",
+      "High-quality desktop applications built using Electron.js and Node.js backend | by  Full Stack Software Engineer Mukesh Murugaiyan.",
     url: "https://themukesh.com",
     applicationCategory: "DesktopEnhancementApplication",
     operatingSystem: "Windows, macOS, Linux",

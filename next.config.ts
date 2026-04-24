@@ -30,6 +30,20 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
+        // Tell search engines to index the PDF CVs
+        source: '/cv/:path*.pdf',
+        headers: [
+          {
+            key: 'X-Robots-Tag',
+            value: 'index, follow',
+          },
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=86400, must-revalidate',
+          },
+        ],
+      },
+      {
         // Cache static assets for 1 year
         source: '/:all*(svg|jpg|png|webp|ico|woff|woff2|ttf|otf)',
         headers: [

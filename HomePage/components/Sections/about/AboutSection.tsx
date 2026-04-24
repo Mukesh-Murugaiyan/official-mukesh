@@ -1,8 +1,8 @@
 import { ColourfulText } from "@/components/animation/ColourfulText";
 import { motion } from "framer-motion";
+import { FaNodeJs, FaReact } from "react-icons/fa";
 import { MdPerson } from "react-icons/md";
-import { FaReact, FaNodeJs } from "react-icons/fa";
-import { SiNextdotjs, SiElectron, SiFirebase, SiMongodb, SiSocketdotio, SiKotlin } from "react-icons/si";
+import { SiElectron, SiFirebase, SiKotlin, SiMongodb, SiNextdotjs, SiSocketdotio } from "react-icons/si";
 import { TbBrandReactNative } from "react-icons/tb";
 
 export default function AboutSection({ id }: { id?: string }) {
@@ -11,7 +11,7 @@ export default function AboutSection({ id }: { id?: string }) {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1, 
+        staggerChildren: 0.1,
         delayChildren: 0.1,
       },
     },
@@ -49,7 +49,7 @@ export default function AboutSection({ id }: { id?: string }) {
       >
 
         <motion.div
-           className="flex items-center gap-3 mb-2"
+          className="flex items-center gap-3 mb-2"
         >
           <div className="p-2 rounded-lg bg-white/5 border border-white/10 backdrop-blur-sm">
             <MdPerson className="text-xl text-cyan-400" />
@@ -66,7 +66,10 @@ export default function AboutSection({ id }: { id?: string }) {
         />
 
         <motion.p className="text-gray-300 leading-relaxed">
-          I’m <ColourfulText text="Mukesh" fontSize={28} glowStrength={24} />, a Software Engineer based in Bangalore, India with 4 years of experience building and scaling high-performance web, mobile, and desktop applications.
+          I’m <ColourfulText text="Mukesh" fontSize={28} glowStrength={24} />, Full Stack Software Engineer with 3.9+ years of experience building scalable web, mobile, and desktop
+          applications using React.js, Node.js, and React Native. Expert in real-time systems and high-performance
+          architectures, delivering production-ready solutions with WebSockets, REST APIs, and end-to-end system
+          design.
         </motion.p>
 
         <motion.ul

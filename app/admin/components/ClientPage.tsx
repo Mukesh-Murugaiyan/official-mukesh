@@ -126,7 +126,7 @@ const ClientAdminPage = () => {
                 </div>
                 <div>
                   <h3 className="font-bold text-gray-800">Mukesh Murugaiyan</h3>
-                  <p className="text-sm text-gray-600">Full Stack Developer</p>
+                  <p className="text-sm text-gray-600"> Full Stack Software Engineer</p>
                 </div>
               </div>
 

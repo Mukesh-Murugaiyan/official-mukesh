@@ -6,7 +6,7 @@ import { MdEmail, MdLocationOn } from 'react-icons/md';
 const PdfDownloadPage = () => {
   const userProfile = {
     name: "<Mukesh Murugaiyan>",
-    title: "Full Stack Developer",
+    title: " Full Stack Software Engineer",
     bio: "I build Web, Android, iOS & Desktop applications with modern tech stacks.",
     email: "contact@themukesh.com",
     location: "San Francisco, CA"

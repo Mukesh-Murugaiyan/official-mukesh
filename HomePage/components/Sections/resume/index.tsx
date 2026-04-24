@@ -18,11 +18,20 @@ const ResumeSection = ({ id }: { id?: string }) => {
     },
     {
       type: "item",
-      title: "Full Stack Developer",
+      title: " Full Stack Software Engineer",
       company: "ThiDiff Technologies",
       period: "Jul 2022 — Present",
-      description:
-        "Designed and developed high-quality web, Android, iOS, and desktop applications. Delivered user-friendly interfaces, seamless performance, and cross-platform functionality. Collaborated with teams to ensure timely project delivery and maintain professional coding standards.",
+      description: `Developed scalable web, mobile, and desktop applications using React.js, Node.js, Next.js, and React Native
+• Built and maintained real-time systems using WebSockets for live updates, messaging, and notifications
+• Designed secure RESTful APIs with JWT authentication and RBAC for role-based access
+• Optimized application performance and database queries for high-concurrency usage
+• Integrated third-party services including Firebase, Agora SDK, and payment systems
+• Deployed and managed applications on AWS using Docker and CI/CD pipelines
+• Collaborated in a team to deliver production-ready, scalable enterprise solutions
+• Optimized API performance and database queries for high-concurrency and large-scale usage
+• Designed reusable, scalable architecture using services, modules, and component-based structure
+• Integrated AWS services and AI-based solutions including OCR and face recognition
+• Mentored junior developers, conducted code reviews, and ensured best practices`,
     },
     {
       type: "section",
@@ -70,8 +79,8 @@ const ResumeSection = ({ id }: { id?: string }) => {
           <MdTimeline className="text-xl text-cyan-400" />
         </div>
         {/* <h2 className="text-3xl font-bold text-white">Career Snapshot</h2> */}
-          <h3 className="text-2xl font-bold text-white tracking-tight uppercase tracking-wider">Career Snapshot</h3>
-        
+        <h3 className="text-2xl font-bold text-white tracking-tight uppercase tracking-wider">Career Snapshot</h3>
+
       </motion.div>
 
       <motion.div
@@ -123,7 +132,7 @@ const ResumeSection = ({ id }: { id?: string }) => {
                 <h4 className="text-white font-semibold">{item.title}</h4>
                 <p className="text-gray-400">{item.company}</p>
                 <span className="text-sm text-[#52b3c7]">{item.period}</span>
-                <p className="text-gray-400 mt-2 leading-relaxed">
+                <p className="text-gray-400 mt-2 leading-relaxed whitespace-pre-line">
                   {item.description}
                 </p>
               </div>
