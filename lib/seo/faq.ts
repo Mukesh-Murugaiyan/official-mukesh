@@ -1,7 +1,7 @@
 export const faqs = [
   {
     question: "Who is Mukesh Murugaiyan?",
-    answer: "Mukesh Murugaiyan is a Full Stack Software Developer from India.",
+    answer: "Mukesh Murugaiyan is a Full Stack Full Stack Software Engineer from India.",
   },
   {
     question: "What services do you offer?",

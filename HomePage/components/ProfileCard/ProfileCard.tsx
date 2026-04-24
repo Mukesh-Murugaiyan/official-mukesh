@@ -11,7 +11,7 @@ import {
   FaInstagram,
   FaLinkedin,
 } from "react-icons/fa";
-import { MdEmail, MdLocationOn } from "react-icons/md";
+import { MdEmail, MdLocationOn, MdDescription, MdDownload, MdOpenInNew } from "react-icons/md";
 
 const NeonSign = dynamic(() => import("@/components/NeonSign"), { ssr: false });
 
@@ -23,6 +23,7 @@ export default function ProfileCard({
   setIsOpen?: (value: boolean) => void;
 }) {
   const [showContacts, setShowContacts] = useState(false);
+  const [showCVTooltip, setShowCVTooltip] = useState(false);
 
   const profileData = {
     email: "contact@themukesh.com",
@@ -102,7 +103,7 @@ export default function ProfileCard({
               rounded-full border border-gray-700
             "
           >
-            Software Developer
+            Full Stack Software Engineer
           </p>
 
           {/* Status Indicators */}
@@ -197,6 +198,54 @@ export default function ProfileCard({
                   onClick={() => onSocialClick?.("github")}
                   aria-label="GitHub Profile"
                 />
+                
+                {/* CV Tooltip / Dropdown */}
+                <div className="relative">
+                  <MdDescription
+                    className="hover:text-cyan-400 duration-200 cursor-pointer"
+                    onClick={() => setShowCVTooltip(!showCVTooltip)}
+                    aria-label="CV Options"
+                  />
+                  
+                  <AnimatePresence>
+                    {showCVTooltip && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                        transition={{ duration: 0.15 }}
+                        className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 bg-[#202020] border border-gray-700 rounded-lg shadow-xl p-1.5 flex flex-col min-w-[120px] z-50 text-sm"
+                      >
+                        <a
+                          href="/cv/Mukesh_Murugaiyan_CV.pdf"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          title="Mukesh Murugaiyan - Full Stack Software Engineer Resume/CV"
+                          aria-label="View Mukesh Murugaiyan's Full Stack Developer CV"
+                          className="flex items-center gap-2 px-3 py-2 hover:bg-white/10 rounded-md transition-colors text-gray-300 hover:text-white"
+                          onClick={() => setShowCVTooltip(false)}
+                        >
+                          <MdOpenInNew className="text-base text-cyan-400" />
+                          <span className="font-medium text-xs">View CV</span>
+                        </a>
+                        <a
+                          href="/cv/Mukesh_Murugaiyan_CV.pdf"
+                          download="Mukesh_Murugaiyan_CV.pdf"
+                          title="Download Mukesh Murugaiyan Resume/CV"
+                          aria-label="Download Mukesh Murugaiyan's Full Stack Developer CV as PDF"
+                          className="flex items-center gap-2 px-3 py-2 hover:bg-white/10 rounded-md transition-colors text-gray-300 hover:text-white"
+                          onClick={() => setShowCVTooltip(false)}
+                        >
+                          <MdDownload className="text-base text-purple-400" />
+                          <span className="font-medium text-xs">Download</span>
+                        </a>
+                        {/* Tooltip Arrow */}
+                        <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-[1px] border-[5px] border-transparent border-t-[#202020] z-10"></div>
+                        <div className="absolute top-full left-1/2 -translate-x-1/2 border-[6px] border-transparent border-t-gray-700 z-0"></div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               </div>
             </div>
           </motion.div>

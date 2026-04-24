@@ -5,7 +5,7 @@ export const localBusinesses: LocalBusinessJsonLdProps[] = [
     type: "ProfessionalService",
     name: "Mukesh Murugaiyan",
     description:
-      "Full Stack Developer building Web, Android, iOS & Desktop apps. Located in Tamil Nadu, India.",
+      " Full Stack Software Engineer building Web, Android, iOS & Desktop apps. Located in Tamil Nadu, India.",
     url: "https://themukesh.com",
     telephone: "+91-9786587013",
     address: {

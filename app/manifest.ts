@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Mukesh Murugaiyan | Full Stack Developer",
+    name: "Mukesh Murugaiyan |  Full Stack Software Engineer",
     short_name: "Mukesh M",
     description:
       "Freelancer available for Web, Android, iOS, Chrome Extensions & Desktop apps",

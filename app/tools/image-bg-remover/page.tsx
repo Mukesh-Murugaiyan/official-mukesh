@@ -93,7 +93,7 @@ const Page = () => {
           </div>
           <div>
             <p className="text-white font-semibold">Written by Mukesh</p>
-            <p className="text-gray-400 text-sm">Full Stack Developer & AI Engineer</p>
+            <p className="text-gray-400 text-sm"> Full Stack Software Engineer & AI Engineer</p>
           </div>
         </div>
 

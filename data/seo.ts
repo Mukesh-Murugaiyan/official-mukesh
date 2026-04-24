@@ -1,5 +1,5 @@
 export const SEO_KEYWORDS = [
-  "Full Stack Developer",
+  " Full Stack Software Engineer",
   "Web Developer",
   "Android Developer",
   "iOS Developer",
