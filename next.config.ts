@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  allowedDevOrigins: ['themukesh.com', '*.themukesh.com', '192.168.43.174', '0.0.0.0', 'localhost'],
   experimental: {
     optimizeCss: true,
     nextScriptWorkers: true,

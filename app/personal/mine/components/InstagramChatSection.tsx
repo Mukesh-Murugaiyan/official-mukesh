@@ -63,10 +63,10 @@ export const InstagramChatSection: React.FC = () => {
 
   return (
     <div className="relative w-full h-full flex items-center justify-center p-2 md:p-6 select-none overflow-hidden z-20">
-      {/* Phone Screen Frame (Authentic Instagram DM layout) */}
-      <div className="w-full max-w-sm h-[92dvh] md:h-[660px] rounded-[36px] bg-[#fff0f5] border-[5px] border-neutral-950/80 shadow-[0_20px_60px_rgba(0,0,0,0.6)] overflow-hidden relative flex flex-col">
+      {/* Phone Screen Frame (Authentic Instagram DM layout optimized for mobile screens) */}
+      <div className="w-full max-w-[360px] max-h-[85vh] h-[640px] rounded-[32px] bg-[#fff0f5] border-[4px] border-neutral-950/80 shadow-[0_20px_60px_rgba(0,0,0,0.6)] overflow-hidden relative flex flex-col my-auto">
         {/* Instagram Header Bar */}
-        <header className="px-4 py-3 bg-white/80 backdrop-blur-md flex items-center justify-between border-b border-pink-100 shadow-sm z-30">
+        <header className="px-4 py-3 bg-white/80 backdrop-blur-md flex items-center justify-between border-b border-pink-100 shadow-sm z-30 shrink-0">
           <div className="flex items-center gap-2">
             <button
               aria-label="Back"
@@ -106,11 +106,13 @@ export const InstagramChatSection: React.FC = () => {
 
         {/* Floating Pink Hearts Romantic Background Overlay */}
         <div className="absolute inset-0 pointer-events-none opacity-30 bg-[radial-gradient(#f43f5e_1px,transparent_1px)] [background-size:16px_16px] z-0">
-          {/* Floating Heart Motifs */}
           <div className="absolute top-1/4 left-1/2 -translate-x-1/2 text-pink-300 text-6xl opacity-20 blur-[1px] animate-pulse">
             💖
           </div>
-          <div className="absolute top-2/3 left-10 text-rose-300 text-5xl opacity-25 blur-[1px] animate-bounce" style={{ animationDuration: "6s" }}>
+          <div
+            className="absolute top-2/3 left-10 text-rose-300 text-5xl opacity-25 blur-[1px] animate-bounce"
+            style={{ animationDuration: "6s" }}
+          >
             💕
           </div>
           <div className="absolute top-1/3 right-8 text-pink-400 text-4xl opacity-20 blur-[1px] animate-pulse">
@@ -145,7 +147,11 @@ export const InstagramChatSection: React.FC = () => {
                   </span>
                 )}
 
-                <div className={`flex items-end gap-1.5 ${isMe ? "flex-row-reverse" : "flex-row"}`}>
+                <div
+                  className={`flex items-end gap-1.5 ${
+                    isMe ? "flex-row-reverse" : "flex-row"
+                  }`}
+                >
                   {/* Sathi Avatar next to bottom message */}
                   {!isMe && (
                     <div className="w-6 h-6 rounded-full overflow-hidden shrink-0 mb-0.5">
@@ -232,7 +238,7 @@ export const InstagramChatSection: React.FC = () => {
         </div>
 
         {/* Bottom Instagram Input Bar */}
-        <footer className="px-3 py-2.5 bg-white/90 backdrop-blur-md border-t border-pink-100 flex items-center gap-2 z-30">
+        <footer className="px-3 py-2.5 bg-white/90 backdrop-blur-md border-t border-pink-100 flex items-center gap-2 z-30 shrink-0">
           <div className="w-8 h-8 rounded-full bg-rose-500 text-white flex items-center justify-center shrink-0">
             <Camera className="w-4.5 h-4.5" />
           </div>
