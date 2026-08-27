@@ -5,29 +5,29 @@ import React, { memo } from "react";
 export const MoonBackground: React.FC = memo(() => {
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-[#030208]">
-      {/* Dynamic Purple & Moonlight Gradient Spot Lights */}
+      {/* Dynamic Purple & Moonlight Radial Gradient Spot Lights (Hardware-Accelerated) */}
       <div
-        className="absolute -top-40 -left-40 w-[34rem] h-[34rem] rounded-full blur-[140px] opacity-45 animate-pulse"
+        className="absolute -top-40 -left-40 w-[34rem] h-[34rem] rounded-full opacity-55 animate-pulse"
         style={{
           background:
-            "radial-gradient(circle, rgba(147,51,234,0.45) 0%, rgba(192,132,252,0.2) 65%, transparent 100%)",
+            "radial-gradient(circle, rgba(147,51,234,0.45) 0%, rgba(192,132,252,0.18) 50%, transparent 70%)",
           animationDuration: "10s",
         }}
       />
       <div
-        className="absolute top-1/3 -right-40 w-[36rem] h-[36rem] rounded-full blur-[160px] opacity-35 animate-pulse"
+        className="absolute top-1/3 -right-40 w-[36rem] h-[36rem] rounded-full opacity-45 animate-pulse"
         style={{
           background:
-            "radial-gradient(circle, rgba(168,85,247,0.35) 0%, rgba(126,34,206,0.18) 60%, transparent 100%)",
+            "radial-gradient(circle, rgba(168,85,247,0.35) 0%, rgba(126,34,206,0.15) 50%, transparent 70%)",
           animationDuration: "13s",
           animationDelay: "2s",
         }}
       />
       <div
-        className="absolute -bottom-40 left-1/4 w-[40rem] h-[40rem] rounded-full blur-[170px] opacity-40 animate-pulse"
+        className="absolute -bottom-40 left-1/4 w-[40rem] h-[40rem] rounded-full opacity-50 animate-pulse"
         style={{
           background:
-            "radial-gradient(circle, rgba(192,132,252,0.3) 0%, rgba(88,28,135,0.25) 70%, transparent 100%)",
+            "radial-gradient(circle, rgba(192,132,252,0.3) 0%, rgba(88,28,135,0.2) 55%, transparent 70%)",
           animationDuration: "11s",
           animationDelay: "4s",
         }}
@@ -35,10 +35,10 @@ export const MoonBackground: React.FC = memo(() => {
 
       {/* Floating Violet Stardust particles */}
       <div className="absolute inset-0">
-        {[...Array(20)].map((_, i) => (
+        {[...Array(16)].map((_, i) => (
           <div
             key={i}
-            className="absolute rounded-full bg-purple-200/30 blur-[0.8px] animate-float-slow"
+            className="absolute rounded-full bg-purple-200/30 animate-float-slow"
             style={{
               width: `${(i % 3) + 2}px`,
               height: `${(i % 3) + 2}px`,
@@ -54,7 +54,7 @@ export const MoonBackground: React.FC = memo(() => {
 
       {/* Subtle Floating Butterfly Silhouettes */}
       <div className="absolute inset-0">
-        {[...Array(5)].map((_, i) => (
+        {[...Array(4)].map((_, i) => (
           <div
             key={`butterfly-${i}`}
             className="absolute text-purple-300/20 text-sm animate-butterfly-float pointer-events-none select-none"
