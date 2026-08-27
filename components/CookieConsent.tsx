@@ -1,10 +1,12 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
 const CookieConsent = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     // Check if user has already made a choice
@@ -17,6 +19,11 @@ const CookieConsent = () => {
       return () => clearTimeout(timer);
     }
   }, []);
+
+  // Do not show Cookie Consent banner on /personal/mine route
+  if (pathname?.startsWith("/personal/mine")) {
+    return null;
+  }
 
   const handleConsent = (choice: "accepted" | "declined") => {
     localStorage.setItem("cookie-consent", choice);
