@@ -43,8 +43,8 @@ export const MoonParticleHeart: React.FC = () => {
     if (!ctx) return;
 
     let animId: number;
-    let width = (canvas.width = canvas.parentElement?.clientWidth || window.innerWidth);
-    let height = (canvas.height = canvas.parentElement?.clientHeight || window.innerHeight);
+    const width = (canvas.width = canvas.parentElement?.clientWidth || window.innerWidth);
+    const height = (canvas.height = canvas.parentElement?.clientHeight || window.innerHeight);
 
     const count = Math.min(Math.floor(width / 3.5), 300);
     const centerX = width / 2;

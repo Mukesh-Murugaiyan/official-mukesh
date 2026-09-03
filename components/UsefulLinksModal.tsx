@@ -30,6 +30,13 @@ export default function UsefulLinksModal() {
     };
   }, []);
 
+  const handleClose = useCallback(() => {
+    setIsVisible(false);
+    setTimeout(() => {
+      setOpen(false);
+    }, 300);
+  }, []);
+
   // Handle click outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -47,14 +54,7 @@ export default function UsefulLinksModal() {
       document.removeEventListener("mousedown", handleClickOutside);
       document.body.style.overflow = "unset";
     };
-  }, [open]);
-
-  const handleClose = useCallback(() => {
-    setIsVisible(false);
-    setTimeout(() => {
-      setOpen(false);
-    }, 300);
-  }, []);
+  }, [open, handleClose]);
 
   const handleLinkClick = useCallback((href: string) => {
     handleClose();

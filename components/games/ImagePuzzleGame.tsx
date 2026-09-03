@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 
 export default function PuzzleGame() {
-  const [gridSize, setGridSize] = useState(3);
+  const [gridSize] = useState(3);
   const [image, setImage] = useState<string | null>(null);
   const [tiles, setTiles] = useState<number[]>([]);
   const [emptyIndex, setEmptyIndex] = useState(0);
@@ -30,10 +30,23 @@ export default function PuzzleGame() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  useEffect(() => {
-    if (image) startGame();
-    return () => stopTimer();
-  }, [image]);
+  const stopTimer = () => {
+    if (timerRef.current) clearInterval(timerRef.current);
+  };
+
+  const startTimer = () => {
+    stopTimer();
+    timerRef.current = setInterval(() => {
+      setTime((t) => t + 1);
+    }, 1000);
+  };
+
+  const shuffle = (array: number[]) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  };
 
   const startGame = () => {
     const arr = Array.from({ length: totalTiles }, (_, i) => i);
@@ -45,24 +58,10 @@ export default function PuzzleGame() {
     startTimer();
   };
 
-  const shuffle = (array: number[]) => {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-    }
-  };
-
-  /* ---------------- TIMER ---------------- */
-  const startTimer = () => {
-    stopTimer();
-    timerRef.current = setInterval(() => {
-      setTime((t) => t + 1);
-    }, 1000);
-  };
-
-  const stopTimer = () => {
-    if (timerRef.current) clearInterval(timerRef.current);
-  };
+  useEffect(() => {
+    if (image) startGame();
+    return () => stopTimer();
+  }, [image]);
 
   /* ---------------- MOVE ---------------- */
   const handleTileClick = (index: number) => {
