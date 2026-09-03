@@ -1,0 +1,131 @@
+name: CI/CD Pipeline
+
+# Trigger pipeline on pushes to main and pull requests targeting main
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  # ==========================================
+  # Job 1: Build & Quality Check
+  # ==========================================
+  ci:
+    name: Build & Quality Check
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout codebase
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Setup Node.js 20.x with npm dependency caching
+      - name: Setup Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      # Step 3: Enable Next.js Build Cache for faster CI build times
+      - name: Cache Next.js build output
+        uses: actions/cache@v4
+        with:
+          path: |
+            ${{ github.workspace }}/.next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
+
+      # Step 4: Install exact dependencies using package-lock.json
+      - name: Install dependencies
+        run: npm ci
+
+      # Step 5: Run ESLint
+      - name: Run ESLint
+        run: npm run lint
+
+      # Step 6: Generate Prisma Client & Build Production Bundle
+      - name: Generate Prisma Client & Run Production Build
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL || 'postgresql://placeholder:5432/db' }}
+          DIRECT_URL: ${{ secrets.DIRECT_URL || 'postgresql://placeholder:5432/db' }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET || 'ci-build-placeholder-jwt-secret-key-min-32-chars' }}
+        run: npm run build
+
+  # ==========================================
+  # Job 2: Vercel Deployment Pipeline
+  # ==========================================
+  deploy:
+    name: Deploy to Vercel
+    needs: ci
+    runs-on: ubuntu-latest
+    # Only run deploy if VERCEL_TOKEN secret is configured, or on main/PR events
+    if: (github.event_name == 'push' && github.ref == 'refs/heads/main' || github.event_name == 'pull_request') && secrets.VERCEL_TOKEN != ''
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+
+      # ------------------------------------------
+      # Preview Deployment (Pull Requests)
+      # ------------------------------------------
+      - name: Pull Vercel Environment (Preview)
+        if: github.event_name == 'pull_request'
+        run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+      - name: Build Project Artifacts (Preview)
+        if: github.event_name == 'pull_request'
+        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+      - name: Deploy Artifacts to Vercel (Preview)
+        if: github.event_name == 'pull_request'
+        run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+      # ------------------------------------------
+      # Production Deployment (main Branch)
+      # ------------------------------------------
+      - name: Pull Vercel Environment (Production)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+      - name: Build Project Artifacts (Production)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+      - name: Deploy Artifacts to Vercel (Production)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}

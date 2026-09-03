@@ -9,11 +9,21 @@ import {
   MdHttp,
   MdExtension,
   MdCode,
+  MdInsertDriveFile,
 } from "react-icons/md";
 import { BiBook } from "react-icons/bi";
 
 export const tools = [
   // Web Tools
+  {
+    title: "CV Maker",
+    description:
+      "Create professional, editable Word (.docx) & PDF resumes with exact OOXML layout, tab-stop dates, and navy headers.",
+    url: "/tools/cv-maker",
+    icon: MdInsertDriveFile,
+    gradient: "from-cyan-500 to-blue-600",
+    category: "web",
+  },
   {
     title: "Online API Tester",
     description:
