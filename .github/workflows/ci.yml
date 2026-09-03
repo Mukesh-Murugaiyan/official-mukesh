@@ -66,8 +66,8 @@ jobs:
     name: Deploy to Vercel
     needs: ci
     runs-on: ubuntu-latest
-    # Only run deploy if VERCEL_TOKEN secret is configured, or on main/PR events
-    if: (github.event_name == 'push' && github.ref == 'refs/heads/main' || github.event_name == 'pull_request') && secrets.VERCEL_TOKEN != ''
+    # Only run deploy on main branch pushes or pull request events
+    if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'pull_request'
 
     steps:
       - name: Checkout repository
