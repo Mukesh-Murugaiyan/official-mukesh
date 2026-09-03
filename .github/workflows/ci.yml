@@ -112,10 +112,16 @@ jobs:
       # ------------------------------------------
       - name: Pull Vercel Environment (Production)
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+        run: |
+          echo "Checking secret formats..."
+          echo "VERCEL_ORG_ID starts with: ${VERCEL_ORG_ID:0:5} (Length: ${#VERCEL_ORG_ID})"
+          echo "VERCEL_PROJECT_ID starts with: ${VERCEL_PROJECT_ID:0:4} (Length: ${#VERCEL_PROJECT_ID})"
+          echo "VERCEL_TOKEN is set: ${#VERCEL_TOKEN} characters"
+          vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
 
       - name: Build Project Artifacts (Production)
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
