@@ -66,6 +66,7 @@ jobs:
     name: Deploy to Vercel
     needs: ci
     runs-on: ubuntu-latest
+    environment: "Production – sush-frontend-nextjs-avrg"
     # Only run deploy on main branch pushes or pull request events
     if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'pull_request'
 
