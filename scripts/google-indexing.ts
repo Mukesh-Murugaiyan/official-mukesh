@@ -1,4 +1,4 @@
-import jwt from "jsonwebtoken";
+import { GoogleAuth } from "google-auth-library";
 import path from "path";
 import fs from "fs";
 
@@ -84,7 +84,7 @@ export function getAllSiteUrls(): string[] {
   return allPaths.map((p) => `${SITE_ORIGIN}${p}`);
 }
 
-// 2. Generate Google OAuth2 Access Token using JWT
+// 2. Generate Google OAuth2 Access Token using official google-auth-library
 async function getGoogleAccessToken(
   serviceAccount: GscServiceAccount
 ): Promise<string> {
@@ -97,34 +97,23 @@ async function getGoogleAccessToken(
     );
   }
 
-  const now = Math.floor(Date.now() / 1000);
-  const payload = {
-    iss: clientEmail,
-    scope:
-      "https://www.googleapis.com/auth/indexing https://www.googleapis.com/auth/webmasters.readonly",
-    aud: "https://oauth2.googleapis.com/token",
-    exp: now + 3600,
-    iat: now,
-  };
-
-  const signedJwt = jwt.sign(payload, privateKey, { algorithm: "RS256" });
-
-  const res = await fetch("https://oauth2.googleapis.com/token", {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: new URLSearchParams({
-      grant_type: "urn:ietf:params:oauth:grant-type:jwt-bearer",
-      assertion: signedJwt,
-    }),
+  const auth = new GoogleAuth({
+    credentials: {
+      client_email: clientEmail,
+      private_key: privateKey.replace(/\\n/g, "\n"),
+    },
+    scopes: [
+      "https://www.googleapis.com/auth/indexing",
+      "https://www.googleapis.com/auth/webmasters.readonly",
+    ],
   });
 
-  if (!res.ok) {
-    const errorText = await res.text();
-    throw new Error(`Google OAuth Token Exchange Failed: ${res.status} - ${errorText}`);
+  const client = await auth.getClient();
+  const tokenResponse = await client.getAccessToken();
+  if (!tokenResponse.token) {
+    throw new Error("Failed to acquire Google access token.");
   }
-
-  const data = (await res.json()) as { access_token: string };
-  return data.access_token;
+  return tokenResponse.token;
 }
 
 // 3. Submit URL to Google Indexing API
@@ -183,6 +172,8 @@ async function inspectUrlIndexState(
     );
 
     if (!res.ok) {
+      const errText = await res.text().catch(() => "");
+      console.warn(`[GSC Inspection Error] ${url}: ${res.status} ${errText.substring(0, 150)}`);
       return { coverageState: `Inspection API (${res.status})` };
     }
 
