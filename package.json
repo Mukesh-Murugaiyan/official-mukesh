@@ -9,7 +9,7 @@
     "lint": "eslint",
     "syncDb": "npx prisma db push && npx prisma generate",
     "resetDb": "npx prisma migrate reset --force && npx prisma generate",
-    "index-seo": "ts-node --transpile-only scripts/google-indexing.ts"
+    "index-seo": "tsx scripts/google-indexing.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.967.0",
@@ -92,6 +92,7 @@
     "next": "^16.1.1",
     "tailwindcss": "^4",
     "ts-node": "^10.9.2",
+    "tsx": "^4.23.13",
     "typescript": "^5.9.3"
   },
   "browserslist": [
