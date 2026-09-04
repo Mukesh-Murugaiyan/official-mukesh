@@ -162,5 +162,5 @@ jobs:
       - name: Trigger Google Indexing & Search Inspection
         env:
           GSC_SERVICE_ACCOUNT_KEY: ${{ secrets.GSC_SERVICE_ACCOUNT_KEY }}
-        run: npx ts-node scripts/google-indexing.ts
+        run: npm run index-seo
 
