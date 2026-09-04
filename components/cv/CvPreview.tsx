@@ -23,7 +23,7 @@ export default function CvPreview({ cv }: CvPreviewProps) {
   const [modalZoom, setModalZoom] = useState<number>(0.85);
   const previewContainerRef = useRef<HTMLDivElement>(null);
 
-  // Dynamically calculate scale ratio so entire CV sheet fits inside preview box for both mobile and desktop
+  // Dynamically calculate scale ratio so entire CV sheet fits inside preview box
   useEffect(() => {
     const updatePreviewScale = () => {
       if (previewContainerRef.current) {
@@ -38,7 +38,6 @@ export default function CvPreview({ cv }: CvPreviewProps) {
     return () => window.removeEventListener("resize", updatePreviewScale);
   }, []);
 
-  // Adjust default modal zoom for mobile screens when opened
   const handleOpenModal = () => {
     if (typeof window !== "undefined" && window.innerWidth < 640) {
       const mobileZoom = Math.min(Math.max((window.innerWidth - 32) / 800, 0.38), 0.65);
@@ -49,7 +48,6 @@ export default function CvPreview({ cv }: CvPreviewProps) {
     setIsModalOpen(true);
   };
 
-  // Handle ESC key to close modal
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape" && isModalOpen) {
@@ -60,105 +58,109 @@ export default function CvPreview({ cv }: CvPreviewProps) {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isModalOpen]);
 
-  // Render Full CV Document Sheet
+  // Render High-Fidelity Serif Document Sheet (Matching Uploaded Images Exactly)
   const renderFullCvContent = () => (
     <div
       id="cv-printable-area"
       className="cv-page-sheet w-[800px] bg-white text-gray-900 shadow-2xl rounded-sm text-left shrink-0 my-2"
       style={{
         fontFamily: cssTokens.fontFamily,
-        padding: "36pt 45pt", // 0.5in top/bottom, 0.625in left/right (matching twips 720 / 900)
+        padding: "36pt 45pt", // 0.5in top/bottom, 0.625in left/right
         minHeight: "1050px",
         color: cssTokens.bodyText,
         fontSize: "10pt",
-        lineHeight: "1.4",
+        lineHeight: "1.45",
       }}
     >
-      {/* Name Header */}
-      <h1
-        className="text-center font-bold tracking-tight uppercase mb-0.5"
-        style={{
-          color: cssTokens.nameHeading,
-          fontSize: "16pt",
-          lineHeight: "1.2",
-          letterSpacing: "0.03em",
-        }}
-      >
-        {personal.fullName || "YOUR NAME"}
-      </h1>
-
-      {/* Title Subheader */}
-      {personal.title && (
-        <p
-          className="text-center font-medium mb-1.5"
+      {/* Header Section */}
+      <div className="border-b border-gray-300 pb-2.5 mb-3.5 text-center">
+        <h1
+          className="font-bold tracking-tight uppercase mb-0.5"
           style={{
-            color: cssTokens.mutedText,
-            fontSize: "11pt",
+            color: cssTokens.nameHeading,
+            fontSize: "17pt",
+            lineHeight: "1.2",
+            fontFamily: cssTokens.fontFamily,
           }}
         >
-          {personal.title}
-        </p>
-      )}
+          {personal.fullName || "MUKESH MURUGAIYAN"}
+        </h1>
 
-      {/* Contact Line */}
-      <div
-        className="text-center mb-4 flex flex-wrap justify-center items-center gap-1.5 text-xs"
-        style={{
-          color: cssTokens.mutedText,
-          fontSize: "9pt",
-        }}
-      >
-        {personal.email && <span>{personal.email}</span>}
-        {personal.email && (personal.phone || personal.location) && <span>|</span>}
-        {personal.phone && <span>{personal.phone}</span>}
-        {personal.phone && personal.location && <span>|</span>}
-        {personal.location && <span>{personal.location}</span>}
-
-        {personal.portfolioUrl && (
-          <>
-            <span>|</span>
-            <a
-              href={personal.portfolioUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:underline font-semibold"
-              style={{ color: cssTokens.hyperlink }}
-            >
-              Portfolio
-            </a>
-          </>
+        {personal.title && (
+          <p
+            className="font-normal mb-1.5"
+            style={{
+              color: cssTokens.mutedText,
+              fontSize: "11pt",
+              fontFamily: cssTokens.fontFamily,
+            }}
+          >
+            {personal.title}
+          </p>
         )}
 
-        {personal.linkedinUrl && (
-          <>
-            <span>|</span>
-            <a
-              href={personal.linkedinUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:underline font-semibold"
-              style={{ color: cssTokens.hyperlink }}
-            >
-              LinkedIn
-            </a>
-          </>
-        )}
+        {/* Contact Line */}
+        <div
+          className="flex flex-wrap justify-center items-center gap-1.5 text-xs text-center"
+          style={{
+            color: cssTokens.mutedText,
+            fontSize: "9pt",
+            fontFamily: cssTokens.fontFamily,
+          }}
+        >
+          {personal.email && <span>{personal.email}</span>}
+          {personal.email && (personal.phone || personal.location) && <span>|</span>}
+          {personal.phone && <span>{personal.phone}</span>}
+          {personal.phone && personal.location && <span>|</span>}
+          {personal.location && <span>{personal.location}</span>}
+
+          {personal.portfolioUrl && (
+            <>
+              <span>|</span>
+              <a
+                href={personal.portfolioUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline text-blue-700 font-normal"
+                style={{ color: cssTokens.hyperlink }}
+              >
+                Portfolio
+              </a>
+            </>
+          )}
+
+          {personal.linkedinUrl && (
+            <>
+              <span>|</span>
+              <a
+                href={personal.linkedinUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline text-blue-700 font-normal"
+                style={{ color: cssTokens.hyperlink }}
+              >
+                LinkedIn
+              </a>
+            </>
+          )}
+        </div>
       </div>
 
       {/* Professional Summary */}
       {summary && (
         <div className="mb-4">
           <h2
-            className="font-bold uppercase tracking-wider pb-1 mb-2 border-b"
+            className="font-bold uppercase tracking-wider pb-0.5 mb-2 border-b"
             style={{
               color: cssTokens.sectionHeading,
               borderColor: cssTokens.sectionHeading,
               fontSize: "11pt",
+              fontFamily: cssTokens.fontFamily,
             }}
           >
             PROFESSIONAL SUMMARY
           </h2>
-          <p className="text-justify leading-relaxed" style={{ fontSize: "10pt" }}>
+          <p className="text-justify leading-relaxed" style={{ fontSize: "10pt", fontFamily: cssTokens.fontFamily }}>
             {summary}
           </p>
         </div>
@@ -168,11 +170,12 @@ export default function CvPreview({ cv }: CvPreviewProps) {
       {skills && skills.length > 0 && (
         <div className="mb-4">
           <h2
-            className="font-bold uppercase tracking-wider pb-1 mb-2 border-b"
+            className="font-bold uppercase tracking-wider pb-0.5 mb-2 border-b"
             style={{
               color: cssTokens.sectionHeading,
               borderColor: cssTokens.sectionHeading,
               fontSize: "11pt",
+              fontFamily: cssTokens.fontFamily,
             }}
           >
             CORE SKILLS
@@ -184,8 +187,8 @@ export default function CvPreview({ cv }: CvPreviewProps) {
                 : skill.items;
               if (!skill.category && !itemsStr) return null;
               return (
-                <li key={index} className="text-justify leading-relaxed" style={{ fontSize: "10pt" }}>
-                  <span className="font-semibold">{skill.category}: </span>
+                <li key={index} className="text-justify leading-relaxed" style={{ fontSize: "10pt", fontFamily: cssTokens.fontFamily }}>
+                  <span className="font-bold">{skill.category}: </span>
                   <span>{itemsStr}</span>
                 </li>
               );
@@ -198,35 +201,38 @@ export default function CvPreview({ cv }: CvPreviewProps) {
       {experience && experience.length > 0 && (
         <div className="mb-4">
           <h2
-            className="font-bold uppercase tracking-wider pb-1 mb-2 border-b"
+            className="font-bold uppercase tracking-wider pb-0.5 mb-2 border-b"
             style={{
               color: cssTokens.sectionHeading,
               borderColor: cssTokens.sectionHeading,
               fontSize: "11pt",
+              fontFamily: cssTokens.fontFamily,
             }}
           >
             PROFESSIONAL EXPERIENCE
           </h2>
           <div className="space-y-3">
             {experience.map((exp, index) => (
-              <div key={index} className="space-y-1">
+              <div key={index} className="space-y-0.5">
                 {/* Title & Right-Aligned Date Row */}
-                <div className="flex justify-between items-baseline font-bold" style={{ fontSize: "10pt" }}>
+                <div className="flex justify-between items-baseline font-bold" style={{ fontSize: "10pt", fontFamily: cssTokens.fontFamily }}>
                   <span>{exp.role}</span>
                   <span className="italic font-normal text-gray-700 text-right ml-4 shrink-0">
                     {exp.startDate} – {exp.endDate}
                   </span>
                 </div>
-                {/* Company & Location */}
-                <div className="text-gray-700 font-medium" style={{ fontSize: "10pt" }}>
-                  {exp.company} | {exp.location}
-                </div>
+                {/* Company & Location (Italics) */}
+                {exp.company && (
+                  <div className="italic text-gray-700 font-normal" style={{ fontSize: "10pt", fontFamily: cssTokens.fontFamily }}>
+                    {exp.company} {exp.location ? `| ${exp.location}` : ""}
+                  </div>
+                )}
                 {/* Bullets */}
                 {exp.bullets && exp.bullets.length > 0 && (
                   <ul className="list-disc list-outside ml-5 space-y-0.5 mt-1">
                     {exp.bullets.map((b, bIdx) => (
                       b.trim() ? (
-                        <li key={bIdx} className="text-justify leading-relaxed" style={{ fontSize: "10pt" }}>
+                        <li key={bIdx} className="text-justify leading-relaxed" style={{ fontSize: "10pt", fontFamily: cssTokens.fontFamily }}>
                           {b}
                         </li>
                       ) : null
@@ -243,11 +249,12 @@ export default function CvPreview({ cv }: CvPreviewProps) {
       {projects && projects.length > 0 && (
         <div className="mb-4">
           <h2
-            className="font-bold uppercase tracking-wider pb-1 mb-2 border-b"
+            className="font-bold uppercase tracking-wider pb-0.5 mb-2 border-b"
             style={{
               color: cssTokens.sectionHeading,
               borderColor: cssTokens.sectionHeading,
               fontSize: "11pt",
+              fontFamily: cssTokens.fontFamily,
             }}
           >
             KEY PROJECTS
@@ -258,17 +265,17 @@ export default function CvPreview({ cv }: CvPreviewProps) {
                 ? proj.techStack.join(", ")
                 : proj.techStack;
               return (
-                <div key={index} className="space-y-1">
+                <div key={index} className="space-y-0.5">
                   {/* Title & Right-Aligned Date Row */}
-                  <div className="flex justify-between items-baseline font-bold" style={{ fontSize: "10pt" }}>
+                  <div className="flex justify-between items-baseline font-bold" style={{ fontSize: "10pt", fontFamily: cssTokens.fontFamily }}>
                     <span>{proj.title}</span>
                     <span className="italic font-normal text-gray-700 text-right ml-4 shrink-0">
                       {proj.startDate} – {proj.endDate}
                     </span>
                   </div>
-                  {/* Tech Stack */}
+                  {/* Tech Stack (Italics) */}
                   {techStr && (
-                    <div className="italic text-gray-700 text-justify" style={{ fontSize: "10pt" }}>
+                    <div className="italic text-gray-700 text-justify font-normal" style={{ fontSize: "10pt", fontFamily: cssTokens.fontFamily }}>
                       {techStr}
                     </div>
                   )}
@@ -277,7 +284,7 @@ export default function CvPreview({ cv }: CvPreviewProps) {
                     <ul className="list-disc list-outside ml-5 space-y-0.5 mt-1">
                       {proj.bullets.map((b, bIdx) => (
                         b.trim() ? (
-                          <li key={bIdx} className="text-justify leading-relaxed" style={{ fontSize: "10pt" }}>
+                          <li key={bIdx} className="text-justify leading-relaxed" style={{ fontSize: "10pt", fontFamily: cssTokens.fontFamily }}>
                             {b}
                           </li>
                         ) : null
@@ -295,18 +302,19 @@ export default function CvPreview({ cv }: CvPreviewProps) {
       {education && education.length > 0 && (
         <div>
           <h2
-            className="font-bold uppercase tracking-wider pb-1 mb-2 border-b"
+            className="font-bold uppercase tracking-wider pb-0.5 mb-2 border-b"
             style={{
               color: cssTokens.sectionHeading,
               borderColor: cssTokens.sectionHeading,
               fontSize: "11pt",
+              fontFamily: cssTokens.fontFamily,
             }}
           >
             EDUCATION
           </h2>
-          <div className="space-y-1.5">
+          <div className="space-y-1">
             {education.map((edu, index) => (
-              <div key={index} className="flex justify-between items-baseline" style={{ fontSize: "10pt" }}>
+              <div key={index} className="flex justify-between items-baseline" style={{ fontSize: "10pt", fontFamily: cssTokens.fontFamily }}>
                 <span>
                   <span className="font-semibold">{edu.degree}</span> — {edu.institution}
                 </span>
@@ -347,7 +355,7 @@ export default function CvPreview({ cv }: CvPreviewProps) {
         </div>
       </div>
 
-      {/* FULL SCREEN MODAL OVERLAY (Mobile Responsive Layout) */}
+      {/* FULL SCREEN MODAL OVERLAY */}
       <AnimatePresence>
         {isModalOpen && (
           <motion.div
@@ -356,9 +364,8 @@ export default function CvPreview({ cv }: CvPreviewProps) {
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex flex-col items-center justify-between p-2 sm:p-4 overflow-hidden"
           >
-            {/* Responsive Modal Header Bar */}
+            {/* Modal Header Bar */}
             <div className="w-full max-w-5xl flex flex-col sm:flex-row items-center justify-between bg-gray-900/95 border border-white/15 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl shadow-2xl z-10 gap-2 sm:gap-4">
-              {/* Title & Mobile Close Button */}
               <div className="flex items-center justify-between w-full sm:w-auto gap-2">
                 <div className="flex items-center gap-2 min-w-0">
                   <span className="font-semibold text-white text-xs sm:text-sm truncate">
@@ -369,7 +376,6 @@ export default function CvPreview({ cv }: CvPreviewProps) {
                   </span>
                 </div>
 
-                {/* Mobile Close Button */}
                 <button
                   onClick={() => setIsModalOpen(false)}
                   className="sm:hidden p-1.5 bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 rounded-lg border border-rose-500/30 transition-all flex items-center gap-1 text-xs font-semibold shrink-0"
@@ -379,7 +385,6 @@ export default function CvPreview({ cv }: CvPreviewProps) {
                 </button>
               </div>
 
-              {/* Zoom Controls & Desktop Close Button */}
               <div className="flex items-center justify-between sm:justify-end w-full sm:w-auto gap-2 border-t border-white/10 sm:border-0 pt-2 sm:pt-0">
                 <div className="flex items-center gap-1.5 bg-black/30 border border-white/10 px-2 py-1 rounded-lg">
                   <button
@@ -401,7 +406,6 @@ export default function CvPreview({ cv }: CvPreviewProps) {
                   </button>
                 </div>
 
-                {/* Desktop Close Button */}
                 <button
                   onClick={() => setIsModalOpen(false)}
                   className="hidden sm:flex ml-2 p-1.5 bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 rounded-lg border border-rose-500/30 transition-all items-center gap-1 text-xs font-semibold shrink-0"
@@ -412,7 +416,7 @@ export default function CvPreview({ cv }: CvPreviewProps) {
               </div>
             </div>
 
-            {/* Modal Body Container with Smooth Scroll & Center Alignment */}
+            {/* Modal Body */}
             <div className="w-full flex-1 overflow-auto flex flex-col items-center justify-start my-2 sm:my-4 p-2 sm:p-4">
               <div
                 className="transition-transform duration-200 origin-top flex justify-center"

@@ -1,17 +1,17 @@
 export const styleTokens = {
   colors: {
-    nameHeading: "1F4E79",      // dark navy — name at top
-    sectionHeading: "1F4E79",   // section headers
-    bodyText: "333333",
+    nameHeading: "111111",      // Dark/black name
+    sectionHeading: "2F5597",   // Steel blue / navy header color from document image
+    bodyText: "222222",
     mutedText: "444444",
-    projectTechLine: "444444",  // italic tech-stack line under project titles
+    projectTechLine: "333333",  // Italic tech-stack line
     hyperlink: "0056B3",
   },
   fonts: {
-    body: "Calibri",
+    body: "Times New Roman",
   },
   sizes: {             // in half-points (Word units): sz=20 → 10pt
-    name: 32,          // 16pt
+    name: 36,          // 18pt
     title: 22,          // 11pt
     sectionHeader: 22,   // 11pt bold
     body: 20,            // 10pt
@@ -19,15 +19,15 @@ export const styleTokens = {
   },
   layout: {
     pageMarginsTwips: { top: 720, bottom: 720, left: 900, right: 900 },
-    dateTabStopPos: 10440,   // right-aligned tab position for dates (matches right margin)
+    dateTabStopPos: 10440,   // right-aligned tab position for dates
   },
 };
 
 export const cssTokens = {
-  nameHeading: "#1F4E79",
-  sectionHeading: "#1F4E79",
-  bodyText: "#333333",
+  nameHeading: "#111111",
+  sectionHeading: "#2F5597",
+  bodyText: "#222222",
   mutedText: "#444444",
   hyperlink: "#0056B3",
-  fontFamily: 'Calibri, "Segoe UI", Arial, sans-serif',
+  fontFamily: '"Times New Roman", Times, Georgia, serif',
 };

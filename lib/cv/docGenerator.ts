@@ -13,11 +13,11 @@ import { CV } from "./types";
 
 export function sectionHeader(text: string): Paragraph {
   return new Paragraph({
-    spacing: { before: 200, after: 80 },
+    spacing: { before: 180, after: 60 },
     border: {
       bottom: {
         style: BorderStyle.SINGLE,
-        size: 4,
+        size: 6,
         color: styleTokens.colors.sectionHeading,
       },
     },
@@ -36,7 +36,7 @@ export function sectionHeader(text: string): Paragraph {
 export function bodyParagraph(text: string): Paragraph {
   return new Paragraph({
     alignment: AlignmentType.JUSTIFIED,
-    spacing: { after: 100 },
+    spacing: { after: 80 },
     children: [
       new TextRun({
         text,
@@ -52,10 +52,33 @@ export function bulletPoint(text: string): Paragraph {
   return new Paragraph({
     alignment: AlignmentType.JUSTIFIED,
     bullet: { level: 0 },
-    spacing: { after: 60 },
+    spacing: { after: 50 },
     children: [
       new TextRun({
         text,
+        font: styleTokens.fonts.body,
+        size: styleTokens.sizes.body,
+        color: styleTokens.colors.bodyText,
+      }),
+    ],
+  });
+}
+
+export function skillBulletPoint(category: string, itemsStr: string): Paragraph {
+  return new Paragraph({
+    alignment: AlignmentType.JUSTIFIED,
+    bullet: { level: 0 },
+    spacing: { after: 50 },
+    children: [
+      new TextRun({
+        text: `${category}: `,
+        bold: true,
+        font: styleTokens.fonts.body,
+        size: styleTokens.sizes.body,
+        color: styleTokens.colors.bodyText,
+      }),
+      new TextRun({
+        text: itemsStr,
         font: styleTokens.fonts.body,
         size: styleTokens.sizes.body,
         color: styleTokens.colors.bodyText,
@@ -68,7 +91,7 @@ export function bulletPoint(text: string): Paragraph {
 export function titleWithDate(title: string, dateRange: string): Paragraph {
   return new Paragraph({
     tabStops: [{ type: TabStopType.RIGHT, position: styleTokens.layout.dateTabStopPos }],
-    spacing: { before: 120, after: 0 },
+    spacing: { before: 120, after: 20 },
     children: [
       new TextRun({
         text: title,
@@ -83,6 +106,39 @@ export function titleWithDate(title: string, dateRange: string): Paragraph {
         font: styleTokens.fonts.body,
         size: styleTokens.sizes.body,
         color: styleTokens.colors.bodyText,
+      }),
+    ],
+  });
+}
+
+export function companyLocationLine(company: string, location?: string): Paragraph {
+  const text = location ? `${company} | ${location}` : company;
+  return new Paragraph({
+    alignment: AlignmentType.LEFT,
+    spacing: { after: 60 },
+    children: [
+      new TextRun({
+        text,
+        italics: true,
+        font: styleTokens.fonts.body,
+        size: styleTokens.sizes.body,
+        color: styleTokens.colors.mutedText,
+      }),
+    ],
+  });
+}
+
+export function techStackLine(techStr: string): Paragraph {
+  return new Paragraph({
+    alignment: AlignmentType.LEFT,
+    spacing: { after: 60 },
+    children: [
+      new TextRun({
+        text: techStr,
+        italics: true,
+        font: styleTokens.fonts.body,
+        size: styleTokens.sizes.body,
+        color: styleTokens.colors.projectTechLine,
       }),
     ],
   });
@@ -164,7 +220,14 @@ export function contactLine(personal: CV["personal"]): Paragraph {
 
   return new Paragraph({
     alignment: AlignmentType.CENTER,
-    spacing: { after: 150 },
+    spacing: { after: 120 },
+    border: {
+      bottom: {
+        style: BorderStyle.SINGLE,
+        size: 4,
+        color: "D3D3D3",
+      },
+    },
     children,
   });
 }
@@ -197,7 +260,7 @@ export async function generateCvDocx(cv: CV): Promise<Buffer> {
       alignment: AlignmentType.CENTER,
       children: [
         new TextRun({
-          text: cv.personal.fullName || "YOUR NAME",
+          text: cv.personal.fullName || "MUKESH MURUGAIYAN",
           bold: true,
           font: styleTokens.fonts.body,
           color: styleTokens.colors.nameHeading,
@@ -207,7 +270,7 @@ export async function generateCvDocx(cv: CV): Promise<Buffer> {
     }),
     new Paragraph({
       alignment: AlignmentType.CENTER,
-      spacing: { after: 100 },
+      spacing: { after: 80 },
       children: [
         new TextRun({
           text: cv.personal.title || "",
@@ -230,7 +293,7 @@ export async function generateCvDocx(cv: CV): Promise<Buffer> {
     cv.skills.forEach((s) => {
       if (s.category || (s.items && s.items.length > 0)) {
         const itemsList = Array.isArray(s.items) ? s.items.join(", ") : s.items;
-        children.push(bulletPoint(`${s.category}: ${itemsList}`));
+        children.push(skillBulletPoint(s.category, itemsList));
       }
     });
   }
@@ -239,7 +302,9 @@ export async function generateCvDocx(cv: CV): Promise<Buffer> {
     children.push(sectionHeader("PROFESSIONAL EXPERIENCE"));
     cv.experience.forEach((exp) => {
       children.push(titleWithDate(exp.role, `${exp.startDate} – ${exp.endDate}`));
-      children.push(bodyParagraph(`${exp.company} | ${exp.location}`));
+      if (exp.company) {
+        children.push(companyLocationLine(exp.company, exp.location));
+      }
       if (exp.bullets) {
         exp.bullets.forEach((b) => {
           if (b.trim()) children.push(bulletPoint(b));
@@ -254,21 +319,7 @@ export async function generateCvDocx(cv: CV): Promise<Buffer> {
       children.push(titleWithDate(p.title, `${p.startDate} – ${p.endDate}`));
       if (p.techStack && p.techStack.length > 0) {
         const techStr = Array.isArray(p.techStack) ? p.techStack.join(", ") : p.techStack;
-        children.push(
-          new Paragraph({
-            alignment: AlignmentType.JUSTIFIED,
-            spacing: { after: 60 },
-            children: [
-              new TextRun({
-                text: techStr,
-                italics: true,
-                font: styleTokens.fonts.body,
-                size: styleTokens.sizes.body,
-                color: styleTokens.colors.projectTechLine,
-              }),
-            ],
-          })
-        );
+        children.push(techStackLine(techStr));
       }
       if (p.bullets) {
         p.bullets.forEach((b) => {
