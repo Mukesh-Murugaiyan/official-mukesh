@@ -1,25 +1,37 @@
 // app/admin/page.tsx
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
-    FaBell,
-    FaChartBar,
-    FaCog,
-    FaDownload,
-    FaEye,
-    FaFilePdf,
-    FaSearch,
-    FaSignOutAlt,
-    FaTachometerAlt,
-    FaUserCircle,
-    FaUsers
+  FaBell,
+  FaChartBar,
+  FaCog,
+  FaDownload,
+  FaEye,
+  FaFilePdf,
+  FaSearch,
+  FaSignOutAlt,
+  FaTachometerAlt,
+  FaUserCircle,
+  FaUserTie,
+  FaUsers
 } from "react-icons/fa";
 import { MdAnalytics } from "react-icons/md";
 import PDFManageTab from "./PDFManageTab";
+import InterviewManageTab from "./InterviewManageTab";
 
 const ClientAdminPage = () => {
   const [activeTab, setActiveTab] = useState("dashboard");
   const [searchTerm, setSearchTerm] = useState("");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const tab = params.get("tab");
+      if (tab && ["dashboard", "pdfs", "interviews", "users", "analytics", "settings"].includes(tab)) {
+        setActiveTab(tab);
+      }
+    }
+  }, []);
 
   // Sample data
   const stats = {
@@ -70,51 +82,6 @@ const ClientAdminPage = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Top Navigation Bar */}
-      <nav className="bg-white shadow-sm border-b">
-        <div className="px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <h1 className="text-2xl font-bold text-gray-800">
-                Admin Dashboard
-              </h1>
-              <div className="relative hidden md:block">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <FaSearch className="text-gray-400" />
-                </div>
-                <input
-                  type="text"
-                  placeholder="Search PDFs, users, analytics..."
-                  className="pl-10 pr-4 py-2 border rounded-lg w-64 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                />
-              </div>
-            </div>
-
-            <div className="flex items-center gap-4">
-              <button className="relative p-2 text-gray-600 hover:text-gray-800">
-                <FaBell className="text-xl" />
-                <span className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
-              </button>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold">
-                  M
-                </div>
-                <div className="hidden md:block">
-                  <p className="font-semibold text-gray-800">
-                    Mukesh Murugaiyan
-                  </p>
-                  <p className="text-sm text-gray-600">Admin</p>
-                </div>
-                <button className="p-2 text-gray-600 hover:text-gray-800">
-                  <FaSignOutAlt />
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </nav>
-
       <div className="flex">
         {/* Sidebar */}
         <aside className="hidden md:block w-64 bg-white border-r min-h-[calc(100vh-80px)]">
@@ -133,11 +100,10 @@ const ClientAdminPage = () => {
               <div className="space-y-2">
                 <button
                   onClick={() => setActiveTab("dashboard")}
-                  className={`flex items-center gap-3 w-full px-4 py-3 rounded-lg transition-all ${
-                    activeTab === "dashboard"
+                  className={`flex items-center gap-3 w-full px-4 py-3 rounded-lg transition-all ${activeTab === "dashboard"
                       ? "bg-gradient-to-r from-blue-50 to-purple-50 text-blue-600 border-l-4 border-blue-500"
                       : "text-gray-600 hover:bg-gray-50"
-                  }`}
+                    }`}
                 >
                   <FaTachometerAlt />
                   <span>Dashboard</span>
@@ -145,23 +111,32 @@ const ClientAdminPage = () => {
 
                 <button
                   onClick={() => setActiveTab("pdfs")}
-                  className={`flex items-center gap-3 w-full px-4 py-3 rounded-lg transition-all ${
-                    activeTab === "pdfs"
+                  className={`flex items-center gap-3 w-full px-4 py-3 rounded-lg transition-all ${activeTab === "pdfs"
                       ? "bg-gradient-to-r from-blue-50 to-purple-50 text-blue-600 border-l-4 border-blue-500"
                       : "text-gray-600 hover:bg-gray-50"
-                  }`}
+                    }`}
                 >
                   <FaFilePdf />
                   <span>PDF Management</span>
                 </button>
 
                 <button
+                  onClick={() => setActiveTab("interviews")}
+                  className={`flex items-center gap-3 w-full px-4 py-3 rounded-lg transition-all ${activeTab === "interviews"
+                      ? "bg-gradient-to-r from-blue-50 to-purple-50 text-blue-600 border-l-4 border-blue-500 font-medium"
+                      : "text-gray-600 hover:bg-gray-50"
+                    }`}
+                >
+                  <FaUserTie />
+                  <span>Interview</span>
+                </button>
+
+                <button
                   onClick={() => setActiveTab("users")}
-                  className={`flex items-center gap-3 w-full px-4 py-3 rounded-lg transition-all ${
-                    activeTab === "users"
+                  className={`flex items-center gap-3 w-full px-4 py-3 rounded-lg transition-all ${activeTab === "users"
                       ? "bg-gradient-to-r from-blue-50 to-purple-50 text-blue-600 border-l-4 border-blue-500"
                       : "text-gray-600 hover:bg-gray-50"
-                  }`}
+                    }`}
                 >
                   <FaUsers />
                   <span>User Management</span>
@@ -169,11 +144,10 @@ const ClientAdminPage = () => {
 
                 <button
                   onClick={() => setActiveTab("analytics")}
-                  className={`flex items-center gap-3 w-full px-4 py-3 rounded-lg transition-all ${
-                    activeTab === "analytics"
+                  className={`flex items-center gap-3 w-full px-4 py-3 rounded-lg transition-all ${activeTab === "analytics"
                       ? "bg-gradient-to-r from-blue-50 to-purple-50 text-blue-600 border-l-4 border-blue-500"
                       : "text-gray-600 hover:bg-gray-50"
-                  }`}
+                    }`}
                 >
                   <FaChartBar />
                   <span>Analytics</span>
@@ -181,11 +155,10 @@ const ClientAdminPage = () => {
 
                 <button
                   onClick={() => setActiveTab("settings")}
-                  className={`flex items-center gap-3 w-full px-4 py-3 rounded-lg transition-all ${
-                    activeTab === "settings"
+                  className={`flex items-center gap-3 w-full px-4 py-3 rounded-lg transition-all ${activeTab === "settings"
                       ? "bg-gradient-to-r from-blue-50 to-purple-50 text-blue-600 border-l-4 border-blue-500"
                       : "text-gray-600 hover:bg-gray-50"
-                  }`}
+                    }`}
                 >
                   <FaCog />
                   <span>Settings</span>
@@ -206,23 +179,23 @@ const ClientAdminPage = () => {
         </aside>
 
         {/* Mobile sidebar toggle */}
-        <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t">
-          <div className="flex justify-around py-3">
-            {["dashboard", "pdfs", "users", "analytics", "settings"].map(
+        <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t z-20">
+          <div className="flex justify-around py-2 overflow-x-auto">
+            {["dashboard", "pdfs", "interviews", "users", "analytics", "settings"].map(
               (tab) => (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`flex flex-col items-center p-2 ${
-                    activeTab === tab ? "text-blue-600" : "text-gray-600"
-                  }`}
+                  className={`flex flex-col items-center p-2 min-w-[50px] ${activeTab === tab ? "text-blue-600 font-medium" : "text-gray-600"
+                    }`}
                 >
                   {tab === "dashboard" && <FaTachometerAlt />}
                   {tab === "pdfs" && <FaFilePdf />}
+                  {tab === "interviews" && <FaUserTie />}
                   {tab === "users" && <FaUsers />}
                   {tab === "analytics" && <FaChartBar />}
                   {tab === "settings" && <FaCog />}
-                  <span className="text-xs mt-1 capitalize">{tab}</span>
+                  <span className="text-[10px] mt-1 capitalize">{tab}</span>
                 </button>
               )
             )}
@@ -340,7 +313,12 @@ const ClientAdminPage = () => {
 
           {/* PDF Management Table */}
           {activeTab === "pdfs" && (
-            <PDFManageTab/>
+            <PDFManageTab />
+          )}
+
+          {/* Interview Management */}
+          {activeTab === "interviews" && (
+            <InterviewManageTab />
           )}
         </main>
       </div>
