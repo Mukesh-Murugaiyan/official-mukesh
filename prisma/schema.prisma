@@ -67,3 +67,35 @@ model Media {
   @@map("media")
 }
 
+/// ✴---Interview Management Models---✴
+model Interview {
+  id            String           @id @default(cuid())
+  candidateName String
+  position      String
+  round         String           @default("Round 1")
+  phone         String
+  email         String
+  status        String           @default("Pending")
+  notes         String?
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+  deletedAt     DateTime?
+  rounds        InterviewRound[]
+
+  @@map("interviews")
+}
+
+model InterviewRound {
+  id          String    @id @default(cuid())
+  interviewId String
+  roundNumber Int       @default(1)
+  roundName   String    @default("Round 1")
+  status      String    @default("Pending")
+  notes       String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  interview   Interview @relation(fields: [interviewId], references: [id], onDelete: Cascade)
+
+  @@map("interview_rounds")
+}
+
